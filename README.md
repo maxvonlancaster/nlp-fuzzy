@@ -38,7 +38,7 @@ This is a repository for scientific ideas and research on the topics of fuzzy lo
 | <img src="https://www.github.com/12-deadblue.png" width="50" height="50"> | **Andrii Lazoryk** | [@12-deadblue](https://www.github.com/12-deadblue) | Generating functions, NLP | Hedgehog |
 | <img src="https://www.github.com/cryme666.png" width="50" height="50">  | **Valentyn Vikovan** | [@cryme666](https://www.github.com/cryme666) | NLP, Time Series Forecasting | Hedgehog |
 | <img src="https://www.github.com/wanesssssty.png" width="50" height="50"> | **Anastasia Rarenko** | [@wanesssssty](https://www.github.com/wanesssssty) | RAG Systems | Hedgehog |
-| TBA | **Oleksandr Mykchailyk** | TBA | NLP, FL | Hedgehog |
+| <img src="https://www.github.com/Olexandr26.png" width="50" height="50"> | **Oleksandr Mykchailyk** | [@Olexandr26](https://www.github.com/Olexandr26) | NLP, FL | Hedgehog |
 | TBA | **Liza Kvasnytska** | TBA | NLP | Hedgehog |
 | TBA | **Dmytro** | TBA | Text Summarization | Hedgehog |
 | TBA | **Kyryllo Kravtsov** | TBA | TBA | Hedgehog |
