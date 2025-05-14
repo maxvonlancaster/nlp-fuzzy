@@ -11,5 +11,18 @@
             "angry medium and worried high then neutral",
             "sad high and sad high then high_negative"
         ]
+    },
+    "nlp-political": {
+        "minimal-frlb": [
+            "economy medium and ecology medium and populism medium and social medium and religion medium and patriotism medium then neutral",
+            "religion low and economy low then high_right",
+            "economy high and social low then high_left",
+            "religion low and ecology high then high_left",
+            "patriotism low and ecology low then right",
+            "religion high and economy medium then high_right",
+            "economy low and social high then high_right",
+            "populism medium and ecology medium then neutral",
+            "ecology low and social low then high_right"
+        ]
     }
 }
