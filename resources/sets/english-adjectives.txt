@@ -1355,3 +1355,5 @@ tranquil
 relaxed
 cozy
 inviting
+frustrated
+disappointed

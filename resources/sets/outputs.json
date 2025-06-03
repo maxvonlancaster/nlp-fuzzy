@@ -2,14 +2,14 @@
     "nlp-sentiment": {
         "minimal-frlb": [
             "angry medium and worried medium and sad medium and calm medium and happy medium and excited medium then neutral",
-            "happy high and sad medium then neutral",
-            "excited high and sad low then high_positive",
-            "calm low and angry high then high_negative",
-            "calm high and sad medium then high_negative",
-            "angry low and happy high then high_positive",
-            "happy low and calm medium then high_negative",
-            "angry medium and worried high then neutral",
-            "sad high and sad high then high_negative"
+            "angry high and sad high then high_negative",
+            "happy low and happy medium then high_negative",
+            "happy high and worried high then high_positive",
+            "angry high and worried high then high_negative",
+            "happy low and calm high then high_negative",
+            "sad high and happy high then positive",
+            "worried low and sad low then high_positive",
+            "calm low and calm high then neutral"
         ]
     },
     "nlp-political": {
