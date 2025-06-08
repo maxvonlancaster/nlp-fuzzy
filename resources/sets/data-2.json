@@ -1,0 +1,50 @@
+[
+    {
+        "locationId": "A",
+        "locationName": "Warehouse A",
+        "capacity": 1000,
+        "date": "2023-10-01T12:00:00Z",
+        "system": "System A",
+        "status": "active",
+        "hasChildren":{
+
+        },
+        "visits": {}
+    },
+    {
+        "locationId": "B",
+        "locationName": "Warehouse B",
+        "capacity": 1000,
+        "date": "2023-10-01T12:00:00Z",
+        "system": "System B",
+        "status": "active",
+        "hasChildren":{
+
+        },
+        "visits": {}
+    },
+    {
+        "locationId": "C",
+        "locationName": "Warehouse C",
+        "capacity": 1000,
+        "date": "2023-10-01T12:00:00Z",
+        "system": "System C",
+        "status": "active",
+        "hasChildren":{
+
+        },
+        "visits": {}
+    },
+    {
+        "locationId": "D",
+        "locationName": "Warehouse D",
+        "capacity": 1000,
+        "date": "2023-10-01T12:00:00Z",
+        "system": "System D",
+        "status": "active",
+        "hasChildren":{
+            
+        },
+        "visits": {}
+    }
+]
