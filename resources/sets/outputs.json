@@ -24,5 +24,18 @@
             "populism medium and ecology medium then neutral",
             "ecology low and social low then high_right"
         ]
+    },
+    "timeseries": {
+        "minimal-frlb": [
+            "lag_0 const and lag_1 const and lag_2 const and lag_3 const and lag_4 const then const",
+            "lag_0 decrease_high and lag_4 increase then increase",
+            "lag_0 increase and lag_4 const then decrease",
+            "lag_1 increase_high and lag_3 decrease then increase_high",
+            "lag_0 increase and lag_2 const then increase_high",
+            "lag_3 increase_high and lag_0 decrease then increase_high",
+            "lag_1 decrease and lag_2 const then decrease_high",
+            "lag_0 increase_high and lag_0 increase_high then decrease_high",
+            "lag_0 increase_high and lag_2 const then increase_high"
+        ]
     }
 }
