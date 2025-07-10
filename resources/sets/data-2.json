@@ -6,10 +6,71 @@
         "date": "2023-10-01T12:00:00Z",
         "system": "System A",
         "status": "active",
-        "hasChildren":{
-
-        },
-        "visits": {}
+        "hasChildren":[
+            {
+                "locationId": "A1",
+                "locationName": "Sub-Warehouse A1",
+                "capacity": 500,
+                "date": "2023-10-01T12:00:00Z",
+                "system": "System A1",
+                "status": "active",
+                "hasChildren": [
+                    {
+                        "locationId": "A1-1",
+                        "locationName": "Sub-Sub-Warehouse A1-1",
+                        "capacity": 250,
+                        "date": "2023-10-01T12:00:00Z",
+                        "system": "System A1-1",
+                        "status": "active",
+                        "hasChildren": []
+                    },
+                    {
+                        "locationId": "A1-2",
+                        "locationName": "Sub-Sub-Warehouse A1-2",
+                        "capacity": 250,
+                        "date": "2023-10-01T12:00:00Z",
+                        "system": "System A1-2",
+                        "status": "active",
+                        "hasChildren": []
+                    }
+                ]
+            },
+            {
+                "locationId": "A2",
+                "locationName": "Sub-Warehouse A2",
+                "capacity": 500,
+                "date": "2023-10-01T12:00:00Z",
+                "system": "System A2",
+                "status": "active",
+                "hasChildren": []
+            }
+        ],
+        "visits": [
+            {
+                "visitId": "V1",
+                "visitDate": "2023-10-01T12:00:00Z",
+                "purpose": "Inspection",
+                "duration": 120,
+                "person":{
+                    "id": "P1",
+                    "name": "John Doe",
+                    "role": "Inspector",
+                    "email": "jd@gmail.com"
+                }
+            },
+            {
+                "visitId": "V2",
+                "visitDate": "2023-10-02T14:00:00Z",
+                "purpose": "Delivery",
+                "duration": 60,
+                "person":{
+                    "id": "P2",
+                    "name": "Jane Smith",
+                    "role": "Delivery Driver",
+                    "email": ""
+                }
+            }
+        ]
     },
     {
         "locationId": "B",
@@ -18,10 +79,40 @@
         "date": "2023-10-01T12:00:00Z",
         "system": "System B",
         "status": "active",
-        "hasChildren":{
-
-        },
-        "visits": {}
+        "hasChildren":[
+            {
+                "locationId": "B1",
+                "locationName": "Sub-Warehouse B1",
+                "capacity": 500,
+                "date": "2023-10-01T12:00:00Z",
+                "system": "System B1",
+                "status": "active",
+                "hasChildren": []
+            },
+            {
+                "locationId": "B2",
+                "locationName": "Sub-Warehouse B2",
+                "capacity": 500,
+                "date": "2023-10-01T12:00:00Z",
+                "system": "System B2",
+                "status": "active",
+                "hasChildren": []
+            }
+        ],
+        "visits": [
+            {
+                "visitId": "V3",
+                "visitDate": "2023-10-03T10:00:00Z",
+                "purpose": "Maintenance",
+                "duration": 90,
+                "person":{
+                    "id": "P3",
+                    "name": "Alice Johnson",
+                    "role": "Maintenance Technician",
+                    "email": ""
+                }
+            }
+        ]
     },
     {
         "locationId": "C",
@@ -30,10 +121,40 @@
         "date": "2023-10-01T12:00:00Z",
         "system": "System C",
         "status": "active",
-        "hasChildren":{
-
-        },
-        "visits": {}
+        "hasChildren":[
+            {
+                "locationId": "C1",
+                "locationName": "Sub-Warehouse C1",
+                "capacity": 500,
+                "date": "2023-10-01T12:00:00Z",
+                "system": "System C1",
+                "status": "active",
+                "hasChildren": []
+            },
+            {
+                "locationId": "C2",
+                "locationName": "Sub-Warehouse C2",
+                "capacity": 500,
+                "date": "2023-10-01T12:00:00Z",
+                "system": "System C2",
+                "status": "active",
+                "hasChildren": []
+            }
+        ],
+        "visits": [
+            {
+                "visitId": "V4",
+                "visitDate": "2023-10-04T08:00:00Z",
+                "purpose": "Inventory Check",
+                "duration": 30,
+                "person":{
+                    "id": "P4",
+                    "name": "Bob Brown",
+                    "role": "Inventory Manager",
+                    "email": ""
+                }
+            }
+        ]
     },
     {
         "locationId": "D",
@@ -42,9 +163,48 @@
         "date": "2023-10-01T12:00:00Z",
         "system": "System D",
         "status": "active",
-        "hasChildren":{
-            
-        },
-        "visits": {}
+        "hasChildren":[
+            {
+                "locationId": "D1",
+                "locationName": "Sub-Warehouse D1",
+                "capacity": 500,
+                "date": "2023-10-01T12:00:00Z",
+                "system": "System D1",
+                "status": "active",
+                "hasChildren": []
+            },
+            {
+                "locationId": "D2",
+                "locationName": "Sub-Warehouse D2",
+                "capacity": 500,
+                "date": "2023-10-01T12:00:00Z",
+                "system": "System D2",
+                "status": "active",
+                "hasChildren": []
+            },
+            {
+                "locationId": "D3",
+                "locationName": "Sub-Warehouse D3",
+                "capacity": 500,
+                "date": "2023-10-01T12:00:00Z",
+                "system": "System D3",
+                "status": "active",
+                "hasChildren": []
+            }
+        ],
+        "visits": [
+            {
+                "visitId": "V5",
+                "visitDate": "2023-10-05T11:00:00Z",
+                "purpose": "Safety Inspection",
+                "duration": 45,
+                "person":{
+                    "id": "P5",
+                    "name": "Charlie Green",
+                    "role": "Safety Officer",
+                    "email": ""
+                }
+            }
+        ]
     }
 ]

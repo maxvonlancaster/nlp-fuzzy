@@ -1,3 +1,4 @@
+import datetime
 import json
 import strawberry
 from fastapi import FastAPI
@@ -17,6 +18,7 @@ class Person:
     id: int
     name: str
     age: int
+
 
 @strawberry.type
 class Query:
