@@ -26,7 +26,8 @@ This is a repository for scientific ideas and research on the topics of fuzzy lo
 
 4. Interesting Projects
 
-    - [❤️ Heart Diseases Analysis](/src/medical-prediction.ipynb)
+    - [❤️ Heart Diseases Analysis](/src/medical-prediction.ipynb) by [@UserAgent0007](https://github.com/UserAgent0007)
+    - [🩺 Medical Research General](/src/medical-prediction.ipynb) by [@UserAgent0007](https://github.com/UserAgent0007)
 
 
 ## Our Team
