@@ -30,8 +30,8 @@ This is a repository for scientific ideas and research on the topics of fuzzy lo
     - [🩺 Medical Research General](/src/medical-prediction.ipynb) by [@UserAgent0007](https://github.com/UserAgent0007)
 
 
-## Our Team
 
+## Our Team
 
 
 | Avatar | Name | GitHub Profile | Areas of Interest| Role |
@@ -71,3 +71,4 @@ This is a repository for scientific ideas and research on the topics of fuzzy lo
 - Also: web parsing, + web app for text summarization 
 
 ---
+
