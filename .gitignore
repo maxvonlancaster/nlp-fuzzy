@@ -3,3 +3,4 @@
 .env
 /resources/medical/
 /models/
+/src/medical/
