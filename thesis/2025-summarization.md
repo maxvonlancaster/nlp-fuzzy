@@ -4,13 +4,13 @@ This research demonstrates that unsupervised methods — particularly Self-Organ
 
 ## Introduction
 
-The rapid growth of digital text information has become one of the defining characteristics of the modern information age. Vast amounts of textual data are generated ежедневно through news media, scientific publications, social networks, and enterprise information systems. While access to information has never been easier, the sheer volume of available text has made efficient information consumption increasingly challenging. As a result, there is a growing need for automated tools capable of extracting the most relevant information from large textual sources in a concise and accessible form.
+The rapid growth of digital text information has become one of the defining characteristics of the modern information age. Vast amounts of textual data are generated everyday through news media, scientific publications, social networks, and enterprise information systems. While access to information has never been easier, the sheer volume of available text has made efficient information consumption increasingly challenging. As a result, there is a growing need for automated tools capable of extracting the most relevant information from large textual sources in a concise and accessible form.
 
 Automatic text summarization addresses this challenge by producing condensed representations of documents that preserve their essential content. Such systems are widely applicable across numerous domains, including journalism, where summaries enable rapid content dissemination; scientific research, where large bodies of literature must be reviewed efficiently; and customer support systems, where concise responses improve user experience. As the demand for intelligent information processing continues to rise, text summarization has become an important research area within natural language processing and machine learning.
 
-Existing approaches to text summarization can be broadly categorized into extractive and abstractive methods. Extractive summarization selects representative sentences directly from the original text, whereas abstractive summarization generates new sentences that paraphrase and compress the source content. In parallel, summarization techniques can also be divided based on their learning paradigm. Supervised and neural-based methods, particularly those relying on deep learning and transformer architectures, have achieved impressive performance in recent years. However, these approaches typically require large annotated datasets, significant computational resources, and complex training procedures, which limit their applicability in low-resource or domain-specific scenarios.
+Existing approaches to text summarization can be broadly categorized into extractive and abstractive methods. Extractive summarization selects representative sentences directly from the original text, whereas abstractive summarization generates new sentences that paraphrase and compress the source content [1]. In parallel, summarization techniques can also be divided based on their learning paradigm. Supervised and neural-based methods, particularly those relying on deep learning and transformer architectures, have achieved impressive performance in recent years. However, these approaches typically require large annotated datasets, significant computational resources, and complex training procedures, which limit their applicability in low-resource or domain-specific scenarios.
 
-Unsupervised summarization methods offer an alternative by relying solely on the intrinsic structure and statistical properties of the text. Classical unsupervised techniques include frequency-based models, latent semantic analysis, and graph-based methods such as TextRank. More recently, vector-based representations combined with clustering and dimensionality reduction techniques have gained attention for their ability to capture semantic relationships between sentences without requiring labeled data. These methods are particularly attractive for applications where interpretability, efficiency, and domain independence are essential.
+Unsupervised summarization methods offer an alternative by relying solely on the intrinsic structure and statistical properties of the text. Classical unsupervised techniques include frequency-based models, latent semantic analysis, and graph-based methods such as TextRank. More recently, vector-based representations combined with clustering and dimensionality reduction techniques have gained attention for their ability to capture semantic relationships between sentences without requiring labeled data. These methods are particularly attractive for applications where interpretability, efficiency, and domain independence are essential [2, 3, 4].
 
 The objective of this research is to investigate the effectiveness of unsupervised machine learning techniques—specifically Principal Component Analysis, K-Means clustering, and Self-Organizing Maps (Kohonen maps)—for extractive text summarization. By representing sentences as semantic vectors and organizing them in reduced or topologically structured spaces, it becomes possible to identify sentences that are most representative of the underlying themes of a document. The resulting summaries aim to balance informativeness and conciseness while remaining computationally efficient.
 
@@ -125,4 +125,22 @@ There is also potential in Hybrid SOM–Reinforcement Learning Summarization. A 
 
 There is also possibility in combining extractive and abstractive methods. An abstractive layer—such as a small LSTM decoder or distilled GPT model—could rewrite extractive output to improve coherence while retaining unsupervised selection.
 
+
+## References 
+
+[1]. Azam, M., Khalid, S., Almutairi, S., Khattak, H., Namoun, A., Ali, A., & Bilal, H. (2025). Current Trends and Advances in Extractive Text Summarization: A Comprehensive Review. IEEE Access, 13, 28150-28166. https://doi.org/10.1109/access.2025.3538886.
+
+[2]. Belwal, R., Rai, S., & Gupta, A. (2022). Extractive text summarization using clustering-based topic modeling. Soft Computing, 27, 3965-3982. https://doi.org/10.1007/s00500-022-07534-6.
+
+[3]. Saleh, M., Wazery, Y., & Ali, A. (2024). A systematic literature review of deep learning-based text summarization: Techniques, input representation, training strategies, mechanisms, datasets, evaluation, and challenges. Expert Syst. Appl., 252, 124153. https://doi.org/10.1016/j.eswa.2024.124153.
+
+[4]. Kirmani, M., Kaur, G., & Mohd, M. (2024). Analysis of Abstractive and Extractive Summarization Methods. Int. J. Emerg. Technol. Learn., 19, 86-96. https://doi.org/10.3991/ijet.v19i01.46079.
+
+[5]. Yadav, A., , R., Yadav, R., & Maurya, A. (2023). State-of-the-art approach to extractive text summarization: a comprehensive review. Multimedia Tools and Applications, 1-63. https://doi.org/10.1007/s11042-023-14613-9.
+
+[6]. Giarelis, N., Mastrokostas, C., & Karacapilidis, N. (2023). Abstractive vs. Extractive Summarization: An Experimental Review. Applied Sciences. https://doi.org/10.3390/app13137620.
+
+[7]. Melnyk H., Melnyk V., Vikovan V. Application of natural language processing and fuzzy logic to disinformation detection. Bukovinian Math. Journal. 2024. Vol. 12, no. 1. P. 21–31. 
+
+[8]. Melnyk H., Melnyk V. Enhancing Mood Detection in Textual Analysis through Fuzzy Logic Integration. 2024 14th International Conference on Advanced Computer Information Technologies (ACIT), Ceske Budejovice, Czech Republic, 19 September 2024. P. 23–26.
 
