@@ -37,5 +37,19 @@
             "lag_0 increase_high and lag_0 increase_high then decrease_high",
             "lag_0 increase_high and lag_2 const then increase_high"
         ]
+    },
+    "medical": {
+        "minimal-frlb": [
+            "Body_Temperature_C_scaled medium and Oxygen_Saturation_%_scaled medium then mild",
+            "Heart_Rate_bpm_scaled low and Gender_encoded high then mild",
+            "Body_Temperature_C_scaled medium and Body_Temperature_C_scaled medium then mild",
+            "Blood_Pressure_mmHg_upper_scaled medium and Body_Temperature_C_scaled medium then mild",
+            "Heart_Rate_bpm_scaled low and Oxygen_Saturation_%_scaled medium then mild",
+            "Gender_encoded high and Body_Temperature_C_scaled medium then mild",
+            "Oxygen_Saturation_%_scaled high and Body_Temperature_C_scaled low then moderate",
+            "Gender_encoded medium and Body_Temperature_C_scaled high then moderate",
+            "Blood_Pressure_mmHg_lower_scaled medium and Gender_encoded high then mild",
+            "Heart_Rate_bpm_scaled medium and Body_Temperature_C_scaled medium then mild"
+        ]
     }
 }

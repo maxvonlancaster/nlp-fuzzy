@@ -1,26 +1,37 @@
-# Combining ensemble machine learning models with text data analysis for medical conditions prediction
+# Combining ensemble machine learning models with text data analysis for medical conditions prediction.
 
 https://docs.google.com/document/d/1Pecw5_4UB3Qb6huxT0MDV0U5n1x7ucJYvcRC5_p9Yio/edit?tab=t.0
 
 ## Abstract
 
+The rapid digitalization of healthcare has resulted in vast repositories of both structured clinical data and unstructured electronic health records (EHRs). While structured data provides a quantitative baseline for patient assessment, a significant portion of diagnostic intelligence remains locked within unstructured clinical notes. Traditional predictive models often struggle to integrate these heterogeneous data types effectively, leading to suboptimal diagnostic accuracy and a lack of holistic patient profiling.
 
+This study proposes a hybrid predictive framework that integrates Ensemble Machine Learning (EML) techniques with Natural Language Processing (NLP) for the multi-modal prediction of medical conditions. We utilize advanced text vectorization techniques—including TF-IDF and Dense Word Embeddings (Word2Vec/BERT)—to transform clinical narratives into high-dimensional feature vectors. These textual features are fused with structured patient metrics, such as demographics and vital signs. To address the inherent high variance and bias in medical datasets, we employ an ensemble architecture utilizing Random Forests and Gradient Boosted Trees (XGBoost).
 
+Experimental results demonstrate that the combined multi-modal approach significantly outperforms single-source models. The integration of textual data provided a marked improvement in the F1-score and Area Under the Precision-Recall Curve (AUPRC), particularly in conditions where symptomatic nuances are primarily captured in physician notes rather than laboratory values. Furthermore, the ensemble strategy provided a more robust generalization across diverse patient cohorts, effectively mitigating the risks of vanishing gradients and overfitting common in deep learning applications with smaller clinical datasets.
 
+Keywords: Ensemble Learning, Clinical Text Mining, Predictive Analytics, Healthcare Informatics, Natural Language Processing, Medical Diagnostics.
 
 ## Introduction 
 
 
+The current stage of information technology development is characterized by a rapid increase in the volume of medical data and growing demands for speed and accuracy in clinical decision-making. Traditional approaches to analyzing medical information, based on manual interpretation of numerical indicators and textual descriptions, are becoming insufficiently effective given the large number of patients, complex data structures, and the need to minimize human error. In this context, the application of machine learning and artificial intelligence methods for automated analysis of medical data and decision support is of great relevance.
 
-## Related Work
-
-The current stage of information technology development is characterized by a rapid increase in the volume of medical data and growing demands for speed and accuracy in clinical decision-making. Traditional approaches to analyzing medical information, based on manual interpretation of numerical indicators and textual descriptions, are becoming insufficiently effective given the large number of patients, complex data structures, and the need to minimize human error. In this context, the application of machine learning and artificial intelligence methods for automated analysis of medical data and decision support is of great relevance [1, 2, 3, 4].
-
-A distinctive feature of medical information systems is the heterogeneity of the data they process. On the one hand, this includes structured numerical indicators of a patient’s condition, such as body temperature, blood oxygen levels, blood pressure, or heart rate. On the other hand, a significant portion of important information is contained in unstructured text—descriptions of symptoms, medical history, doctors’ conclusions, and clinical notes. The effective use of only one type of data often fails to fully capture the clinical picture of a disease, necessitating the combination of numerical and textual features [5].
+A distinctive feature of medical information systems is the heterogeneity of the data they process. On the one hand, this includes structured numerical indicators of a patient’s condition, such as body temperature, blood oxygen levels, blood pressure, or heart rate. On the other hand, a significant portion of important information is contained in unstructured text—descriptions of symptoms, medical history, doctors’ conclusions, and clinical notes. The effective use of only one type of data often fails to fully capture the clinical picture of a disease, necessitating the combination of numerical and textual features.
 
 Ensemble machine learning methods, particularly Random Forest and gradient boosting on decision trees, have proven to be powerful tools for handling complex nonlinear relationships and noisy data. They demonstrate high resistance to overfitting and enable significantly better results compared to baseline models. At the same time, natural language processing (NLP) methods are increasingly being used to analyze medical text data. These methods convert text into numerical representations suitable for further machine analysis and enable the identification of key entities, symptoms, and medical terms.
 
-Despite the active development of individual approaches to analyzing numerical and textual data, the issue of effectively combining them into a single model for predicting medical conditions remains under-researched. This is particularly true for classification tasks related to treatment plan recommendations and the determination of disease contagiousness, where errors can have significant consequences. Therefore, it is relevant to study approaches that combine ensemble machine learning models with modern NLP methods and hyperparameter optimization [6].
+Despite the active development of individual approaches to analyzing numerical and textual data, the issue of effectively combining them into a single model for predicting medical conditions remains under-researched. This is particularly true for classification tasks related to treatment plan recommendations and the determination of disease contagiousness, where errors can have significant consequences. Therefore, it is relevant to study approaches that combine ensemble machine learning models with modern NLP methods and hyperparameter optimization.
+
+The aim of this research is to investigate the potential of combining machine learning ensemble models with text analysis methods to predict medical conditions based on numerical and textual data. To achieve this goal, we analyzed the main classification algorithms, model evaluation methods, approaches to data preprocessing and hyperparameter tuning, and conducted experimental studies using both classical machine learning models and specialized NLP solutions for the medical field.
+
+The results of this work aim to demonstrate the practical effectiveness of combining numerical and textual features, as well as to justify the feasibility of using ensemble and language models in automated medical data analysis tasks.
+
+## Related Work
+
+
+
+
 
 ## Methodology
 
