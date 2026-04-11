@@ -23,7 +23,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.cluster import KMeans
 from sklearn.decomposition import PCA
 from sklearn.metrics.pairwise import cosine_similarity
-from sentence_transformers import SentenceTransformer
+# sentence_transformers import moved to functions to avoid PyTorch DLL issues
 from gensim.models import Word2Vec
 from gensim.utils import simple_preprocess
 import nltk
@@ -123,10 +123,12 @@ def embedding_ablation(
                 embeddings = np.array(embeddings)
 
             elif embedding_method == 'sbert-mini':
+                from sentence_transformers import SentenceTransformer
                 model = SentenceTransformer('all-MiniLM-L6-v2')
                 embeddings = model.encode(sentences, show_progress_bar=False)
 
             elif embedding_method == 'sbert-base':
+                from sentence_transformers import SentenceTransformer
                 model = SentenceTransformer('all-mpnet-base-v2')
                 embeddings = model.encode(sentences, show_progress_bar=False)
 
@@ -261,6 +263,7 @@ def dimensionality_reduction_ablation(
 
             # Get embeddings
             if embedding_method == 'sbert-mini':
+                from sentence_transformers import SentenceTransformer
                 model = SentenceTransformer('all-MiniLM-L6-v2')
                 embeddings = model.encode(sentences, show_progress_bar=False)
             else:
@@ -418,6 +421,7 @@ def parameter_sensitivity(
                 return sentences
 
             # Get embeddings
+            from sentence_transformers import SentenceTransformer
             model = SentenceTransformer('all-MiniLM-L6-v2')
             embeddings = model.encode(sentences, show_progress_bar=False)
 

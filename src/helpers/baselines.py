@@ -14,7 +14,8 @@ import networkx as nx
 from typing import List, Optional
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
-from sentence_transformers import SentenceTransformer
+
+# sentence_transformers import moved to lexrank_summarizer() to avoid PyTorch DLL issues
 
 # Download NLTK data if needed
 try:
@@ -118,7 +119,15 @@ def sentence_similarity_matrix(
         similarity_matrix = (X * X.T).toarray()
 
     elif method == "embeddings":
-        # SBERT embedding-based similarity
+        # SBERT embedding-based similarity (lazy import to avoid PyTorch DLL issues)
+        try:
+            from sentence_transformers import SentenceTransformer
+        except ImportError as e:
+            raise ImportError(
+                "LexRank with embeddings requires sentence-transformers. "
+                "Install with: pip install sentence-transformers"
+            ) from e
+
         model = SentenceTransformer(embedding_model)
         embeddings = model.encode(sentences, convert_to_numpy=True, show_progress_bar=False)
         similarity_matrix = cosine_similarity(embeddings)

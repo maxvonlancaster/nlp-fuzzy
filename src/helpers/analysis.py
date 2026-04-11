@@ -392,9 +392,10 @@ def generate_analysis_report(
     ]
 
     for i, row in corr_df.head(5).iterrows():
+        p_value_str = '<0.001' if row['p_value'] < 0.001 else f"{row['p_value']:.3f}"
         lines.append(
             f"   {row['characteristic']:25s}: r={row['correlation']:+.3f} "
-            f"(p={'<0.001' if row['p_value'] < 0.001 else f'{row["p_value"]:.3f}'})"
+            f"(p={p_value_str})"
         )
 
     lines.extend([
