@@ -1,0 +1,14 @@
+{
+  "n_sentences": 3,
+  "random_seed": 42,
+  "som_x": 3,
+  "som_y": 3,
+  "vector_size": 100,
+  "word2vec_window": 5,
+  "word2vec_min_count": 1,
+  "word2vec_epochs": 100,
+  "sigma": 1.0,
+  "learning_rate": 0.5,
+  "iterations": 1000,
+  "use_pca": false
+}

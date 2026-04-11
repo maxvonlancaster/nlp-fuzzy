@@ -1,0 +1,15 @@
+{
+  "n_sentences": 3,
+  "random_seed": 42,
+  "similarity_metric": "tfidf",
+  "damping_factor": 0.85,
+  "max_iter": 100,
+  "tol": 0.0001,
+  "ngram_range": [
+    1,
+    5
+  ],
+  "stop_words": "english",
+  "use_idf": true,
+  "smooth_idf": true
+}
