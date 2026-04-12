@@ -1,138 +1,138 @@
 # Text Summarization Case Studies
 
-Generated: 2026-04-12 08:43
+Generated: 2026-04-12 08:56
 Number of cases: 3
 
 ---
 
 ## Case Study 1: HIGH Performance
 
-**Document ID:** 53
-**Word Count:** 174
-**Sentence Count:** 28
-**Average ROUGE-1:** 0.6114
+**Document ID:** 921
+**Word Count:** 335
+**Sentence Count:** 27
+**Average ROUGE-1:** 0.6254
 
 ### Original Text (excerpt)
 
-PROCEDURES: , Left heart catheterization, left ventriculography, and left and right coronary arteriography.,INDICATIONS: , Chest pain and non-Q-wave MI with elevation of troponin I only.,TECHNIQUE:  ,The patient was brought to the procedure room in satisfactory condition.  The right groin was prepped and draped in routine fashion.  An arterial sheath was inserted into the right femoral artery.,Left and right coronary arteries were studied with a 6FL4 and 6FR4 Judkins catheters respectively.  Cine coronary angiograms were done in multiple views.,Left heart catheterization was done using the 6-French pigtail catheter.  Appropriate pressures were obtained before and after the left ventriculogram, which was done in the RAO view.,At the end of the procedure, the femoral catheter was removed and Angio-Seal was applied without any complications.,FINDINGS:,1.  LV is normal in size and shape with good contractility, EF of 60%.,2.  LMCA normal.,3.  LAD has 20% to 30% stenosis at the origin.,4.  LCX is normal.,5.  RCA is dominant and normal.,RECOMMENDATIONS: , Medical management, diet, and exercise.  Aspirin 81 mg p.o. daily, p.r.n. nitroglycerin for chest pain.  Follow up in the clinic.
+TITLE OF OPERATION: , Ligation (clip interruption) of patent ductus arteriosus.,INDICATION FOR SURGERY: , This premature baby with operative weight of 600 grams and evidence of persistent pulmonary over circulation and failure to thrive has been diagnosed with a large patent ductus arteriosus originating in the left-sided aortic arch.  She has now been put forward for operative intervention.,PREOP DIAGNOSIS:  ,1.  Patent ductus arteriosus.,2.  Severe prematurity.,3.  Operative weight less than 4 kg (600 grams).,COMPLICATIONS: , None.,FINDINGS: , Large patent ductus arteriosus with evidence of pulmonary over circulation.  After completion of the procedure, left recurrent laryngeal nerve visualized and preserved.  Substantial rise in diastolic blood pressure.,DETAILS OF THE PROCEDURE: , After obtaining information consent, the patient was positioned in the neonatal intensive care unit, cribbed in the right lateral decubitus, and general endotracheal anesthesia was induced.  The left chest was then prepped and draped in the usual sterile fashion and a posterolateral thoracotomy incision was performed.  Dissection was carried through the deeper planes until the second intercostal space was entered freely with no damage to the underlying lung parenchyma.  The lung was quite edematous and was retracted anteriorly exposing the area of the isthmus.  The pleura overlying the ductus arteriosus was inside and the duct dissected in a nearly circumferential fashion.  It was then test occluded and then interrupted with a medium titanium clip.  There was preserved pulsatile flow in the descending aorta.  The left recurrent laryngeal nerve was identified and preserved.  With excellent hemostasis, the intercostal space was closed with 4-0 Vicryl sutures and the muscular planes were reapproximated with 5-0 Caprosyn running suture in two layers.  The skin was closed with a running 6-0 Caprosyn suture.  A sterile dressing was placed.  Sponge and needle counts were correct times 2 at the end of the procedure.  The patient was returned to the supine position in which palpable bilateral femoral pulses were noted.,I was the surgical attending present in the neonatal intensive care unit and in-charge of the surgical procedure throughout the entire length of the case.
 
 ### Reference Summary
 
- Chest pain and non-Q-wave MI with elevation of troponin I only.  Left heart catheterization, left ventriculography, and left and right coronary arteriography.
+ Ligation (clip interruption) of patent ductus arteriosus.  This premature baby with operative weight of 600 grams and evidence of persistent pulmonary over circulation and failure to thrive has been diagnosed with a large patent ductus arteriosus originating in the left-sided aortic arch. 
 
 ### Method Summaries and Scores
 
-#### textrank (ROUGE-1: 0.6957)
+#### lead (ROUGE-1: 0.7963)
 
-PROCEDURES: , Left heart catheterization, left ventriculography, and left and right coronary arteriography.,INDICATIONS: , Chest pain and non-Q-wave MI with elevation of troponin I only.,TECHNIQUE:  ,The patient was brought to the procedure room in satisfactory condition. LMCA normal.,3. LCX is normal.,5.
+TITLE OF OPERATION: , Ligation (clip interruption) of patent ductus arteriosus.,INDICATION FOR SURGERY: , This premature baby with operative weight of 600 grams and evidence of persistent pulmonary over circulation and failure to thrive has been diagnosed with a large patent ductus arteriosus originating in the left-sided aortic arch. She has now been put forward for operative intervention.,PREOP DIAGNOSIS:  ,1. Patent ductus arteriosus.,2.
 
-#### lsa (ROUGE-1: 0.6316)
+#### textrank (ROUGE-1: 0.7963)
 
-PROCEDURES: , Left heart catheterization, left ventriculography, and left and right coronary arteriography.,INDICATIONS: , Chest pain and non-Q-wave MI with elevation of troponin I only.,TECHNIQUE:  ,The patient was brought to the procedure room in satisfactory condition. The right groin was prepped and draped in routine fashion. nitroglycerin for chest pain.
+TITLE OF OPERATION: , Ligation (clip interruption) of patent ductus arteriosus.,INDICATION FOR SURGERY: , This premature baby with operative weight of 600 grams and evidence of persistent pulmonary over circulation and failure to thrive has been diagnosed with a large patent ductus arteriosus originating in the left-sided aortic arch. Patent ductus arteriosus.,2. After completion of the procedure, left recurrent laryngeal nerve visualized and preserved.
 
-#### random (ROUGE-1: 0.6234)
+#### random (ROUGE-1: 0.7350)
 
-PROCEDURES: , Left heart catheterization, left ventriculography, and left and right coronary arteriography.,INDICATIONS: , Chest pain and non-Q-wave MI with elevation of troponin I only.,TECHNIQUE:  ,The patient was brought to the procedure room in satisfactory condition. RCA is dominant and normal.,RECOMMENDATIONS: , Medical management, diet, and exercise. daily, p.r.n.
+TITLE OF OPERATION: , Ligation (clip interruption) of patent ductus arteriosus.,INDICATION FOR SURGERY: , This premature baby with operative weight of 600 grams and evidence of persistent pulmonary over circulation and failure to thrive has been diagnosed with a large patent ductus arteriosus originating in the left-sided aortic arch. After completion of the procedure, left recurrent laryngeal nerve visualized and preserved. It was then test occluded and then interrupted with a medium titanium clip.
 
-#### lead (ROUGE-1: 0.4948)
+#### lsa (ROUGE-1: 0.1739)
 
-PROCEDURES: , Left heart catheterization, left ventriculography, and left and right coronary arteriography.,INDICATIONS: , Chest pain and non-Q-wave MI with elevation of troponin I only.,TECHNIQUE:  ,The patient was brought to the procedure room in satisfactory condition. The right groin was prepped and draped in routine fashion. An arterial sheath was inserted into the right femoral artery.,Left and right coronary arteries were studied with a 6FL4 and 6FR4 Judkins catheters respectively.
+After completion of the procedure, left recurrent laryngeal nerve visualized and preserved. The left recurrent laryngeal nerve was identified and preserved. With excellent hemostasis, the intercostal space was closed with 4-0 Vicryl sutures and the muscular planes were reapproximated with 5-0 Caprosyn running suture in two layers.
 
 ### Analysis
 
-**Overall Performance:** High (avg ROUGE-1: 0.611)
+**Overall Performance:** High (avg ROUGE-1: 0.625)
 
-**Best Method:** textrank (ROUGE-1: 0.696)
-**Worst Method:** lead (ROUGE-1: 0.495)
-**Performance Spread:** 0.201
+**Best Method:** lead (ROUGE-1: 0.796)
+**Worst Method:** lsa (ROUGE-1: 0.174)
+**Performance Spread:** 0.622
 
 **Key Observations:**
 - All methods performed well, indicating the document is well-suited for extractive summarization
 - The reference summary likely contains sentences very similar to the source
-- Strong agreement: all methods selected the same first sentence
+- Partial agreement: some methods converged on similar content
 
 ---
 
 ## Case Study 2: MEDIUM Performance
 
-**Document ID:** 34
-**Word Count:** 359
-**Sentence Count:** 68
-**Average ROUGE-1:** 0.1958
+**Document ID:** 604
+**Word Count:** 759
+**Sentence Count:** 28
+**Average ROUGE-1:** 0.2107
 
 ### Original Text (excerpt)
 
-SUBJECTIVE:,  Patient presents with Mom and Dad for her 5-year 3-month well-child check.  Family has not concerns stating patient has been doing well overall since last visit.  Taking in a well-balanced diet consisting of milk and dairy products, fruits, vegetables, proteins and grains with minimal junk food and snack food.  No behavioral concerns.  Gets along well with peers as well as adults.  Is excited to start kindergarten this upcoming school year.  Does attend daycare.  Normal voiding and stooling pattern.  No concerns with hearing or vision.  Sees the dentist regularly.  Growth and development:  Denver II normal passing all developmental milestones per age in areas of fine motor, gross motor, personal and social interaction and speech and language development.  See Denver II form in the chart.,ALLERGIES:,  None.,MEDICATIONS: , None.,FAMILY SOCIAL HISTORY:,  Unchanged since last checkup.  Lives at home with mother, father and sibling.  No smoking in the home.,REVIEW OF SYSTEMS:,  As per HPI; otherwise negative.,OBJECTIVE:,Vital Signs:  Weight 43 pounds.  Height 42-1/4 inches.  Temperature 97.7.  Blood pressure 90/64.,General:  Well-developed, well-nourished, cooperative, alert and interactive 5-year -3month-old white female in no acute distress.,HEENT:  Atraumatic, normocephalic.  Pupils equal, round and reactive.  Sclerae clear.  Red reflex present bilaterally.  Extraocular muscles intact.  TMs clear bilaterally.  Oropharynx:  Mucous membranes moist and pink.  Good dentition.,Neck:  Supple, no lymphadenopathy.,Chest:  Clear to auscultation bilaterally.  No wheeze or crackles.  Good air exchange.,Cardiovascular:  Regular rate and rhythm.  No murmur.  Good pulses bilaterally.,Abdomen:  Soft, nontender.  Nondistended.  Positive bowel sounds.  No masses or organomegaly.,GU:  Tanner I female genitalia.  Femoral pulses equal bilaterally.  No rash.,Extremities:  Full range of motion.  No cyanosis, clubbing or edema.,Back:  Straight.  No scoliosis.,Integument:  Warm, dry and pink without lesions.,Neurological:  Alert.  Good muscle tone and strength.  Cranial nerves II-XII grossly intact.  DTRs 2+/4+ bilaterally.,ASSESSMENT/PLAN:,1. Well 5-year 3-month-old white female.,2. Anticipatory guidance for growth and diet development and safety issues as well as immunizations.  Will receive MMR, DTaP and IPV today.  Discussed risks and benefits as well as possible side effects and symptomatic treatment.  Gave 5-year well-child check handout to mom.  Completed school pre-participation physical.  Copy in the chart.  Completed vision and hearing screening.  Reviewed results with family.,3. Follow up in one year for next well-child check or as needed for acute care.
+PREOPERATIVE DIAGNOSIS: , Recurrent degenerative spondylolisthesis and stenosis at L4-5 and L5-S1 with L3 compression fracture adjacent to an instrumented fusion from T11 through L2 with hardware malfunction distal at the L2 end of the hardware fixation.,POSTOPERATIVE DIAGNOSIS: , Recurrent degenerative spondylolisthesis and stenosis at L4-5 and L5-S1 with L3 compression fracture adjacent to an instrumented fusion from T11 through L2 with hardware malfunction distal at the L2 end of the hardware fixation.,PROCEDURE: , Lumbar re-exploration for removal of fractured internal fixation plate from T11 through L2 followed by a repositioning of the L2 pedicle screws and evaluation of the fusion from T11 through L2 followed by a bilateral hemilaminectomy and diskectomy for decompression at L4-5 and L5-S1 with posterior lumbar interbody fusion using morselized autograft bone and the synthetic spacers from the Capstone system at L4-5 and L5-S1 followed by placement of the pedicle screw fixation devices at L3, L4, L5, and S1 and insertion of a 20 cm fixation plate that range from the T11 through S1 levels and then subsequent onlay fusion using morselized autograft bone and bone morphogenetic soaked sponge at L1-2 and then at L3-L4, L4-L5, and L5-S1 bilaterally.,DESCRIPTION OF PROCEDURE: ,This is a 68-year-old lady who presents with a history of osteomyelitis associated with the percutaneous vertebroplasty that was actually treated several months ago with removal of the infected vertebral augmentation and placement of a posterior pedicle screw plate fixation device from T11 through L2. She subsequently actually done reasonably well until about a month ago when she developed progressive severe intractable pain. Imaging study showed that the distal hardware at the plate itself had fractured consistent with incomplete fusion across her osteomyelitis area. There was no evidence of infection on the imaging or with her laboratory studies. In addition, she developed a pretty profound stenosis at L4-L5 and L5-S1 that appeared to be recurrent as well. She now presents for revision of her hardware, extension of fusion, and decompression.,The patient was brought to the operating room, placed under satisfactory general endotracheal anesthesia. She was placed on the operative table in the prone position. Back was prepared with Betadine, iodine, and alcohol. We elliptically excised her old incision and extended this caudally so that we had access from the existing hardware fixation all the way down to her sacrum. The locking nuts were removed from the screw post and both plates refractured or significantly weakened and had a crease in it. After these were removed, it was obvious that the bottom screws were somewhat loosened in the pedicle zone so we actually tightened one up and that fit good snugly into the nail when we redirected so that it actually reamed up into the upper aspect of the vertebral body in much more secure purchase. We then dressed the L4-L5 and L5-S1 levels which were profoundly stenotic. This was a combination of scar and overgrown bone. She had previously undergone bilateral hemilaminectomies at L4-5 so we removed scar bone and actually cleaned and significantly...
 
 ### Reference Summary
 
- A 3-month well-child check. 
+ Recurrent degenerative spondylolisthesis and stenosis at L4-5 and L5-S1 with L3 compression fracture adjacent to an instrumented fusion from T11 through L2 with hardware malfunction distal at the L2 end of the hardware fixation.
 
 ### Method Summaries and Scores
 
-#### lsa (ROUGE-1: 0.3333)
+#### lsa (ROUGE-1: 0.2250)
 
-No concerns with hearing or vision. Well 5-year 3-month-old white female.,2. Gave 5-year well-child check handout to mom.
+PREOPERATIVE DIAGNOSIS: , Recurrent degenerative spondylolisthesis and stenosis at L4-5 and L5-S1 with L3 compression fracture adjacent to an instrumented fusion from T11 through L2 with hardware malfunction distal at the L2 end of the hardware fixation.,POSTOPERATIVE DIAGNOSIS: , Recurrent degenerative spondylolisthesis and stenosis at L4-5 and L5-S1 with L3 compression fracture adjacent to an instrumented fusion from T11 through L2 with hardware malfunction distal at the L2 end of the hardware fixation.,PROCEDURE: , Lumbar re-exploration for removal of fractured internal fixation plate from T11 through L2 followed by a repositioning of the L2 pedicle screws and evaluation of the fusion from T11 through L2 followed by a bilateral hemilaminectomy and diskectomy for decompression at L4-5 and L5-S1 with posterior lumbar interbody fusion using morselized autograft bone and the synthetic spacers from the Capstone system at L4-5 and L5-S1 followed by placement of the pedicle screw fixation devices at L3, L4, L5, and S1 and insertion of a 20 cm fixation plate that range from the T11 through S1 levels and then subsequent onlay fusion using morselized autograft bone and bone morphogenetic soaked sponge at L1-2 and then at L3-L4, L4-L5, and L5-S1 bilaterally.,DESCRIPTION OF PROCEDURE:  ,This is a 68-year-old lady who presents with a history of osteomyelitis associated with the percutaneous vertebroplasty that was actually treated several months ago with removal of the infected vertebral augmentation and placement of a posterior pedicle screw plate fixation device from T11 through L2. We then dressed the L4-L5 and L5-S1 levels which were profoundly stenotic. We used 10 x 32 mm spacers at both L4-L5 and L5-S1.
 
-#### textrank (ROUGE-1: 0.2500)
+#### lead (ROUGE-1: 0.2175)
 
-No concerns with hearing or vision. TMs clear bilaterally. Well 5-year 3-month-old white female.,2.
+PREOPERATIVE DIAGNOSIS: , Recurrent degenerative spondylolisthesis and stenosis at L4-5 and L5-S1 with L3 compression fracture adjacent to an instrumented fusion from T11 through L2 with hardware malfunction distal at the L2 end of the hardware fixation.,POSTOPERATIVE DIAGNOSIS: , Recurrent degenerative spondylolisthesis and stenosis at L4-5 and L5-S1 with L3 compression fracture adjacent to an instrumented fusion from T11 through L2 with hardware malfunction distal at the L2 end of the hardware fixation.,PROCEDURE: , Lumbar re-exploration for removal of fractured internal fixation plate from T11 through L2 followed by a repositioning of the L2 pedicle screws and evaluation of the fusion from T11 through L2 followed by a bilateral hemilaminectomy and diskectomy for decompression at L4-5 and L5-S1 with posterior lumbar interbody fusion using morselized autograft bone and the synthetic spacers from the Capstone system at L4-5 and L5-S1 followed by placement of the pedicle screw fixation devices at L3, L4, L5, and S1 and insertion of a 20 cm fixation plate that range from the T11 through S1 levels and then subsequent onlay fusion using morselized autograft bone and bone morphogenetic soaked sponge at L1-2 and then at L3-L4, L4-L5, and L5-S1 bilaterally.,DESCRIPTION OF PROCEDURE:  ,This is a 68-year-old lady who presents with a history of osteomyelitis associated with the percutaneous vertebroplasty that was actually treated several months ago with removal of the infected vertebral augmentation and placement of a posterior pedicle screw plate fixation device from T11 through L2. She subsequently actually done reasonably well until about a month ago when she developed progressive severe intractable pain. Imaging study showed that the distal hardware at the plate itself had fractured consistent with incomplete fusion across her osteomyelitis area.
 
-#### lead (ROUGE-1: 0.2000)
+#### random (ROUGE-1: 0.2057)
 
-SUBJECTIVE:,  Patient presents with Mom and Dad for her 5-year 3-month well-child check. Family has not concerns stating patient has been doing well overall since last visit. Taking in a well-balanced diet consisting of milk and dairy products, fruits, vegetables, proteins and grains with minimal junk food and snack food.
+PREOPERATIVE DIAGNOSIS: , Recurrent degenerative spondylolisthesis and stenosis at L4-5 and L5-S1 with L3 compression fracture adjacent to an instrumented fusion from T11 through L2 with hardware malfunction distal at the L2 end of the hardware fixation.,POSTOPERATIVE DIAGNOSIS: , Recurrent degenerative spondylolisthesis and stenosis at L4-5 and L5-S1 with L3 compression fracture adjacent to an instrumented fusion from T11 through L2 with hardware malfunction distal at the L2 end of the hardware fixation.,PROCEDURE: , Lumbar re-exploration for removal of fractured internal fixation plate from T11 through L2 followed by a repositioning of the L2 pedicle screws and evaluation of the fusion from T11 through L2 followed by a bilateral hemilaminectomy and diskectomy for decompression at L4-5 and L5-S1 with posterior lumbar interbody fusion using morselized autograft bone and the synthetic spacers from the Capstone system at L4-5 and L5-S1 followed by placement of the pedicle screw fixation devices at L3, L4, L5, and S1 and insertion of a 20 cm fixation plate that range from the T11 through S1 levels and then subsequent onlay fusion using morselized autograft bone and bone morphogenetic soaked sponge at L1-2 and then at L3-L4, L4-L5, and L5-S1 bilaterally.,DESCRIPTION OF PROCEDURE:  ,This is a 68-year-old lady who presents with a history of osteomyelitis associated with the percutaneous vertebroplasty that was actually treated several months ago with removal of the infected vertebral augmentation and placement of a posterior pedicle screw plate fixation device from T11 through L2. We elliptically excised her old incision and extended this caudally so that we had access from the existing hardware fixation all the way down to her sacrum. This corrected the deformity and helped to preserve the correction of the stenosis and then after we cannulated the pedicles of L4, L5 and S1 tightened the pedicle screws in L3.
 
-#### random (ROUGE-1: 0.0000)
+#### textrank (ROUGE-1: 0.1946)
 
-No murmur. Good pulses bilaterally.,Abdomen:  Soft, nontender. Will receive MMR, DTaP and IPV today.
+PREOPERATIVE DIAGNOSIS: , Recurrent degenerative spondylolisthesis and stenosis at L4-5 and L5-S1 with L3 compression fracture adjacent to an instrumented fusion from T11 through L2 with hardware malfunction distal at the L2 end of the hardware fixation.,POSTOPERATIVE DIAGNOSIS: , Recurrent degenerative spondylolisthesis and stenosis at L4-5 and L5-S1 with L3 compression fracture adjacent to an instrumented fusion from T11 through L2 with hardware malfunction distal at the L2 end of the hardware fixation.,PROCEDURE: , Lumbar re-exploration for removal of fractured internal fixation plate from T11 through L2 followed by a repositioning of the L2 pedicle screws and evaluation of the fusion from T11 through L2 followed by a bilateral hemilaminectomy and diskectomy for decompression at L4-5 and L5-S1 with posterior lumbar interbody fusion using morselized autograft bone and the synthetic spacers from the Capstone system at L4-5 and L5-S1 followed by placement of the pedicle screw fixation devices at L3, L4, L5, and S1 and insertion of a 20 cm fixation plate that range from the T11 through S1 levels and then subsequent onlay fusion using morselized autograft bone and bone morphogenetic soaked sponge at L1-2 and then at L3-L4, L4-L5, and L5-S1 bilaterally.,DESCRIPTION OF PROCEDURE:  ,This is a 68-year-old lady who presents with a history of osteomyelitis associated with the percutaneous vertebroplasty that was actually treated several months ago with removal of the infected vertebral augmentation and placement of a posterior pedicle screw plate fixation device from T11 through L2. We then dressed the L4-L5 and L5-S1 levels which were profoundly stenotic. Once we placed the plate onto the screws and locked them in position, we then packed the remaining BMP sponge and morselized autograft bone through the plate around the incomplete fracture healing at the L1 level and then dorsolaterally at L4-L5 and L5-S1 and L3-L4, again the goal being to create a dorsal fusion and enhance the interbody fusion as well.
 
 ### Analysis
 
-**Overall Performance:** Medium (avg ROUGE-1: 0.196)
+**Overall Performance:** Medium (avg ROUGE-1: 0.211)
 
-**Best Method:** lsa (ROUGE-1: 0.333)
-**Worst Method:** random (ROUGE-1: 0.000)
-**Performance Spread:** 0.333
+**Best Method:** lsa (ROUGE-1: 0.225)
+**Worst Method:** textrank (ROUGE-1: 0.195)
+**Performance Spread:** 0.030
 
 **Key Observations:**
 - Methods showed moderate performance with some variation
 - Different approaches captured different aspects of the content
-- Partial agreement: some methods converged on similar content
+- Strong agreement: all methods selected the same first sentence
 
 ---
 
 ## Case Study 3: LOW Performance
 
-**Document ID:** 3
-**Word Count:** 509
-**Sentence Count:** 35
+**Document ID:** 388
+**Word Count:** 716
+**Sentence Count:** 69
 **Average ROUGE-1:** 0.0000
 
 ### Original Text (excerpt)
 
-OPERATIVE NOTE:, The patient was taken to the operating room and placed in the supine position on the operating room table. The patient was prepped and draped in usual sterile fashion. An incision was made in the groin crease overlying the internal ring. This incision was about 1.5 cm in length. The incision was carried down through the Scarpa's layer to the level of the external oblique. This was opened along the direction of its fibers and carried down along the external spermatic fascia. The cremasteric fascia was then incised and the internal spermatic fascia was grasped and pulled free. A hernia sac was identified and the testicle was located. Next the internal spermatic fascia was incised and the hernia sac was dissected free inside the internal ring. This was performed by incising the transversalis fascia circumferentially. The hernia sac was ligated with a 3-0 silk suture high and divided and was noted to retract into the abdominal cavity. Care was taken not to injure the testicular vessels. Next the abnormal attachments of the testicle were dissected free distally with care not to injure any long loop vas and these were divided beneath the testicle for a fair distance. The lateral attachments tethering the cord vessels were freed from the sidewalls in the retroperitoneum high. This gave excellent length and very adequate length to bring the testicle down into the anterior superior hemiscrotum. The testicle was viable. This was wrapped in a moist sponge.,Next a hemostat was passed down through the inguinal canal down into the scrotum. A small 1 cm incision was made in the anterior superior scrotal wall. Dissection was carried down through the dartos layer. A subdartos pouch was formed with blunt dissection. The hemostat was then pushed against the tissues and this tissue was divided. The hemostat was then passed through the incision. A Crile hemostat was passed back up into the inguinal canal. The distal attachments of the sac were grasped and pulled down without twisting these structures through the incision. The neck was then closed with a 4-0 Vicryl suture that was not too tight, but tight enough to prevent retraction of the testicle. The testicle was then tucked down in its proper orientation into the subdartos pouch and the subcuticular tissue was closed with a running 4-0 chromic and the skin was closed with a running 6-0 subcuticular chromic suture. Benzoin and a Steri-Strip were placed. Next the transversus abdominis arch was reapproximated to the iliopubic tract over the top of the cord vessels to tighten up the ring slightly. This was done with 2 to 3 interrupted 3-0 silk sutures. The external oblique was then closed with interrupted 3-0 silk suture. The Scarpa's layer was closed with a running 4-0 chromic and the skin was then closed with a running 4-0 Vicryl intracuticular stitch. Benzoin and Steri-Strip were applied. The testicle was in good position in the dependent portion of the hemiscrotum and the patient had a caudal block, was awakened, and...
+HISTORY OF PRESENT ILLNESS: , I have seen ABC today. He is a very pleasant gentleman who is 42 years old, 344 pounds. He is 5'9". He has a BMI of 51. He has been overweight for ten years since the age of 33, at his highest he was 358 pounds, at his lowest 260. He is pursuing surgical attempts of weight loss to feel good, get healthy, and begin to exercise again. He wants to be able to exercise and play volleyball. Physically, he is sluggish. He gets tired quickly. He does not go out often. When he loses weight he always regains it and he gains back more than he lost. His biggest weight loss is 25 pounds and it was three months before he gained it back. He did six months of not drinking alcohol and not taking in many calories. He has been on multiple commercial weight loss programs including Slim Fast for one month one year ago and Atkin's Diet for one month two years ago.,PAST MEDICAL HISTORY: , He has difficulty climbing stairs, difficulty with airline seats, tying shoes, used to public seating, difficulty walking, high cholesterol, and high blood pressure. He has asthma and difficulty walking two blocks or going eight to ten steps. He has sleep apnea and snoring. He is a diabetic, on medication. He has joint pain, knee pain, back pain, foot and ankle pain, leg and foot swelling. He has hemorrhoids.,PAST SURGICAL HISTORY: , Includes orthopedic or knee surgery.,SOCIAL HISTORY: , He is currently single. He drinks alcohol ten to twelve drinks a week, but does not drink five days a week and then will binge drink. He smokes one and a half pack a day for 15 years, but he has recently stopped smoking for the past two weeks.,FAMILY HISTORY: , Obesity, heart disease, and diabetes. Family history is negative for hypertension and stroke.,CURRENT MEDICATIONS:, Include Diovan, Crestor, and Tricor.,MISCELLANEOUS/EATING HISTORY: ,He says a couple of friends of his have had heart attacks and have had died. He used to drink everyday, but stopped two years ago. He now only drinks on weekends. He is on his second week of Chantix, which is a medication to come off smoking completely. Eating, he eats bad food. He is single. He eats things like bacon, eggs, and cheese, cheeseburgers, fast food, eats four times a day, seven in the morning, at noon, 9 p.m., and 2 a.m. He currently weighs 344 pounds and 5'9". His ideal body weight is 160 pounds. He is 184 pounds overweight. If he lost 70% of his excess body weight that would be 129 pounds and that would get him down to 215.,REVIEW OF SYSTEMS: , Negative for head, neck, heart, lungs, GI, GU, orthopedic, or skin. He also is positive for gout. He denies chest pain, heart attack, coronary artery disease, congestive heart failure, arrhythmia, atrial fibrillation, pacemaker, pulmonary embolism, or CVA. He denies venous insufficiency or thrombophlebitis. Denies shortness of breath, COPD, or...
 
 ### Reference Summary
 
- Orchiopexy & inguinal herniorrhaphy.
+ Consult for laparoscopic gastric bypass.
 
 ### Method Summaries and Scores
 
 #### lead (ROUGE-1: 0.0000)
 
-OPERATIVE NOTE:,  The patient was taken to the operating room and placed in the supine position on the operating room table. The patient was prepped and draped in usual sterile fashion. An incision was made in the groin crease overlying the internal ring.
+HISTORY OF PRESENT ILLNESS: , I have seen ABC today. He is a very pleasant gentleman who is 42 years old, 344 pounds. He is 5'9".
 
 #### random (ROUGE-1: 0.0000)
 
-The testicle was viable. Benzoin and a Steri-Strip were placed. Benzoin and Steri-Strip were applied.
+He drinks alcohol ten to twelve drinks a week, but does not drink five days a week and then will binge drink. Heart is regular rhythm and rate. He will need to see a nutritionist and mental health worker.
 
 #### textrank (ROUGE-1: 0.0000)
 
-Next the internal spermatic fascia was incised and the hernia sac was dissected free inside the internal ring. The hemostat was then passed through the incision. The external oblique was then closed with interrupted 3-0 silk suture.
+He drinks alcohol ten to twelve drinks a week, but does not drink five days a week and then will binge drink. He will need to go to Dr. XYZ as he previously had a sleep study. We will need another sleep study.
 
 #### lsa (ROUGE-1: 0.0000)
 
-Benzoin and a Steri-Strip were placed. The external oblique was then closed with interrupted 3-0 silk suture. Benzoin and Steri-Strip were applied.
+He drinks alcohol ten to twelve drinks a week, but does not drink five days a week and then will binge drink. He will need to go to Dr. XYZ as he previously had a sleep study. We will need another sleep study.
 
 ### Analysis
 
@@ -145,6 +145,6 @@ Benzoin and a Steri-Strip were placed. The external oblique was then closed with
 **Key Observations:**
 - All methods struggled with this document
 - Possible causes: abstractive reference summary, complex content structure, or domain-specific language
-- No agreement: each method selected different content
+- Partial agreement: some methods converged on similar content
 
 ---
