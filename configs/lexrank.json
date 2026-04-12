@@ -1,0 +1,10 @@
+{
+  "n_sentences": 3,
+  "random_seed": 42,
+  "similarity_threshold": 0.1,
+  "embedding_model": "all-MiniLM-L6-v2",
+  "use_continuous": true,
+  "damping_factor": 0.85,
+  "max_iter": 100,
+  "tol": 0.0001
+}
