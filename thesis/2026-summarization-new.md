@@ -1,4 +1,4 @@
-# Unsupervised Extractive Text Summarization: A Comparative Study of Graph-Based and Algebraic Methods
+# An Empirical Comparison of Graph-Based and Algebraic Unsupervised Methods for Extractive Text Summarization
 
 Text summarization is a fundamental task in natural language processing that aims to condense large volumes of textual information into concise, coherent representations while preserving the most salient content. This article presents a comparative study of three unsupervised machine learning methods for extractive text summarization: TextRank, LexRank, and Latent Semantic Analysis (LSA) with Singular Value Decomposition (SVD). TextRank and LexRank are graph-based approaches that model inter-sentence relationships through similarity matrices and apply ranking algorithms inspired by PageRank to identify the most informative sentences. LSA, in contrast, leverages algebraic decomposition via SVD to uncover latent semantic structures within a document, capturing conceptual relationships beyond surface-level term frequency. As unsupervised methods, all three approaches require no labeled training data, making them broadly applicable across domains and languages. We discuss the theoretical foundations of each algorithm, analyze their computational characteristics, and evaluate their summarization performance. The results highlight the trade-offs between graph-based and matrix decomposition strategies, offering insights into the strengths and limitations of each method for automatic text summarization tasks.
 
@@ -46,9 +46,9 @@ The present article builds directly on the foundational methods reviewed above. 
 
 Before examining the core unsupervised algorithms, two simple baseline methods are established to provide reference points for performance evaluation.
 
-Lead-N Baseline. The Lead-N method selects the first $N$ sentences from the input document. Despite its simplicity, this strategy constitutes a surprisingly competitive baseline for news articles and formal documents, where the most important information is conventionally placed at the beginning - a journalistic convention known as the inverted pyramid structure. The method operates in linear time $O(m)$, where $m$ is the total number of words in the document, and requires $O(m)$ space for sentence storage. It performs no semantic analysis whatsoever, and consequently fails for documents in which key information is distributed throughout the text rather than concentrated at the opening.
+The Lead-N method selects the first $N$ sentences from the input document. Despite its simplicity, this strategy constitutes a surprisingly competitive baseline for news articles and formal documents, where the most important information is conventionally placed at the beginning - a journalistic convention known as the inverted pyramid structure. The method operates in linear time $O(m)$, where $m$ is the total number of words in the document, and requires $O(m)$ space for sentence storage. It performs no semantic analysis whatsoever, and consequently fails for documents in which key information is distributed throughout the text rather than concentrated at the opening.
 
-Random Baseline. The Random baseline selects $N$ sentences chosen uniformly at random from the document, preserving their original order in the output. Its primary purpose is to establish a lower performance bound: any meaningful summarization method is expected to outperform random selection. Its time complexity is $O(m + n \log n)$, where the $\log n$ term arises from sorting the sampled indices to maintain sentence order, and its space complexity is $O(m)$.
+The Random baseline selects $N$ sentences chosen uniformly at random from the document, preserving their original order in the output. Its primary purpose is to establish a lower performance bound: any meaningful summarization method is expected to outperform random selection. Its time complexity is $O(m + n \log n)$, where the $\log n$ term arises from sorting the sampled indices to maintain sentence order, and its space complexity is $O(m)$.
 
 **3.2 TextRank**
 
@@ -56,7 +56,7 @@ TextRank, introduced by Mihalcea and Tarau [2], is a graph-based extractive summ
 
 Edges whose weight exceeds a predefined threshold are added to the graph, and the PageRank algorithm is subsequently applied iteratively - with a damping factor of $0.85$ and convergence tolerance of $10^{-4}$ - to compute a centrality score for each sentence. Sentences that are highly similar to many other sentences in the document accumulate higher scores and are interpreted as more informative. The top $N$ highest-scoring sentences, reordered to reflect their original position in the document, constitute the final summary.
 
-Complexity Analysis. The dominant computational costs in TextRank arise from two stages: construction of the TF-IDF similarity matrix, which requires $O(s^2 \cdot d)$ time where $d$ is the vocabulary dimension, and iterative PageRank computation over the resulting graph, which requires $O(k \cdot s^2)$ time for $k$ iterations. In the worst case of a fully connected graph, the overall time complexity is $O(s^2 \cdot d + s^3)$. Space complexity is $O(s^2 + s \cdot d)$, accounting for both the similarity matrix and the TF-IDF representation.
+The dominant computational costs in TextRank arise from two stages: construction of the TF-IDF similarity matrix, which requires $O(s^2 \cdot d)$ time where $d$ is the vocabulary dimension, and iterative PageRank computation over the resulting graph, which requires $O(k \cdot s^2)$ time for $k$ iterations. In the worst case of a fully connected graph, the overall time complexity is $O(s^2 \cdot d + s^3)$. Space complexity is $O(s^2 + s \cdot d)$, accounting for both the similarity matrix and the TF-IDF representation.
 
 **3.3 LexRank**
 
@@ -64,7 +64,7 @@ LexRank, proposed by Erkan and Radev [9], shares the same graph-based PageRank f
 
 This design choice improves semantic fidelity but introduces a substantially higher computational cost. SBERT inference for each sentence involves a transformer forward pass with complexity approximately $O(w^2)$ per sentence, where $w$ is the average sentence length in tokens. Computing the full cosine similarity matrix then requires $O(s^2 \cdot d_{emb})$, and PageRank adds $O(s^3)$ in the worst case.
 
-Complexity Analysis. The overall time complexity of LexRank with SBERT embeddings is $O(s \cdot w^2 + s^2 \cdot d_{emb} + s^3)$, where $d_{emb}$ denotes the embedding dimensionality ($384$ for SBERT-Mini, $768$ for SBERT-Base). Space complexity is $O(s \cdot d_{emb} + s^2)$. In practice, transformer inference dominates execution time, making LexRank the most computationally expensive of the three methods - though also the most semantically expressive.
+The overall time complexity of LexRank with SBERT embeddings is $O(s \cdot w^2 + s^2 \cdot d_{emb} + s^3)$, where $d_{emb}$ denotes the embedding dimensionality ($384$ for SBERT-Mini, $768$ for SBERT-Base). Space complexity is $O(s \cdot d_{emb} + s^2)$. In practice, transformer inference dominates execution time, making LexRank the most computationally expensive of the three methods - though also the most semantically expressive.
 
 **3.4 Latent Semantic Analysis with Singular Value Decomposition**
 
@@ -72,7 +72,7 @@ LSA-based summarization, as described by Steinberger and Ježek [8], takes a fun
 
 Given a TF-IDF matrix $A$ of shape $s \times d$, Truncated SVD decomposes it into three matrices: $A \approx U \cdot \Sigma \cdot V^T$, retaining only the top $k$ singular components (typically $k = 5$–$10$). The resulting matrix $U \cdot \Sigma$ of shape $s \times k$ constitutes a compact representation of each sentence in the latent topic space. The importance score of each sentence is then computed as the $L_2$ norm of its corresponding row in this matrix, reflecting its overall contribution across the most prominent latent topics. The top $N$ sentences by score, restored to their original document order, form the summary.
 
-Complexity Analysis. The time complexity of LSA summarization is $O(s \cdot d \cdot k)$, arising from the Truncated SVD computation performed via iterative algorithms such as Lanczos or Arnoldi methods. TF-IDF construction contributes an additional $O(s \cdot w \cdot v)$ term, where $v$ is the vocabulary size. Space complexity is $O(s \cdot d + s \cdot k)$, where the TF-IDF matrix is typically stored in sparse format, substantially reducing memory usage in practice. LSA requires no deep learning framework and is notably faster than LexRank, making it an efficient yet semantically informed alternative.
+The time complexity of LSA summarization is $O(s \cdot d \cdot k)$, arising from the Truncated SVD computation performed via iterative algorithms such as Lanczos or Arnoldi methods. TF-IDF construction contributes an additional $O(s \cdot w \cdot v)$ term, where $v$ is the vocabulary size. Space complexity is $O(s \cdot d + s \cdot k)$, where the TF-IDF matrix is typically stored in sparse format, substantially reducing memory usage in practice. LSA requires no deep learning framework and is notably faster than LexRank, making it an efficient yet semantically informed alternative.
 
 **3.5 Comparative Summary**
 
@@ -103,10 +103,9 @@ The dataset exhibits considerable variability in document length, with an averag
 
 All methods were configured to produce extractive summaries of fixed length $n = 3$ sentences, a standard choice in extractive summarization research, enabling direct comparison across approaches.
 
-**Lead-N and Random Baselines**. The Lead-N baseline selects the first $n = 3$ sentences of each document. The Random baseline samples $n = 3$ sentences uniformly at random without replacement, with a fixed seed of 42 to ensure reproducibility, and restores the selected sentences to their original document order.
+The Lead-N baseline selects the first $n = 3$ sentences of each document. The Random baseline samples $n = 3$ sentences uniformly at random without replacement, with a fixed seed of 42 to ensure reproducibility, and restores the selected sentences to their original document order.
 
-**TextRank**. TextRank was implemented as PageRank applied to a sentence similarity graph constructed from TF-IDF representations. Sentences were vectorized using a TF-IDF scheme with nn
-n-gram range $(1, 5)$, English stop word removal, inverse document frequency weighting, and additive smoothing to prevent zero divisions. The cosine similarity between sentence vectors $\mathbf{u}$ and $\mathbf{v}$ defines the edge weight:
+TextRank was implemented as PageRank applied to a sentence similarity graph constructed from TF-IDF representations. Sentences were vectorized using a TF-IDF scheme with n-gram range $(1, 5)$, English stop word removal, inverse document frequency weighting, and additive smoothing to prevent zero divisions. The cosine similarity between sentence vectors $\mathbf{u}$ and $\mathbf{v}$ defines the edge weight:
 
 $$w(u, v) = \frac{\mathbf{u} \cdot \mathbf{v}}{\|\mathbf{u}\| \, \|\mathbf{v}\|}$$
 
@@ -116,9 +115,9 @@ $$PR(v) = \frac{1 - d}{N} + d \sum_{u \in \mathcal{N}(v)} \frac{w(u,v) \cdot PR(
 
 where $N$ is the total number of sentences and $\mathcal{N}(v)$ denotes the set of sentences connected to $v$.
 
-**LexRank**. LexRank was implemented using the same PageRank framework but with sentence embeddings produced by the pre-trained Sentence-BERT model all-MiniLM-L6-v2, which maps sentences to a 384-dimensional dense vector space and supports sequences of up to 256 tokens. This model was trained on over one billion sentence pairs and offers a favorable trade-off between semantic quality and inference speed. Inter-sentence similarity was computed as cosine similarity between embeddings, and the continuous (fully weighted) graph variant was used, retaining all edges with weight above a threshold of 0.1. The damping factor, iteration limit, and convergence tolerance were identical to those used in TextRank.
+LexRank was implemented using the same PageRank framework but with sentence embeddings produced by the pre-trained Sentence-BERT model all-MiniLM-L6-v2, which maps sentences to a 384-dimensional dense vector space and supports sequences of up to 256 tokens. This model was trained on over one billion sentence pairs and offers a favorable trade-off between semantic quality and inference speed. Inter-sentence similarity was computed as cosine similarity between embeddings, and the continuous (fully weighted) graph variant was used, retaining all edges with weight above a threshold of 0.1. The damping factor, iteration limit, and convergence tolerance were identical to those used in TextRank.
 
-**LSA**. Latent Semantic Analysis was applied by constructing a TF-IDF term-sentence matrix with a vocabulary limited to the top 1,000 features and an n-gram range of $(1, 2)$, then decomposing it via Truncated SVD:
+Latent Semantic Analysis was applied by constructing a TF-IDF term-sentence matrix with a vocabulary limited to the top 1,000 features and an n-gram range of $(1, 2)$, then decomposing it via Truncated SVD:
 
 $$\mathbf{A} \approx \mathbf{U}_k \boldsymbol{\Sigma}_k \mathbf{V}_k^\top$$
 
@@ -144,8 +143,7 @@ Results are presented as means and standard deviations computed across all 1,000
 
 **4.4 Statistical Analysis**
 
-To assess whether observed performance differences between methods are statistically reliable, paired tt
-t-tests were applied to per-document ROUGE-1 score differences at a significance level of $\alpha = 0.05$. The Wilcoxon signed-rank test was additionally employed as a non-parametric validation. A difference was considered statistically significant when $p < 0.05$.
+To assess whether observed performance differences between methods are statistically reliable, paired t-tests were applied to per-document ROUGE-1 score differences at a significance level of $\alpha = 0.05$. The Wilcoxon signed-rank test was additionally employed as a non-parametric validation. A difference was considered statistically significant when $p < 0.05$.
 
 **4.5 Ablation Studies**
 
@@ -177,6 +175,8 @@ Table 2. ROUGE scores for all evaluated methods (mean ± std, 95% CI, $n = 1000$
 | LSA      | 0.177 ± 0.157 [0.167, 0.187]    | 0.090 ± 0.143 [0.081, 0.100]    | 0.151 ± 0.144 [0.141, 0.160]    |
 
 The Lead-N baseline achieved the highest performance across all three metrics, attaining a ROUGE-1 score of $0.308$, a ROUGE-2 score of $0.238$, and a ROUGE-L score of $0.284$. Among the unsupervised machine learning methods, TextRank ranked second with a ROUGE-1 of $0.204$, followed by the Random baseline at $0.189$, and LSA at $0.177$. The non-overlapping 95% confidence intervals across all four methods confirm that the observed performance differences are statistically reliable. Notably, LSA performed marginally below even the Random baseline on ROUGE-1, a finding examined further in Section 5.3.
+
+![rouge](/thesis/img/score_distributions.png)
 
 Due to the unavailability of PyTorch and Sentence-BERT dependencies in the evaluation environment, LexRank could not be included in the main experimental comparison. Based on evidence from the literature, SBERT-based embeddings are expected to yield improvements of approximately 5–8% in ROUGE-1 over TF-IDF-based graph methods, at the cost of substantially higher computational overhead.
 
