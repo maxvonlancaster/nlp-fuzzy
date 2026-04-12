@@ -40,16 +40,26 @@
     },
     "medical": {
         "minimal-frlb": [
-            "Body_Temperature_C_scaled medium and Oxygen_Saturation_%_scaled medium then mild",
-            "Heart_Rate_bpm_scaled low and Gender_encoded high then mild",
+            "Age_scaled medium and Heart_Rate_bpm_scaled medium and Body_Temperature_C_scaled medium and Blood_Pressure_mmHg_upper_scaled medium and Blood_Pressure_mmHg_lower_scaled medium and Oxygen_Saturation_%_scaled medium and Gender_encoded medium then moderate",
+            "Blood_Pressure_mmHg_upper_scaled medium and Body_Temperature_C_scaled high then severe",
+            "Heart_Rate_bpm_scaled medium and Heart_Rate_bpm_scaled medium then moderate",
+            "Heart_Rate_bpm_scaled medium and Oxygen_Saturation_%_scaled high then moderate",
+            "Oxygen_Saturation_%_scaled high and Heart_Rate_bpm_scaled medium then moderate",
+            "Heart_Rate_bpm_scaled medium and Age_scaled low then severe",
+            "Blood_Pressure_mmHg_lower_scaled high and Gender_encoded high then moderate",
+            "Oxygen_Saturation_%_scaled medium and Body_Temperature_C_scaled low then moderate",
+            "Age_scaled high and Age_scaled medium then mild",
+            "Age_scaled medium and Body_Temperature_C_scaled medium then mild",
+            "Age_scaled high and Age_scaled low then moderate",
+            "Blood_Pressure_mmHg_upper_scaled medium and Blood_Pressure_mmHg_lower_scaled high then moderate",
+            "Oxygen_Saturation_%_scaled medium and Blood_Pressure_mmHg_lower_scaled high then moderate",
             "Body_Temperature_C_scaled medium and Body_Temperature_C_scaled medium then mild",
-            "Blood_Pressure_mmHg_upper_scaled medium and Body_Temperature_C_scaled medium then mild",
-            "Heart_Rate_bpm_scaled low and Oxygen_Saturation_%_scaled medium then mild",
-            "Gender_encoded high and Body_Temperature_C_scaled medium then mild",
-            "Oxygen_Saturation_%_scaled high and Body_Temperature_C_scaled low then moderate",
-            "Gender_encoded medium and Body_Temperature_C_scaled high then moderate",
-            "Blood_Pressure_mmHg_lower_scaled medium and Gender_encoded high then mild",
-            "Heart_Rate_bpm_scaled medium and Body_Temperature_C_scaled medium then mild"
+            "Blood_Pressure_mmHg_upper_scaled low and Gender_encoded high then moderate",
+            "Heart_Rate_bpm_scaled medium and Age_scaled low then mild",
+            "Blood_Pressure_mmHg_upper_scaled high and Oxygen_Saturation_%_scaled high then moderate",
+            "Heart_Rate_bpm_scaled medium and Blood_Pressure_mmHg_lower_scaled low then mild",
+            "Gender_encoded medium and Age_scaled low then severe",
+            "Age_scaled high and Body_Temperature_C_scaled low then moderate"
         ]
     }
 }
