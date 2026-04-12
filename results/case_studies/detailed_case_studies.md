@@ -1,6 +1,6 @@
 # Text Summarization Case Studies
 
-Generated: 2026-04-11 20:53
+Generated: 2026-04-12 08:43
 Number of cases: 3
 
 ---
@@ -10,7 +10,7 @@ Number of cases: 3
 **Document ID:** 53
 **Word Count:** 174
 **Sentence Count:** 28
-**Average ROUGE-1:** 0.6046
+**Average ROUGE-1:** 0.6114
 
 ### Original Text (excerpt)
 
@@ -26,6 +26,10 @@ PROCEDURES: , Left heart catheterization, left ventriculography, and left and ri
 
 PROCEDURES: , Left heart catheterization, left ventriculography, and left and right coronary arteriography.,INDICATIONS: , Chest pain and non-Q-wave MI with elevation of troponin I only.,TECHNIQUE:  ,The patient was brought to the procedure room in satisfactory condition. LMCA normal.,3. LCX is normal.,5.
 
+#### lsa (ROUGE-1: 0.6316)
+
+PROCEDURES: , Left heart catheterization, left ventriculography, and left and right coronary arteriography.,INDICATIONS: , Chest pain and non-Q-wave MI with elevation of troponin I only.,TECHNIQUE:  ,The patient was brought to the procedure room in satisfactory condition. The right groin was prepped and draped in routine fashion. nitroglycerin for chest pain.
+
 #### random (ROUGE-1: 0.6234)
 
 PROCEDURES: , Left heart catheterization, left ventriculography, and left and right coronary arteriography.,INDICATIONS: , Chest pain and non-Q-wave MI with elevation of troponin I only.,TECHNIQUE:  ,The patient was brought to the procedure room in satisfactory condition. RCA is dominant and normal.,RECOMMENDATIONS: , Medical management, diet, and exercise. daily, p.r.n.
@@ -36,7 +40,7 @@ PROCEDURES: , Left heart catheterization, left ventriculography, and left and ri
 
 ### Analysis
 
-**Overall Performance:** High (avg ROUGE-1: 0.605)
+**Overall Performance:** High (avg ROUGE-1: 0.611)
 
 **Best Method:** textrank (ROUGE-1: 0.696)
 **Worst Method:** lead (ROUGE-1: 0.495)
@@ -51,45 +55,49 @@ PROCEDURES: , Left heart catheterization, left ventriculography, and left and ri
 
 ## Case Study 2: MEDIUM Performance
 
-**Document ID:** 51
-**Word Count:** 335
-**Sentence Count:** 34
-**Average ROUGE-1:** 0.1923
+**Document ID:** 34
+**Word Count:** 359
+**Sentence Count:** 68
+**Average ROUGE-1:** 0.1958
 
 ### Original Text (excerpt)
 
-CC:, Progressive lower extremity weakness.,HX: ,This 52y/o RHF had a h/o right frontal glioblastoma multiforme (GBM) diagnosed by brain biopsy/partial resection, on 1/15/1991. She had been healthy until 1/6/91, when she experienced a generalized tonic-clonic type seizure during the night. She subsequently underwent an MRI brain scan and was found to have a right frontal enhancing lesion in the mesial aspect of the right frontal lobe at approximately the level of the coronal suture. There was minimal associated edema and no mass effect. Following extirpation of the tumor mass, she underwent radioactive Iodine implantation and 6020cGy radiation therapy in 35 fractions. In 11/91 she received BCNU and Procarbazine chemotherapy protocols. This was followed by four courses of 5FU/Carboplatin (3/92, 6/92, 9/92 ,10/92) chemotherapy.,On 10/12/92 she presented for her 4th course of 5FU/Carboplatin and complained of non-radiating dull low back pain, and proximal lower extremity weakness, but was still able to ambulate. She denied any bowel/bladder difficulty.,PMH: ,s/p oral surgery for wisdom tooth extraction.,FHX/SHX: ,1-2 ppd cigarettes. rare ETOH use. Father died of renal CA.,MEDS: ,Decadron 12mg/day.,EXAM: ,Vitals unremarkable.,MS: Unremarkable.,Motor: 5/5 BUE, LE: 4+/5- prox, 5/5 distal to hips. Normal tone and muscle bulk.,Sensory: No deficits appreciated.,Coord: Unremarkable.,Station: No mention in record of being tested.,Gait: Mild difficulty climbing stairs.,Reflexes: 1+/1+ throughout and symmetric. Plantar responses were down-going bilaterally.,INITIAL IMPRESSION:, Steroid myopathy. Though there was enough of a suspicion of "drop" metastasis that an MRI of the L-spine was obtained.,COURSE:, The MRI L-spine revealed fine linear enhancement along the dorsal aspect of the conus medullaris, suggestive of subarachnoid seeding of tumor. No focal mass or cord compression was visualized. CSF examination revealed: 19RBC, 22WBC, 17 Lymphocytes, and 5 histiocytes, Glucose 56, Protein 150. Cytology (negative). The patient was discharged home on 10/17/92, but experienced worsening back pain and lower extremity weakness and became predominantly wheelchair bound within 4 months. She was last seen on 3/3/93 and showed signs of worsening weakness (left hemiplegia: R > L) as her tumor grew and spread. She then entered a hospice.
+SUBJECTIVE:,  Patient presents with Mom and Dad for her 5-year 3-month well-child check.  Family has not concerns stating patient has been doing well overall since last visit.  Taking in a well-balanced diet consisting of milk and dairy products, fruits, vegetables, proteins and grains with minimal junk food and snack food.  No behavioral concerns.  Gets along well with peers as well as adults.  Is excited to start kindergarten this upcoming school year.  Does attend daycare.  Normal voiding and stooling pattern.  No concerns with hearing or vision.  Sees the dentist regularly.  Growth and development:  Denver II normal passing all developmental milestones per age in areas of fine motor, gross motor, personal and social interaction and speech and language development.  See Denver II form in the chart.,ALLERGIES:,  None.,MEDICATIONS: , None.,FAMILY SOCIAL HISTORY:,  Unchanged since last checkup.  Lives at home with mother, father and sibling.  No smoking in the home.,REVIEW OF SYSTEMS:,  As per HPI; otherwise negative.,OBJECTIVE:,Vital Signs:  Weight 43 pounds.  Height 42-1/4 inches.  Temperature 97.7.  Blood pressure 90/64.,General:  Well-developed, well-nourished, cooperative, alert and interactive 5-year -3month-old white female in no acute distress.,HEENT:  Atraumatic, normocephalic.  Pupils equal, round and reactive.  Sclerae clear.  Red reflex present bilaterally.  Extraocular muscles intact.  TMs clear bilaterally.  Oropharynx:  Mucous membranes moist and pink.  Good dentition.,Neck:  Supple, no lymphadenopathy.,Chest:  Clear to auscultation bilaterally.  No wheeze or crackles.  Good air exchange.,Cardiovascular:  Regular rate and rhythm.  No murmur.  Good pulses bilaterally.,Abdomen:  Soft, nontender.  Nondistended.  Positive bowel sounds.  No masses or organomegaly.,GU:  Tanner I female genitalia.  Femoral pulses equal bilaterally.  No rash.,Extremities:  Full range of motion.  No cyanosis, clubbing or edema.,Back:  Straight.  No scoliosis.,Integument:  Warm, dry and pink without lesions.,Neurological:  Alert.  Good muscle tone and strength.  Cranial nerves II-XII grossly intact.  DTRs 2+/4+ bilaterally.,ASSESSMENT/PLAN:,1. Well 5-year 3-month-old white female.,2. Anticipatory guidance for growth and diet development and safety issues as well as immunizations.  Will receive MMR, DTaP and IPV today.  Discussed risks and benefits as well as possible side effects and symptomatic treatment.  Gave 5-year well-child check handout to mom.  Completed school pre-participation physical.  Copy in the chart.  Completed vision and hearing screening.  Reviewed results with family.,3. Follow up in one year for next well-child check or as needed for acute care.
 
 ### Reference Summary
 
- MRI L-spine - History of progressive lower extremity weakness, right frontal glioblastoma with lumbar subarachnoid seeding.
+ A 3-month well-child check. 
 
 ### Method Summaries and Scores
 
-#### random (ROUGE-1: 0.2154)
+#### lsa (ROUGE-1: 0.3333)
 
-CC:, Progressive lower extremity weakness.,HX: ,This 52y/o RHF had a h/o right frontal glioblastoma multiforme (GBM) diagnosed by brain biopsy/partial resection, on 1/15/1991. In 11/91 she received BCNU and Procarbazine chemotherapy protocols. Plantar responses were down-going bilaterally.,INITIAL IMPRESSION:, Steroid myopathy.
+No concerns with hearing or vision. Well 5-year 3-month-old white female.,2. Gave 5-year well-child check handout to mom.
 
-#### lead (ROUGE-1: 0.1818)
+#### textrank (ROUGE-1: 0.2500)
 
-CC:, Progressive lower extremity weakness.,HX: ,This 52y/o RHF had a h/o right frontal glioblastoma multiforme (GBM) diagnosed by brain biopsy/partial resection, on 1/15/1991. She had been healthy until 1/6/91, when she experienced a generalized tonic-clonic type seizure during the night. She subsequently underwent an MRI brain scan and was found to have a right frontal enhancing lesion in the mesial aspect of the right frontal lobe at approximately the level of the coronal suture.
+No concerns with hearing or vision. TMs clear bilaterally. Well 5-year 3-month-old white female.,2.
 
-#### textrank (ROUGE-1: 0.1798)
+#### lead (ROUGE-1: 0.2000)
 
-CC:, Progressive lower extremity weakness.,HX: ,This 52y/o RHF had a h/o right frontal glioblastoma multiforme (GBM) diagnosed by brain biopsy/partial resection, on 1/15/1991. Following extirpation of the tumor mass, she underwent radioactive Iodine implantation and 6020cGy radiation therapy in 35 fractions. The patient was discharged home on 10/17/92, but experienced worsening back pain and lower extremity weakness and became predominantly wheelchair bound within 4 months.
+SUBJECTIVE:,  Patient presents with Mom and Dad for her 5-year 3-month well-child check. Family has not concerns stating patient has been doing well overall since last visit. Taking in a well-balanced diet consisting of milk and dairy products, fruits, vegetables, proteins and grains with minimal junk food and snack food.
+
+#### random (ROUGE-1: 0.0000)
+
+No murmur. Good pulses bilaterally.,Abdomen:  Soft, nontender. Will receive MMR, DTaP and IPV today.
 
 ### Analysis
 
-**Overall Performance:** Medium (avg ROUGE-1: 0.192)
+**Overall Performance:** Medium (avg ROUGE-1: 0.196)
 
-**Best Method:** random (ROUGE-1: 0.215)
-**Worst Method:** textrank (ROUGE-1: 0.180)
-**Performance Spread:** 0.036
+**Best Method:** lsa (ROUGE-1: 0.333)
+**Worst Method:** random (ROUGE-1: 0.000)
+**Performance Spread:** 0.333
 
 **Key Observations:**
 - Methods showed moderate performance with some variation
 - Different approaches captured different aspects of the content
-- Strong agreement: all methods selected the same first sentence
+- Partial agreement: some methods converged on similar content
 
 ---
 
@@ -122,12 +130,16 @@ The testicle was viable. Benzoin and a Steri-Strip were placed. Benzoin and Ster
 
 Next the internal spermatic fascia was incised and the hernia sac was dissected free inside the internal ring. The hemostat was then passed through the incision. The external oblique was then closed with interrupted 3-0 silk suture.
 
+#### lsa (ROUGE-1: 0.0000)
+
+Benzoin and a Steri-Strip were placed. The external oblique was then closed with interrupted 3-0 silk suture. Benzoin and Steri-Strip were applied.
+
 ### Analysis
 
 **Overall Performance:** Low (avg ROUGE-1: 0.000)
 
 **Best Method:** lead (ROUGE-1: 0.000)
-**Worst Method:** textrank (ROUGE-1: 0.000)
+**Worst Method:** lsa (ROUGE-1: 0.000)
 **Performance Spread:** 0.000
 
 **Key Observations:**

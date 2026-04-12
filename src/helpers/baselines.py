@@ -14,6 +14,7 @@ import networkx as nx
 from typing import List, Optional
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
+from sklearn.decomposition import TruncatedSVD
 
 # sentence_transformers import moved to lexrank_summarizer() to avoid PyTorch DLL issues
 
@@ -282,6 +283,71 @@ def lexrank_summarizer(
     return [sentences[i] for i in selected_indices]
 
 
+def lsa_summarizer(
+    text: str,
+    n: int = 3,
+    n_components: int = 5,
+    **kwargs
+) -> List[str]:
+    """
+    LSA (Latent Semantic Analysis) based extractive summarization.
+
+    Uses TruncatedSVD to identify latent topics and selects sentences
+    with the highest representation in the topic space. This method
+    does not require PyTorch and works entirely with sklearn.
+
+    Args:
+        text: Input text
+        n: Number of sentences to select
+        n_components: Number of latent components/topics (default 5)
+        **kwargs: Additional arguments (for compatibility)
+
+    Returns:
+        List of top N sentences in original order
+
+    Reference:
+        Steinberger, J., & Ježek, K. (2004). Using latent semantic analysis
+        in text summarization and summary evaluation. ISIM, 2004.
+    """
+    sentences = split_sentences(text)
+
+    if len(sentences) <= n:
+        return sentences
+
+    # Create TF-IDF matrix
+    vectorizer = TfidfVectorizer(
+        ngram_range=(1, 2),
+        smooth_idf=True,
+        use_idf=True,
+        stop_words='english',
+        max_features=1000
+    )
+    
+    try:
+        tfidf_matrix = vectorizer.fit_transform(sentences)
+    except ValueError:
+        # Fallback if TF-IDF fails (e.g., all sentences too similar)
+        return lead_n_baseline(text, n=n)
+
+    # Apply LSA/SVD
+    n_components_actual = min(n_components, min(tfidf_matrix.shape) - 1)
+    if n_components_actual < 1:
+        return lead_n_baseline(text, n=n)
+    
+    svd = TruncatedSVD(n_components=n_components_actual, random_state=42)
+    lsa_matrix = svd.fit_transform(tfidf_matrix)
+
+    # Compute sentence scores based on singular values
+    # Sentences with high values across important topics are selected
+    sentence_scores = np.linalg.norm(lsa_matrix, axis=1)
+
+    # Select top N sentences
+    ranked_indices = np.argsort(sentence_scores)[::-1]
+    selected_indices = sorted(ranked_indices[:n])
+
+    return [sentences[i] for i in selected_indices]
+
+
 def get_summary_text(summary_sentences: List[str]) -> str:
     """
     Join summary sentences into a single text.
@@ -301,6 +367,7 @@ BASELINE_METHODS = {
     "random": random_baseline,
     "textrank": textrank_summarizer,
     "lexrank": lexrank_summarizer,
+    "lsa": lsa_summarizer,
 }
 
 

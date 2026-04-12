@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "date": "2026-04-11 20:56:09",
+    "date": "2026-04-12 08:43:26",
     "dataset": "MTSamples Medical Transcriptions",
     "n_documents": 100,
     "n_sentences": 3,
@@ -84,6 +84,33 @@
         "rougeL": {
           "lower": 0.13778092116237517,
           "upper": 0.18783312489117784
+        }
+      },
+      "num_documents": 100
+    },
+    "lsa": {
+      "mean_scores": {
+        "rouge1": 0.18276885680282418,
+        "rouge2": 0.09816265329657503,
+        "rougeL": 0.15909934613745252
+      },
+      "std_scores": {
+        "rouge1": 0.16931114600423441,
+        "rouge2": 0.15613063828013932,
+        "rougeL": 0.15453035215784253
+      },
+      "confidence_intervals": {
+        "rouge1": {
+          "lower": 0.15034665679925172,
+          "upper": 0.21726238289996258
+        },
+        "rouge2": {
+          "lower": 0.06779266081358433,
+          "upper": 0.1302843490036379
+        },
+        "rougeL": {
+          "lower": 0.12969963364784085,
+          "upper": 0.1915275994836985
         }
       },
       "num_documents": 100
