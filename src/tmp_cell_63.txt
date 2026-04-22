@@ -1,0 +1,153 @@
+# Load complete model in a new notebook
+import torch
+import torch.nn as nn
+import pickle
+
+# Define a flexible model class
+class HybridMedicalModel(nn.Module):
+    def __init__(self, text_dim, num_dim, hidden_dims_text, hidden_dims_num, dropout=0.3):
+        super(HybridMedicalModel, self).__init__()
+        
+        self.text_branch = nn.Sequential(
+            nn.Linear(text_dim, hidden_dims_text[0]),
+            nn.BatchNorm1d(hidden_dims_text[0]),
+            nn.ReLU(),
+            nn.Dropout(dropout),
+            nn.Linear(hidden_dims_text[0], hidden_dims_text[1]),
+            nn.BatchNorm1d(hidden_dims_text[1]),
+            nn.ReLU(),
+            nn.Dropout(dropout)
+        )
+        
+        self.num_branch = nn.Sequential(
+            nn.Linear(num_dim, hidden_dims_num[0]),
+            nn.BatchNorm1d(hidden_dims_num[0]),
+            nn.ReLU(),
+            nn.Dropout(dropout),
+            nn.Linear(hidden_dims_num[0], hidden_dims_num[1]),
+            nn.BatchNorm1d(hidden_dims_num[1]),
+            nn.ReLU(),
+            nn.Dropout(dropout)
+        )
+        
+        self.classifier = nn.Sequential(
+            nn.Linear(hidden_dims_text[1] + hidden_dims_num[1], 64),
+            nn.BatchNorm1d(64),
+            nn.ReLU(),
+            nn.Dropout(dropout),
+            nn.Linear(64, 32),
+            nn.BatchNorm1d(32),
+            nn.ReLU(),
+            nn.Dropout(dropout),
+            nn.Linear(32, 3)
+        )
+    
+    def forward(self, text_features, num_features):
+        text_out = self.text_branch(text_features)
+        num_out = self.num_branch(num_features)
+        combined = torch.cat([text_out, num_out], dim=1)
+        return self.classifier(combined)
+
+# Load the saved complete model
+checkpoint = torch.load('./medical-nn/complete_hybrid_model.pth', map_location='cpu', weights_only=False)
+
+# Print all keys to see what's available
+print("Available keys in state_dict:")
+for key in checkpoint['model_state_dict'].keys():
+    print(f"  {key}")
+
+# AUTO-DETECT architecture from the saved weights
+state_dict = checkpoint['model_state_dict']
+
+# Find the correct layer names by looking for patterns - only Linear layers (even indices)
+text_branch_layers = [k for k in state_dict.keys() if 'text_branch' in k and 'weight' in k and int(k.split('.')[1]) % 2 == 0]
+num_branch_layers = [k for k in state_dict.keys() if 'num_branch' in k and 'weight' in k and int(k.split('.')[1]) % 2 == 0]
+
+print(f"\nText branch weight layers: {text_branch_layers}")
+print(f"Num branch weight layers: {num_branch_layers}")
+
+# Get the first linear layer (index 0)
+text_hidden1 = state_dict['text_branch.0.weight'].shape[0]
+num_hidden1 = state_dict['num_branch.0.weight'].shape[0]
+
+# Get the second linear layer - it could be at index 4 or 5 depending on structure
+# Let's find it dynamically
+second_linear_key_text = None
+for key in text_branch_layers:
+    if key != 'text_branch.0.weight':
+        second_linear_key_text = key
+        break
+
+if second_linear_key_text:
+    text_hidden2 = state_dict[second_linear_key_text].shape[0]
+else:
+    # Fallback: try common indices
+    try:
+        text_hidden2 = state_dict['text_branch.4.weight'].shape[0]
+    except KeyError:
+        text_hidden2 = state_dict['text_branch.5.weight'].shape[0]
+
+second_linear_key_num = None
+for key in num_branch_layers:
+    if key != 'num_branch.0.weight':
+        second_linear_key_num = key
+        break
+
+if second_linear_key_num:
+    num_hidden2 = state_dict[second_linear_key_num].shape[0]
+else:
+    try:
+        num_hidden2 = state_dict['num_branch.4.weight'].shape[0]
+    except KeyError:
+        num_hidden2 = state_dict['num_branch.5.weight'].shape[0]
+
+# Detect input dimensions
+text_dim = state_dict['text_branch.0.weight'].shape[1]
+num_dim = state_dict['num_branch.0.weight'].shape[1]
+
+# Hidden dims for each branch
+hidden_dims_text = [text_hidden1, text_hidden2]
+hidden_dims_num = [num_hidden1, num_hidden2]
+
+print("\n" + "="*50)
+print("Auto-detected architecture from saved model:")
+print(f"  - Text dimension: {text_dim}")
+print(f"  - Numeric dimension: {num_dim}")
+print(f"  - Text hidden dimensions: {hidden_dims_text}")
+print(f"  - Num hidden dimensions: {hidden_dims_num}")
+print(f"  - Text branch: {text_dim} -> {hidden_dims_text[0]} -> {hidden_dims_text[1]}")
+print(f"  - Numeric branch: {num_dim} -> {hidden_dims_num[0]} -> {hidden_dims_num[1]}")
+print(f"  - Fusion dimension: {hidden_dims_text[1] + hidden_dims_num[1]}")
+print("="*50)
+
+# Create model with auto-detected dimensions
+model = HybridMedicalModel(
+    text_dim=text_dim,
+    num_dim=num_dim,
+    hidden_dims_text=hidden_dims_text,
+    hidden_dims_num=hidden_dims_num,
+    dropout=0.3
+)
+
+# Load weights
+model.load_state_dict(state_dict)
+model.eval()
+
+# Load preprocessing objects
+scaler = checkpoint['scaler']
+label_encoder = checkpoint['label_encoder']
+text_encoder = checkpoint['text_encoder']
+
+print("\n✓ Model loaded successfully!")
+print(f"✓ Model expects:")
+print(f"  - Text input: {text_dim}-dimensional embeddings")
+print(f"  - Numeric input: {num_dim} features")
+print(f"  - Output: 3 classes (mild, moderate, severe)")
+
+# Test if model works with dummy data
+print("\nTesting model with dummy data...")
+test_text = torch.randn(1, text_dim)
+test_num = torch.randn(1, num_dim)
+with torch.no_grad():
+    test_output = model(test_text, test_num)
+    print(f"✓ Test forward pass successful! Output shape: {test_output.shape}")
