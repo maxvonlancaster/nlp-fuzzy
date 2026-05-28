@@ -78,6 +78,20 @@ The hybrid neural network used a text branch with dimensions 384→256→128 and
 ### Comparative Analysis
 The hybrid approach combining structured data with NLP embeddings significantly outperformed single-modality models. Integrating fuzzy logic for meta-learning provided more interpretable decision boundaries, while the neural network architecture was able to capture complex nonlinear relationships. Hyperparameter tuning was essential for maximizing performance, and Bayesian optimization produced the best results.
 
+### Benchmark Summary
+
+| Approach | Accuracy | F1 | Precision | Recall | Notes |
+|---|---:|---:|---:|---:|---|
+| XGBoost (numerical, untuned) | 99% | Not reported | Not reported | Not reported | Reported in Results — numerical features |
+| XGBoost (numerical, tuned, Bayesian) | 100% | Not reported | Not reported | Not reported | Reported in Results — Bayesian optimization |
+| XGBoost (text, TF-IDF) | 84% | Not reported | Not reported | Not reported | Reported in Results — TF-IDF + XGBoost |
+| XGBoost (text, tuned) | 86% | Not reported | Not reported | Not reported | Reported in Results — hyperparameter tuning |
+| Random Forest (baseline, numerical) | 66% | Not reported | Not reported | Not reported | Reported in Results — baseline models |
+| Random Forest (text, feature selection) | 80% | Not reported | Not reported | Not reported | Reported in Results — feature selection with RF |
+| Model combination (XGBoost + Logistic Regression) | Not reported | Not reported | Not reported | Not reported | |
+| Fuzzy Logic meta-learner | Not reported | Not reported | Not reported | Not reported |  |
+| Hybrid Neural Network | Not reported | Not reported | Not reported | Not reported |  |
+
 ### Challenges and Limitations
 Class imbalance in medical datasets required careful stratification. The computational complexity of transformer models remains a concern for real-time clinical use, and there is an interpretability trade-off between ensemble methods and deep learning approaches.
 
@@ -114,3 +128,6 @@ Overall, the results confirm that ensemble methods combined with thorough hyperp
 6. Melnyk H., Melnyk V., Vikovan V. APPLICATION OF NATURAL LANGUAGE PROCESSING AND FUZZY LOGIC TO DISINFORMATION DETECTION. Bukovinian Mathematical Journal. 2024. Vol. 12, no. 1. P. 21–31. URL: https://doi.org/10.31861/bmj2024.01.03 (date of access: 21.02.2026).
 
 
+## TODO
+
+- Run ipynb file one more time, collect all the metrics into a single table!
