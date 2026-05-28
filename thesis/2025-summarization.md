@@ -60,16 +60,16 @@ The top N sentences are selected based on proximity to cluster centroids (K-Mean
 
 ### Evaluation Framework
 
-A comprehensive evaluation infrastructure was developed to enable rigorous empirical analysis (see `src/summarization_evaluation.ipynb`). The framework includes:
+A comprehensive evaluation infrastructure was developed to enable rigorous empirical analysis. The framework includes:
 
-- **Dataset Management:** Support for multiple corpora including MTSamples medical transcriptions, CNN/DailyMail news articles, and Wikipedia movie plots (`src/helpers/dataset_loader.py`)
-- **Baseline Methods:** Implementation of standard comparison methods including Lead-N, Random, TextRank, LexRank, and LSA (`src/helpers/baselines.py`)
-- **Statistical Analysis:** ROUGE evaluation with bootstrap confidence intervals and paired significance testing (`src/helpers/evaluation.py`)
-- **Error Analysis:** Per-document performance analysis, variance explanation, and failure pattern detection (`src/helpers/analysis.py`)
-- **Ablation Studies:** Systematic component testing for embeddings, dimensionality reduction, and hyperparameters (`src/helpers/ablation.py`)
-- **Visualization:** Publication-ready figures including score distributions, correlation heatmaps, and comparative charts (`src/helpers/visualization.py`)
+- **Dataset Management:** Support for multiple corpora including MTSamples medical transcriptions, CNN/DailyMail news articles, and Wikipedia movie plots.
+- **Baseline Methods:** Implementation of standard comparison methods including Lead-N, Random, TextRank, LexRank, and LSA.
+- **Statistical Analysis:** ROUGE evaluation with bootstrap confidence intervals and paired significance testing.
+- **Error Analysis:** Per-document performance analysis, variance explanation, and failure pattern detection.
+- **Ablation Studies:** Systematic component testing for embeddings, dimensionality reduction, and hyperparameters.
+- **Visualization:** Publication-ready figures including score distributions, correlation heatmaps, and comparative charts.
 
-All experiments use fixed random seeds (RANDOM_SEED=42) to ensure reproducibility. Complete hyperparameter specifications and algorithm complexity analysis are provided in `thesis/methodology_detailed.md` and `thesis/algorithms.md`.
+All experiments use fixed random seeds (RANDOM_SEED=42) to ensure reproducibility. Complete hyperparameter specifications and algorithm complexity analysis are provided.
 
 
 ## Experimental Results
@@ -119,7 +119,7 @@ These results motivated the development of a comprehensive evaluation framework 
 
 ### Comprehensive Evaluation Framework
 
-For publication-ready results, a large-scale evaluation was conducted using the framework documented in `src/summarization_evaluation.ipynb`. The evaluation compares K-Means and Kohonen methods against standard baselines:
+For publication-ready results, a large-scale evaluation was conducted using the framework. The evaluation compares K-Means and Kohonen methods against standard baselines:
 
 **Baseline Methods:**
 - **Lead-N:** First N sentences (strong baseline for structured documents)
@@ -158,8 +158,6 @@ The full evaluation has been completed on 1,000 MTSamples medical transcriptions
 - **High performer** (Doc 921, cardiac surgery, ROUGE-1=0.625): All methods succeeded due to structured format
 - **Medium performer** (Doc 604, spinal surgery, ROUGE-1=0.211): Methods converged on same complex first sentences
 - **Low performer** (Doc 388, bariatric consult, ROUGE-1=0.000): Abstractive reference "Consult for laparoscopic gastric bypass" impossible to extract from detailed patient history
-
-Complete results with ablation studies, statistical tests, and detailed case studies are documented in `thesis/results_summary.md`. Figures available in `results/figures/`. Full data in `results/evaluation_results.json`.
 
 
 
@@ -212,7 +210,6 @@ To isolate the contribution of individual components, systematic ablation experi
 
 Results quantify the contribution of each component and identify optimal configurations. Word2Vec combined with PCA reduction provided the best balance between semantic quality and computational efficiency. Sentence-BERT embeddings improved ROUGE scores by 5-8% but increased runtime significantly.
 
-Detailed ablation results and component contribution analysis are available in `thesis/results_summary.md` and the evaluation notebook.
 
 ### Error Analysis and Performance Variance
 
@@ -249,7 +246,6 @@ A concise cardiology report with clear topic structure. K-Means successfully ide
 **Low Performance Example (ROUGE-1: 0.224):**
 A lengthy multi-specialty consultation with overlapping themes. Both methods struggled to identify the single most salient sentence cluster. The reference summary included synthesized information not directly extractable from individual sentences, highlighting the inherent limitation of purely extractive approaches.
 
-Detailed case studies with full text, summaries from all methods, and comparative analysis are documented in `thesis/results_summary.md`. 
 
 ## Discussion
 
@@ -275,7 +271,7 @@ This interpretability is crucial for high-stakes fields such as medicine, law, f
 
 ### Computational Efficiency
 
-Complexity analysis (detailed in `thesis/algorithms.md`) reveals important trade-offs:
+Complexity analysis reveals important trade-offs:
 
 **K-Means:** Time complexity O(n·k·d·iterations) where n=sentences, k=clusters, d=embedding dimension. Highly efficient for moderate-length documents (<100 sentences).
 
@@ -290,7 +286,7 @@ For the medical transcription corpus (~480 words, ~30 sentences average), runtim
 
 ### Error Analysis Insights
 
-The comprehensive error analysis framework (`src/helpers/analysis.py`) revealed important patterns explaining performance variance:
+The comprehensive error analysis framework revealed important patterns explaining performance variance:
 
 **Document-level factors:**
 Correlation analysis identified lexical diversity as a positive predictor of ROUGE performance (r≈0.20-0.30), suggesting that documents with richer vocabulary allow methods to better distinguish salient sentences. Conversely, highly redundant documents (low lexical diversity) resulted in lower scores as multiple similar sentences compete for selection.

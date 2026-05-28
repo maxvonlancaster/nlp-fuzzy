@@ -23,19 +23,7 @@ Ensemble machine learning methods, particularly Random Forest and gradient boost
 
 Despite the active development of individual approaches to analyzing numerical and textual data, the issue of effectively combining them into a single model for predicting medical conditions remains under-researched. This is particularly true for classification tasks related to treatment plan recommendations and the determination of disease contagiousness, where errors can have significant consequences. Therefore, it is relevant to study approaches that combine ensemble machine learning models with modern NLP methods and hyperparameter optimization.
 
-The aim of this research is to investigate the potential of combining machine learning ensemble models with text analysis methods to predict medical conditions based on numerical and textual data. Key research ideas explored include:
-
-1. **Multi-Modal Feature Integration**: Developing architectures that effectively combine structured numerical data (vital signs, demographics) with unstructured text (symptom descriptions, clinical notes) using advanced embedding techniques.
-
-2. **Ensemble Learning Optimization**: Applying hyperparameter tuning (GridSearchCV, Bayesian optimization) to ensemble methods like XGBoost and Random Forest for robust performance on medical datasets.
-
-3. **Advanced NLP Techniques**: Implementing transformer-based models (BioClinicalBERT), named entity recognition, and semantic embeddings for medical text understanding.
-
-4. **Fuzzy Logic Meta-Learning**: Creating interpretable meta-learners that combine predictions from separate numerical and textual models using fuzzy membership functions and rules.
-
-5. **Hybrid Neural Architectures**: Designing dual-branch neural networks with separate processing paths for different data modalities, followed by feature fusion and joint classification.
-
-6. **Uncertainty Quantification**: Incorporating confidence-based decision making and fuzzy logic to handle prediction uncertainty in clinical applications.
+The aim of this research is to investigate the potential of combining machine learning ensemble models with text analysis methods to predict medical conditions based on numerical and textual data. We explore architectures that effectively fuse structured numerical data such as vital signs and demographics with unstructured clinical text like symptom descriptions and physician notes using advanced embedding techniques. Robust performance on medical datasets is pursued through ensemble learning optimization, including hyperparameter tuning with GridSearchCV and Bayesian optimization for XGBoost and Random Forest models. For the textual component, we implement advanced NLP techniques such as transformer-based models like BioClinicalBERT, named entity recognition, and semantic embeddings to better understand medical language. We also develop interpretable meta-learners that combine predictions from separate numerical and textual models using fuzzy membership functions and rule-based inference. The study includes hybrid neural architectures with dual branches for different data modalities, followed by latent feature fusion and joint classification. Finally, we incorporate uncertainty quantification by using confidence-based decision making and fuzzy logic to manage prediction uncertainty in clinical applications.
 
 To achieve these goals, we analyzed the main classification algorithms, model evaluation methods, approaches to data preprocessing and hyperparameter tuning, and conducted experimental studies using both classical machine learning models and specialized NLP solutions for the medical field.
 
@@ -43,83 +31,55 @@ The results of this work aim to demonstrate the practical effectiveness of combi
 
 ## Related Work
 
-Recent studies have explored the integration of machine learning with medical text analysis for diagnostic prediction. Omoregbe et al. (2020) demonstrated the effectiveness of combining Natural Language Processing with Fuzzy Logic for text-based medical diagnosis, achieving improved accuracy through rule-based uncertainty handling. Lala and Chaudhary (2025) developed predictive models using deep learning and NLP techniques for disease diagnosis from symptom descriptions, highlighting the potential of transformer architectures.
+Recent studies have explored the integration of machine learning with medical text analysis for diagnostic prediction. Omoregbe et al. [3] demonstrated the effectiveness of combining Natural Language Processing with Fuzzy Logic for text-based medical diagnosis, achieving improved accuracy through rule-based uncertainty handling. Lala and Chaudhary [4] developed predictive models using deep learning and NLP techniques for disease diagnosis from symptom descriptions, highlighting the potential of transformer architectures.
 
-Al-Qarni and Algarni (2025) investigated disease prediction from symptom text using deep learning approaches, showing that semantic embeddings outperform traditional bag-of-words methods. Hossain et al. (2023) conducted a systematic review of NLP applications in electronic health records, emphasizing the role of contextual understanding in clinical decision support.
+Al-Qarni and Algarni [5] investigated disease prediction from symptom text using deep learning approaches, showing that semantic embeddings outperform traditional bag-of-words methods. Hossain et al. [2] conducted a systematic review of NLP applications in electronic health records, emphasizing the role of contextual understanding in clinical decision support.
 
-The work by Melnyk et al. (2024) on applying NLP and fuzzy logic to disinformation detection provides methodological insights applicable to medical text analysis. Roman et al. (2025) explored integrating machine learning with medical imaging, complementing text-based approaches for comprehensive diagnostic systems.
+The work by Melnyk et al. [6] on applying NLP and fuzzy logic to disinformation detection provides methodological insights applicable to medical text analysis. Roman et al. [1] explored integrating machine learning with medical imaging, complementing text-based approaches for comprehensive diagnostic systems.
 
 Building on these foundations, our research extends the state-of-the-art by developing a hybrid neural architecture that jointly processes numerical and textual medical data, incorporating fuzzy logic for interpretable ensemble decision-making.## Methodology
+
+## Methodology
 
 ### Dataset Description
 The research utilizes a medical dataset containing both structured numerical features and unstructured textual descriptions of symptoms for disease diagnosis. The dataset includes features such as patient demographics, vital signs, and clinical notes describing symptoms. The target variable represents disease severity levels: mild, moderate, and severe.
 
 ### Data Preprocessing
-- **Numerical Features**: Standardized using StandardScaler to normalize distributions.
-- **Textual Features**: Processed using Sentence Transformers (e.g., all-MiniLM-L6-v2) to generate 384-dimensional embeddings. Additional NLP techniques include Named Entity Recognition (NER) with SciSpacy for medical entities.
-- **Train-Test Split**: 80-20 split with stratification to maintain class balance.
+Numerical features were standardized with StandardScaler to normalize distributions, while textual features were processed with Sentence Transformers such as all-MiniLM-L6-v2 to produce 384-dimensional embeddings. Additional NLP processing included Named Entity Recognition (NER) with SciSpacy to identify medical entities. The dataset was split into training and test partitions using an 80-20 split with stratification to preserve class balance.
 
 ### Model Architectures
-1. **Ensemble Methods**:
-   - XGBoost with hyperparameter tuning via GridSearchCV and Bayesian optimization.
-   - Random Forest for baseline comparisons.
 
-2. **Text Processing Models**:
-   - TF-IDF vectorization followed by traditional ML classifiers.
-   - Word embeddings (GloVe, Word2Vec) for semantic representation.
-   - Transformer-based models (BioClinicalBERT) for advanced text understanding.
+![med](/thesis/img/med-1.png)
 
-3. **Fuzzy Logic Integration**:
-   - Fuzzy membership functions for symptom severity assessment.
-   - Meta-learner combining predictions from numerical and textual models using fuzzy rules.
+The ensemble methods consisted of XGBoost with hyperparameter tuning via GridSearchCV and Bayesian optimization, while Random Forest models served as baseline comparisons. For text processing, we used TF-IDF vectorization with traditional machine learning classifiers, semantic word embeddings such as GloVe and Word2Vec, and transformer-based models like BioClinicalBERT for richer contextual understanding.
 
-4. **Hybrid Neural Network**:
-   - Dual-branch architecture: separate branches for numerical and textual features.
-   - Text branch: Embedding input → Linear layers with BatchNorm and Dropout.
-   - Numerical branch: Scaled input → Linear layers with BatchNorm and Dropout.
-   - Fusion: Concatenation of latent representations → Classifier head.
-   - Training: Cross-entropy loss, Adam optimizer, early stopping with patience.
+Fuzzy logic was integrated through fuzzy membership functions that assess symptom severity and a meta-learner that combines predictions from numerical and textual models using rule-based inference. The hybrid neural network used a dual-branch design with separate processing paths for numerical and textual features. The text branch received embedding input followed by linear layers with BatchNorm and Dropout, and the numerical branch processed scaled input through a similar sequence of linear layers, BatchNorm, and Dropout. Latent representations from both branches were concatenated and passed to a classifier head, and training used cross-entropy loss with the Adam optimizer and early stopping.
 
 ### Evaluation Metrics
-- Accuracy, Precision, Recall, F1-Score
-- Confusion Matrix analysis
-- ROC-AUC for multi-class classification
+
+Model quality was measured with accuracy, precision, recall, and F1-score, supported by confusion matrix analysis and multiclass ROC-AUC evaluation.
 
 
 
 ## Results
 
 ### Numerical Feature Analysis
-- Baseline models showed moderate performance: SVM (66.75% accuracy), Random Forest (66% accuracy).
-- XGBoost without tuning achieved 99% accuracy on numerical features.
-- Hyperparameter optimization further improved results:
-  - SVC with GridSearchCV: 96% accuracy
-  - XGBoost with Bayesian optimization: 100% accuracy
+Baseline models showed moderate performance, with SVM reaching 66.75% accuracy and Random Forest achieving 66% accuracy. XGBoost trained on numerical features without tuning yielded 99% accuracy, and further hyperparameter optimization improved results even more: SVC with GridSearchCV reached 96% accuracy, while XGBoost tuned via Bayesian optimization attained 100% accuracy.
 
 ### Textual Feature Analysis
-- Initial TF-IDF + XGBoost: 84% accuracy
-- Feature selection with Random Forest: 80% accuracy
-- Hyperparameter tuning improved XGBoost to 86% accuracy
-- BioClinicalBERT integration with NER features and model ensembling showed promising results for semantic understanding.
+Textual feature models also performed well. The initial TF-IDF representation combined with XGBoost achieved 84% accuracy, while feature selection with Random Forest resulted in 80% accuracy. With careful hyperparameter tuning, XGBoost improved to 86% accuracy, and the integration of BioClinicalBERT with NER features and model ensembling showed promising enhancements in semantic understanding.
 
 ### Fuzzy Logic Meta-Learning
-- Implemented fuzzy membership functions for combining numerical and textual predictions.
-- Fuzzy rules based on confidence scores from individual models.
-- Improved ensemble decision-making by handling uncertainty in medical predictions.
+We implemented fuzzy membership functions to combine numerical and textual predictions, and we used fuzzy rules based on confidence scores from individual models. This approach improved ensemble decision-making by better handling uncertainty in medical predictions.
 
 ### Hybrid Neural Network Performance
-- Architecture: Text branch (384 → 256 → 128), Numerical branch (7 → 256 → 128), Fusion (256 → 64 → 32 → 3)
-- Training achieved high validation accuracy with early stopping.
-- Successful model loading and inference on new data, demonstrating robust multi-modal integration.
-- Test forward pass confirmed correct output shape for 3-class classification.
+The hybrid neural network used a text branch with dimensions 384→256→128 and a numerical branch with dimensions 7→256→128, followed by a fusion path through 256→64→32→3. Training achieved high validation accuracy with early stopping, and the model successfully loaded and inferred on new data, demonstrating robust multi-modal integration. A test forward pass confirmed the correct output shape for three-class classification.
 
 ### Comparative Analysis
-The hybrid approach combining structured data with NLP embeddings significantly outperformed single-modality models. The integration of fuzzy logic for meta-learning provided interpretable decision boundaries, while the neural network architecture captured complex non-linear relationships. Hyperparameter tuning was crucial for maximizing performance, with Bayesian optimization yielding the best results.
+The hybrid approach combining structured data with NLP embeddings significantly outperformed single-modality models. Integrating fuzzy logic for meta-learning provided more interpretable decision boundaries, while the neural network architecture was able to capture complex nonlinear relationships. Hyperparameter tuning was essential for maximizing performance, and Bayesian optimization produced the best results.
 
 ### Challenges and Limitations
-- Class imbalance in medical datasets required careful stratification.
-- Computational complexity of transformer models for real-time clinical use.
-- Interpretability trade-offs between ensemble methods and deep learning approaches.
+Class imbalance in medical datasets required careful stratification. The computational complexity of transformer models remains a concern for real-time clinical use, and there is an interpretability trade-off between ensemble methods and deep learning approaches.
 
 
 
@@ -130,6 +90,8 @@ As part of this research, machine learning approaches were developed and compare
 For the numerical features, basic machine learning models demonstrated moderate baseline performance (SVM: 66.75%, Random Forest: 66%). XGBoost without tuning achieved 99% accuracy, with hyperparameter optimization via Bayesian methods reaching 100% accuracy. SVC with GridSearchCV improved to 96% accuracy.
 
 The text data analysis revealed challenges with class overlap in vectorized representations, necessitating nonlinear models. XGBoost on TF-IDF features achieved 84% accuracy, with feature selection reducing it to 80%. Hyperparameter tuning improved results to 86%, and integration of BioClinicalBERT with NER features and ensembling showed enhanced semantic understanding.
+
+![med](/thesis/img/med-3.png)
 
 A fuzzy logic-based meta-learner was implemented to combine numerical and textual model predictions, providing interpretable decision-making under uncertainty. The research culminated in a hybrid neural network with separate branches for text embeddings (384-dimensional) and numerical features (7 features), achieving robust multi-modal classification for 3-class disease severity prediction.
 
