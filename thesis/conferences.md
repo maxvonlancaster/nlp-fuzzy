@@ -14,9 +14,10 @@ https://www.eoss-conf.com/en/scheduled-conferences/current-challenges-in-scienti
 до 2 червня | 
 https://isu-conference.com/science-and-technology-new-horizons-of-development/
 
-- 
-- 
-- 
+- Кравцов COMBINING ENSEMBLE MACHINE LEARNING MODELS WITH TEXT DATA ANALYSIS FOR MEDICAL CONDITIONS PREDICTION
+- Melnyk Melnyk CONTEXT-ORIENTED ARCHITECTURE FOR AI-ASSISTED DEVELOPMENT WITH MCP SERVERS AND AGENT SKILLS
+- Косован DETECTING AI-GENERATED CODE IN COMPETITIVE PROGRAMMING SUBMISSIONS
+- Lavreniuk UNSUPERVISED MACHINE LEARNING METHODS FOR TEXT SUMMARIZATION
 
 
 **3.** 4th International Scientific and Practical Conference Scientific Progress: Theories, Applications and Global Impact |
@@ -24,8 +25,8 @@ Braga, Portugal |
 until June 7 |
 https://www.eoss-conf.com/en/scheduled-conferences/scientific-progress-theories-applications-and-global-impact/
 
-- 
-- 
+- Мельник Мельник КОНТЕКСТНА ІНЖЕНЕРІЯ ТА MCP-СЕРВЕРИ ЯК ОСНОВА AI-ОРІЄНТОВАНОЇ РОЗРОБКИ ПРОГРАМНОГО ЗАБЕЗПЕЧЕННЯ
+- Burdyak AN INTELLIGENT FRAMEWORK FOR EXTRACTING AND STRUCTURING BUSINESS REQUIREMENTS FROM UNSTRUCTURED TEXT USING NLP AND FUZZY REASONING
 - 
 
 
@@ -35,7 +36,7 @@ https://www.eoss-conf.com/en/scheduled-conferences/scientific-progress-theories-
 до 9 червня |
 https://isu-conference.com/modern-science-economy-and-digital-innovation/
 
-- 
+- Мельник Мельник БАГАТОАГЕНТНИЙ ПІДХІД ДО AI-ОРІЄНТОВАНОЇ РОЗРОБКИ ПРОГРАМНОГО ЗАБЕЗПЕЧЕННЯ НА ОСНОВІ MCP ТА КОНТЕКСТНОЇ ОРКЕСТРАЦІЇ
 - 
 - 
 
