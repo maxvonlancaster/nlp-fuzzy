@@ -27,7 +27,7 @@ https://www.eoss-conf.com/en/scheduled-conferences/scientific-progress-theories-
 
 - Мельник Мельник КОНТЕКСТНА ІНЖЕНЕРІЯ ТА MCP-СЕРВЕРИ ЯК ОСНОВА AI-ОРІЄНТОВАНОЇ РОЗРОБКИ ПРОГРАМНОГО ЗАБЕЗПЕЧЕННЯ
 - Burdyak AN INTELLIGENT FRAMEWORK FOR EXTRACTING AND STRUCTURING BUSINESS REQUIREMENTS FROM UNSTRUCTURED TEXT USING NLP AND FUZZY REASONING
-- 
+- Косован ВИЯВЛЕННЯ ОЗНАК ВИКОРИСТАННЯ ШТУЧНОГО ІНТЕЛЕКТУ В РОЗВ’ЯЗКАХ ОЛІМПІАДНОГО ПРОГРАМУВАННЯ
 
 
 
@@ -37,7 +37,7 @@ https://www.eoss-conf.com/en/scheduled-conferences/scientific-progress-theories-
 https://isu-conference.com/modern-science-economy-and-digital-innovation/
 
 - Мельник Мельник БАГАТОАГЕНТНИЙ ПІДХІД ДО AI-ОРІЄНТОВАНОЇ РОЗРОБКИ ПРОГРАМНОГО ЗАБЕЗПЕЧЕННЯ НА ОСНОВІ MCP ТА КОНТЕКСТНОЇ ОРКЕСТРАЦІЇ
-- 
+- Чеховський ADVERSARIAL GENERATION OF SHORT PROMPTS FOR IMPROVING FEEDBACK QUALITY
 - 
 
 
@@ -46,18 +46,18 @@ Marseille, France |
 until June 14 |
 https://www.eoss-conf.com/en/scheduled-conferences/new-horizons-in-scientific-research-challenges-and-solutions/
 
-- 
-- 
+- Мельник Мельник AGENT-BASED LEARNING ENVIRONMENT FOR SOFTWARE ENGINEERING EDUCATION
+- Чеховський ІГРОТЕОРЕТИЧНИЙ ПІДХІД ДО АВТОМАТИЧНОГО ПОШУКУ ЕФЕКТИВНИХ ПРОМПТІВ ДЛЯ ОТРИМАННЯ ЯКІСНОГО ЗВОРОТНОГО ЗВ’ЯЗКУ
 - 
 
 
 **6.** 5 Міжнародна науково-практична конференція «Modern Science: Research, Economy and Innovation» | 
 Загреб, Хорватія | 
-17 червня | 
+до 16 червня | 
 https://isu-conference.com/modern-science-research-economy-and-innovation/
 
-- 
-- 
+- Мельник Мельник TOWARDS AI-NATIVE SOFTWARE TEAMS: ROLES, AGENTS, AND CONTEXT-ORIENTED COLLABORATION
+- Мельник Hybrid Multidimensional Text Analytics Using NLP, Word Embeddings, and Fuzzy Logic
 - 
 
 
@@ -67,8 +67,8 @@ Helsinki, Finland |
 until June 21 | 
 https://www.eoss-conf.com/en/scheduled-conferences/the-future-of-science-emerging-research-and-technological-innovations/
 
-- 
-- 
+- Кравцов КОМБІНУВАННЯ ПІДХОДІВ АНАЛІЗУ ПРИРОДНОЇ МОВИ ІЗ АНСАМБЛЕВИМИ МОДЕЛЯМИ МАШИННОГО НАВЧАННЯ ДЛЯ ПРОГНОЗУВАННЯ МЕДИЧНИХ СТАНІВ
+- Мельник Мельник AI-ОРІЄНТОВАНІ КОМАНДИ РОЗРОБКИ. РОЛІ, АГЕНТИ ТА КОНТЕКСТНА СПІВПРАЦЯ
 - 
 
 
@@ -77,8 +77,8 @@ https://www.eoss-conf.com/en/scheduled-conferences/the-future-of-science-emergin
 до 23 червня | 
 https://isu-conference.com/innovative-approaches-in-modern-science-and-technology/
 
-- 
-- 
+- Мельник Мельник СЕРЕДОВИЩЕ АГЕНТНОЇ ПІДТРИМКИ ДЛЯ НАВЧАННЯ ІНЖЕНЕРІЇ ПРОГРАМНОГО ЗАБЕЗПЕЧЕННЯ
+- Вікован HYBRID CRYPTOCURRENCY PRICE FORECASTING USING DAUBECHIES WAVELET DECOMPOSITION AND FUZZY TIME SERIES MODELS
 - 
 
 
@@ -87,8 +87,8 @@ https://isu-conference.com/innovative-approaches-in-modern-science-and-technolog
 до 30 червня | 
 https://isu-conference.com/global-trends-in-the-development-of-information-technology-and-science/
 
-- 
-- 
+- Мельник Мельник HUMAN-IN-THE-LOOP ARCHITECTURES FOR AGENTIC SOFTWARE ENGINEERING
+- Лавренюк ПОРІВНЯЛЬНЕ ДОСЛІДЖЕННЯ ГРАФОВИХ ТА МАТРИЧНИХ МЕТОДІВ АВТОМАТИЧНОГО РЕФЕРУВАННЯ МЕДИЧНИХ ТЕКСТІВ
 - 
 
 
@@ -97,6 +97,35 @@ https://isu-conference.com/global-trends-in-the-development-of-information-techn
 до 7 липня | 
 https://isu-conference.com/the-future-of-science-technology-and-economy/
 
+- Мельник Мельник AUTOMATING SOFTWARE DOCUMENTATION THROUGH CONTEXT-AWARE AGENT WORKFLOWS
+- Мельник EVOLUTIONARY OPTIMIZATION OF GRAPHQL QUERY ENDPOINTS USING GENETIC ALGORITHMS
+- 
+
+
+
+**11.** Istanbul https://icfas2026.intsa.org/index.html | 
+until 30 June!
+
 - 
 - 
-- 
+
+
+
+# Publications
+
+1. Neuro-Fuzzy Modeling Techniques in Economics
+https://nfmte.kneu.ua/archive/2023/12/contents
+
+2. Науковий вісник НГУ
+https://nvngu.in.ua/index.php/uk/
+
+3. Computer systems and information technologies
+https://csitjournal.khmnu.edu.ua/index.php/csit
+
+4. 
+
+
+5. 
+
+
+
