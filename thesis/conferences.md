@@ -122,10 +122,11 @@ https://nvngu.in.ua/index.php/uk/
 3. Computer systems and information technologies
 https://csitjournal.khmnu.edu.ua/index.php/csit
 
-4. 
+4. Economics, Entrepreneurship, Management
+https://eem.com.ua/en
 
+5. Херсон, Прикладні питання математичного моделювання
+https://journals.kntu.kherson.ua/index.php/ppmm/home
 
-5. 
-
-
-
+6. Буковинськи мат. журнал
+https://bmj.chnu.edu.ua/podannia/
