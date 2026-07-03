@@ -106,7 +106,7 @@ https://isu-conference.com/the-future-of-science-technology-and-economy/
 **11.** Istanbul https://icfas2026.intsa.org/index.html | 
 until 30 June!
 
-- 
+- Lavrenyuk UNSUPERVISED MACHINE LEARNING METHODS FOR TEXT SUMMARIZATION
 - 
 
 
@@ -119,7 +119,7 @@ https://nfmte.kneu.ua/archive/2023/12/contents
 2. Науковий вісник НГУ
 https://nvngu.in.ua/index.php/uk/
 
-3. Computer systems and information technologies
+3. Computer systems and information technologies (Khmelhytskyi National University)
 https://csitjournal.khmnu.edu.ua/index.php/csit
 
 4. Economics, Entrepreneurship, Management
@@ -128,5 +128,47 @@ https://eem.com.ua/en
 5. Херсон, Прикладні питання математичного моделювання
 https://journals.kntu.kherson.ua/index.php/ppmm/home
 
-6. Буковинськи мат. журнал
+6. Буковинський мат. журнал
 https://bmj.chnu.edu.ua/podannia/
+
+- Lavreniuk: An Empirical Comparison of Graph-Based and Algebraic Unsupervised Methods for Extractive Text Summarization
+
+7. The Norwegian Journal of Development of the International Science
+https://norwegian-journal.com/terms/
+
+- Melnyk O., Kosovan AGENT-ORIENTED ARCHITECTURE FOR CITY INFRASTRUCTURE ANALYSIS
+
+8. ScientificWorldJournal
+https://www.sworldjournal.com/index.php/swj
+
+- Melnyk, Kosovan CONTEXT-ORIENTED ARCHITECTURE FOR AI-ASSISTED DEVELOPMENT WITH MCP SERVERS AND AGENT SKILLS
+
+9. Modern engineering and innovative technologies (sec.: Industrial engineering. Management engineering)
+https://www.moderntechno.de/index.php/meit
+
+- Melnyk, Kosovan DESIGNING HYBRID AI-NATIVE ENGINEERING TEAMS: ROLE SPECIALIZATION AND SHARED-CONTEXT COORDINATION
+
+10. Математичне та комп'ютерне моделювання. Серія: Фізико-математичні науки (Кам.-Поділ.)
+https://mcm-math.kpnu.edu.ua/index
+
+11. International Conference on Artificial Intelligence, Computer, Data Sciences and Applications (RIO, Scopus, till 10th august)
+https://acdsa.org/home
+
+12. Цифрова економіка та економічна безпека
+https://dees.iei.od.ua/index.php/journal/index
+
+13. Кібернетика та Системний Аналіз Міжнародний Науково-Теоретичний Журнал
+http://www.kibernetika.org//about.html
+
+14. Наука і техніка сьогодні 
+https://perspectives.pp.ua/index.php/nts/index
+
+15. Sciences of Europe
+https://www.europe-science.com/
+
+16. Науковий вісник ДонНТУ
+https://visnyk.donntu.edu.ua/en/main/
+
+17. Ефективна економіка
+https://www.nayka.com.ua/index.php/ee
+

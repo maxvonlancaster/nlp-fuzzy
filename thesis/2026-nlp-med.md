@@ -37,7 +37,7 @@ Al-Qarni and Algarni [5] investigated disease prediction from symptom text using
 
 The work by Melnyk et al. [6] on applying NLP and fuzzy logic to disinformation detection provides methodological insights applicable to medical text analysis. Roman et al. [1] explored integrating machine learning with medical imaging, complementing text-based approaches for comprehensive diagnostic systems.
 
-Building on these foundations, our research extends the state-of-the-art by developing a hybrid neural architecture that jointly processes numerical and textual medical data, incorporating fuzzy logic for interpretable ensemble decision-making.## Methodology
+Building on these foundations, our research extends the state-of-the-art by developing a hybrid neural architecture that jointly processes numerical and textual medical data, incorporating fuzzy logic for interpretable ensemble decision-making.
 
 ## Methodology
 
@@ -131,3 +131,221 @@ Overall, the results confirm that ensemble methods combined with thorough hyperp
 ## TODO
 
 - Run ipynb file one more time, collect all the metrics into a single table!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# MAIN MATERIAL REFORMULATED 
+
+
+## Exploratory Data Analysis
+
+The proposed methodology was evaluated using a medical dataset containing both structured clinical measurements and unstructured textual descriptions of patient symptoms. Such multimodal data reflects real-world electronic health records (EHRs), where numerical physiological indicators coexist with free-text notes recorded by healthcare professionals.
+
+The structured component of the dataset contains demographic and physiological variables, including patient age, encoded gender, heart rate measured in beats per minute, body temperature expressed in degrees Celsius, blood pressure measured in millimetres of mercury, and peripheral oxygen saturation. Each patient record is associated with a medical assessment performed by healthcare experts, where the severity of the patient's condition is categorized into one of three classes: *mild*, *moderate*, or *severe*.
+
+Prior to model construction, exploratory data analysis was performed to identify missing values, detect potential outliers, and analyze feature distributions. Histograms and correlation matrices demonstrated that several physiological variables possessed significantly different numerical scales. Consequently, numerical attributes were standardized using the StandardScaler transformation
+
+$$
+x'=\frac{x-\mu}{\sigma},
+$$
+
+where (x) denotes the original feature value, (\mu) is the feature mean, and (\sigma) is the standard deviation computed from the training data. This normalization ensures that all continuous variables contribute proportionally during model training.
+
+The categorical gender variable was transformed using one-hot encoding, eliminating any artificial ordinal relationships while preserving categorical information.
+
+---
+
+## Bayesian Hyperparameter Optimization
+
+Performance of ensemble learning algorithms strongly depends on the selection of hyperparameters. Exhaustive Grid Search often becomes computationally expensive when numerous parameter combinations must be evaluated. Therefore, Bayesian Hyperparameter Optimization was employed to identify near-optimal configurations while minimizing computational cost.
+
+Unlike exhaustive search methods, Bayesian optimization constructs a probabilistic surrogate model
+
+$$
+f(\theta)\approx J(\theta),
+$$
+
+where (\theta) represents the hyperparameter vector and (J(\theta)) denotes the validation performance of the learning algorithm. At every iteration, the optimization procedure selects a new candidate configuration by maximizing an acquisition function, allowing promising regions of the search space to be explored efficiently.
+
+Three hyperparameters of the XGBoost classifier were optimized:
+
+* maximum tree depth ((max_depth)),
+* minimum number of samples required to split an internal node ((min_samples_split)),
+* number of boosting estimators ((n_estimators)).
+
+Each parameter was evaluated across multiple candidate values, resulting in more than one hundred possible configurations. The optimal hyperparameter combination obtained through Bayesian optimization is presented in Table 1.
+
+| Parameter             | Optimal value |
+| --------------------- | ------------: |
+| Maximum tree depth    |            10 |
+| Minimum samples split |             5 |
+| Number of estimators  |           600 |
+
+The selected configuration demonstrated the highest validation performance while maintaining good generalization capability.
+
+---
+
+## Ensemble Learning for Structured Clinical Features
+
+The standardized numerical features were used to train an XGBoost classifier, selected because of its robustness when modeling nonlinear interactions between physiological indicators.
+
+Gradient boosting constructs an additive ensemble of decision trees according to
+
+$$
+F_M(x)=\sum_{m=1}^{M}\gamma_m h_m(x),
+$$
+
+where (h_m(x)) denotes the decision tree generated at iteration (m), while (\gamma_m) represents its corresponding weight.
+
+Each subsequent tree attempts to minimize the residual errors produced by the previous ensemble, enabling the model to capture complex relationships between clinical measurements and disease severity.
+
+---
+
+## Natural Language Processing of Clinical Text
+
+In addition to structured clinical variables, each patient record contains a textual description of symptoms recorded by medical personnel. These descriptions frequently include valuable contextual information unavailable in structured measurements alone.
+
+The preprocessing pipeline included lowercasing, punctuation removal, tokenization, stop-word filtering, and lemmatization. Lemmatization reduces different grammatical forms to their canonical representation, decreasing vocabulary sparsity while preserving semantic meaning.
+
+To convert symptom descriptions into numerical representations, the Sentence-BERT embedding model **all-MiniLM-L6-v2** was employed. This transformer-based encoder maps each clinical description into a dense 384-dimensional semantic vector
+
+$$
+E:\mathcal{T}\rightarrow\mathbb{R}^{384},
+$$
+
+where ($\mathcal{T}$) denotes the space of textual symptom descriptions.
+
+Compared to traditional TF-IDF representations, dense sentence embeddings capture semantic similarity between clinically related expressions even when they do not share identical vocabulary.
+
+To further enrich textual information, Named Entity Recognition (NER) was performed using SciSpacy. Medical entities such as diseases, symptoms, anatomical structures, medications, and clinical procedures were automatically identified and incorporated into the feature extraction process, allowing the language model to emphasize medically relevant concepts.
+
+---
+
+## Fusion of Numerical and Textual Models
+
+Rather than combining structured and textual data into a single feature space, two specialized classifiers were trained independently.
+
+The first classifier is the optimized XGBoost model operating on structured physiological measurements.
+
+The second classifier is a Logistic Regression model trained on sentence embeddings generated from symptom descriptions.
+
+Both classifiers produce posterior probability vectors
+
+$$
+P_{num}(y|x),
+$$
+
+and
+
+$$
+P_{text}(y|x),
+$$
+
+which are concatenated into a unified representation
+
+$$
+P=[P_{num},P_{text}].
+$$
+
+This probability vector serves as the input for a meta-classifier based on Logistic Regression, producing the final severity prediction.
+
+Such stacking architecture enables each individual model to specialize within its own data modality while allowing the meta-learner to combine complementary information obtained from both structured clinical measurements and textual descriptions.
+
+---
+
+## Fuzzy Logic-Based Meta-Learner
+
+To improve interpretability of the decision-making process, an alternative meta-learning strategy based on fuzzy inference was investigated.
+
+Instead of directly combining probabilities through linear regression, the fuzzy meta-learner represents prediction confidence using linguistic variables such as *low*, *medium*, and *high*.
+
+Typical fuzzy rules include expressions of the form
+
+> IF numerical confidence is High AND textual confidence is High THEN severity is Severe.
+
+Membership functions were defined for classifier confidence values, and inference was performed using the Mamdani fuzzy inference mechanism. The final prediction was obtained through centroid defuzzification
+
+$$
+y^*=
+\frac{\int y\mu(y),dy}
+{\int\mu(y),dy}.
+$$
+
+The fuzzy approach additionally provides interpretable reasoning paths, which are particularly desirable in clinical decision support systems.
+
+---
+
+## Hybrid Neural Network Architecture
+
+In addition to ensemble learning and stacking-based approaches, a hybrid neural network architecture was developed to jointly exploit structured numerical measurements and unstructured textual symptom descriptions. The motivation behind this design is that numerical physiological indicators and semantic information extracted from clinical narratives provide complementary representations of a patient's condition. Processing these modalities independently before combining their latent representations enables the model to learn complex nonlinear interactions that cannot be captured by conventional machine learning algorithms.
+
+The proposed architecture consists of two parallel processing branches. The textual branch receives a 384-dimensional sentence embedding generated by the **all-MiniLM-L6-v2** transformer model. This representation is subsequently processed by two fully connected layers with dimensions (384 \rightarrow 256 \rightarrow 128), allowing the network to learn higher-level semantic abstractions from symptom descriptions while reducing feature dimensionality.
+
+The second branch processes structured clinical measurements. Seven normalized numerical features, including demographic information and physiological indicators, are provided as input to a dense neural network with architecture (7 \rightarrow 256 \rightarrow 128). This branch learns nonlinear dependencies among clinical variables while transforming them into a latent representation compatible with the semantic features extracted from textual data.
+
+The outputs of both branches are concatenated to form a unified multimodal feature vector. The fused representation is then processed by a sequence of fully connected layers with dimensions (256 \rightarrow 64 \rightarrow 32 \rightarrow 3), where the final layer employs the Softmax activation function to estimate posterior probabilities for the three severity classes: *mild*, *moderate*, and *severe*. Formally, the network can be represented as
+
+$$
+y=\mathrm{Softmax}\left(f_{fusion}\left(f_{num}(x_{num}),,f_{text}(x_{text})\right)\right),
+$$
+
+where $f_{num}$ and $f_{text}$ denote the numerical and textual feature extraction subnetworks, respectively, while $f_{fusion}$ represents the classification module operating on the combined latent representation.
+
+The network was trained using supervised learning with categorical cross-entropy as the optimization objective. Early stopping was employed during training to prevent overfitting by terminating optimization once the validation performance ceased to improve. This strategy enabled the model to achieve consistently high validation accuracy while preserving strong generalization capabilities on previously unseen patient records.
+
+Following training, the learned model parameters were successfully restored and applied to independent test samples without requiring architectural modifications. A validation forward pass confirmed that the network correctly produced probability distributions of dimension three, corresponding to the predefined severity categories. These experimental observations demonstrate that the proposed architecture effectively integrates heterogeneous clinical information and performs reliable multimodal inference, combining structured physiological measurements with semantic representations extracted from electronic health records. The superior classification performance reported in the experimental evaluation further indicates that deep multimodal feature fusion provides a more expressive representation of patient conditions than approaches relying on either numerical or textual information alone.
+
+
+---
+
+## Experimental Comparison
+
+Performance was evaluated using Precision, Recall, and F1-score, which are commonly adopted for multiclass medical classification tasks. The comparative evaluation of all investigated approaches is presented in Table 2.
+
+| Method                       | Precision |   Recall | F1-score |
+| ---------------------------- | --------: | -------: | -------: |
+| Random Forest                |      0.65 |     0.69 |     0.61 |
+| Combined XGBoost + NLP model |      0.95 |     0.94 |     0.94 |
+| Fuzzy Logic meta-learner     |      0.82 |     0.82 |     0.81 |
+| Hybrid Neural Network        |  **0.97** | **0.97** | **0.97** |
+
+The obtained results demonstrate that incorporating textual symptom descriptions substantially improves prediction quality compared with models relying exclusively on structured clinical variables. While the fuzzy logic meta-learner provides greater interpretability, its predictive performance remains below that of purely data-driven approaches. The hybrid neural network achieved the highest overall accuracy, indicating that simultaneous learning from structured physiological measurements and semantic textual representations provides the most effective strategy for medical severity prediction.
+
+---
+
+### Additional suggestions that would strengthen the paper
+
+I would also recommend adding one or two more methodological subsections:
+
+1. **Cross-validation and Evaluation Protocol**
+
+   * Train/test split (e.g., 80/20)
+   * 5-fold cross-validation
+   * Random seed
+   * Class balance
+
+2. **Feature Importance Analysis**
+
+   * SHAP values for XGBoost
+   * Which physiological variables contributed most
+   * Which symptom terms were most informative
+
+These additions are common in high-quality computer science and biomedical AI papers and would make the methodology substantially stronger.
