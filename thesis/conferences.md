@@ -126,7 +126,7 @@ https://csitjournal.khmnu.edu.ua/index.php/csit
 https://eem.com.ua/en
 
 5. Херсон, Прикладні питання математичного моделювання
-https://journals.kntu.kherson.ua/index.php/ppmm/home
+https://journals.kntu.kherson.ua/index.php/ppmm/home  :[Кравцов medical]
 
 6. Буковинський мат. журнал
 https://bmj.chnu.edu.ua/podannia/
@@ -152,7 +152,7 @@ https://www.moderntechno.de/index.php/meit
 https://mcm-math.kpnu.edu.ua/index
 
 11. International Conference on Artificial Intelligence, Computer, Data Sciences and Applications (RIO, Scopus, till 10th august)
-https://acdsa.org/home
+https://acdsa.org/home  :[Косован ai code detection]
 
 12. Цифрова економіка та економічна безпека
 https://dees.iei.od.ua/index.php/journal/index
@@ -171,4 +171,6 @@ https://visnyk.donntu.edu.ua/en/main/
 
 17. Ефективна економіка
 https://www.nayka.com.ua/index.php/ee
+
+
 
