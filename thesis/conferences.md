@@ -136,7 +136,7 @@ https://bmj.chnu.edu.ua/podannia/
 7. The Norwegian Journal of Development of the International Science
 https://norwegian-journal.com/terms/
 
-- Melnyk O., Kosovan AGENT-ORIENTED ARCHITECTURE FOR CITY INFRASTRUCTURE ANALYSIS
+- Melnyk O., Kosovan AGENT-ORIENTED ARCHITECTURE FOR CITY INFRASTRUCTURE ANALYSIS (https://nor-ijournal.com/2026/06/26/njd-183/)
 
 8. ScientificWorldJournal
 https://www.sworldjournal.com/index.php/swj
