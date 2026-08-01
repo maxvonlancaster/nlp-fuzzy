@@ -109,29 +109,32 @@ until 30 June!
 - Lavrenyuk UNSUPERVISED MACHINE LEARNING METHODS FOR TEXT SUMMARIZATION
 - 
 
+**12.** The 6th International Conference on Information Technologies: Theoretical and Applied Problems| (ITTAP-2026) https://ittap.tntu.edu.ua/#SUBMISSION
+
+- 
+
+
 
 
 # Publications
 
 1. Neuro-Fuzzy Modeling Techniques in Economics
-https://nfmte.kneu.ua/archive/2023/12/contents
+https://nfmte.kneu.ua/archive/2023/12/contents :[Fuzzy Time Services]
 
 2. Науковий вісник НГУ
-https://nvngu.in.ua/index.php/uk/
+https://nvngu.in.ua/index.php/uk/ :[FLRB Service]
 
 3. Computer systems and information technologies (Khmelhytskyi National University)
-https://csitjournal.khmnu.edu.ua/index.php/csit
+https://csitjournal.khmnu.edu.ua/index.php/csit :[Lavreniuk: An Empirical Comparison of Graph-Based and Algebraic Unsupervised Methods for Extractive Text Summarization]
 
 4. Economics, Entrepreneurship, Management
-https://eem.com.ua/en
+https://eem.com.ua/en :[BA Pipeline]
 
 5. Херсон, Прикладні питання математичного моделювання
 https://journals.kntu.kherson.ua/index.php/ppmm/home  :[Кравцов medical]
 
 6. Буковинський мат. журнал
 https://bmj.chnu.edu.ua/podannia/
-
-- Lavreniuk: An Empirical Comparison of Graph-Based and Algebraic Unsupervised Methods for Extractive Text Summarization
 
 7. The Norwegian Journal of Development of the International Science
 https://norwegian-journal.com/terms/
@@ -147,12 +150,15 @@ https://www.sworldjournal.com/index.php/swj
 https://www.moderntechno.de/index.php/meit
 
 - Melnyk, Kosovan DESIGNING HYBRID AI-NATIVE ENGINEERING TEAMS: ROLE SPECIALIZATION AND SHARED-CONTEXT COORDINATION
+- Shepetyuk HUMAN–AI COLLABORATION MODELS IN PROJECT MANAGEMENT: REDEFINING THE ROLE OF THE PROJECT MANAGER
 
 10. Математичне та комп'ютерне моделювання. Серія: Фізико-математичні науки (Кам.-Поділ.)
 https://mcm-math.kpnu.edu.ua/index
 
 11. International Conference on Artificial Intelligence, Computer, Data Sciences and Applications (RIO, Scopus, till 10th august)
-https://acdsa.org/home  :[Косован ai code detection]
+https://acdsa.org/home  
+
+- Kosovan Matvii Automated Detection of AI-Generated Programming Solutions in Student Submissions with Ensemble Models
 
 12. Цифрова економіка та економічна безпека
 https://dees.iei.od.ua/index.php/journal/index
@@ -161,7 +167,7 @@ https://dees.iei.od.ua/index.php/journal/index
 http://www.kibernetika.org//about.html
 
 14. Наука і техніка сьогодні 
-https://perspectives.pp.ua/index.php/nts/index
+https://perspectives.pp.ua/index.php/nts/index :[Lavreniyuk summ]
 
 15. Sciences of Europe
 https://www.europe-science.com/
@@ -172,5 +178,9 @@ https://visnyk.donntu.edu.ua/en/main/
 17. Ефективна економіка
 https://www.nayka.com.ua/index.php/ee
 
+18. Polish Scientific Journal
+https://www.polish-journal.com/terms/
 
+19. Scientific Heritage
+https://www.scientific-heritage.com/journal/
 
