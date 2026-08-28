@@ -111,7 +111,7 @@ until 30 June!
 
 **12.** The 6th International Conference on Information Technologies: Theoretical and Applied Problems| (ITTAP-2026) https://ittap.tntu.edu.ua/#SUBMISSION
 
-- 
+- Skutar Human-Centered Explainable Machine Learning for Coffee-Related Health Risk Prediction
 
 
 
@@ -184,3 +184,8 @@ https://www.polish-journal.com/terms/
 19. Scientific Heritage
 https://www.scientific-heritage.com/journal/
 
+20. 2nd International Conference on Applied Computational Intelligence and Systems Modeling (ACISM 2026) (Istambul, Scopus, till Sept. 10th)
+https://icacism.com/
+
+21. Věda a perspektivy (Чехія)
+https://perspectives.pp.ua/index.php/vp/index
