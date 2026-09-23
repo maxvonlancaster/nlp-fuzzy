@@ -131,7 +131,9 @@ https://csitjournal.khmnu.edu.ua/index.php/csit :[Lavreniuk: An Empirical Compar
 https://eem.com.ua/en :[BA Pipeline]
 
 5. Херсон, Прикладні питання математичного моделювання
-https://journals.kntu.kherson.ua/index.php/ppmm/home  :[Кравцов medical]
+https://journals.kntu.kherson.ua/index.php/ppmm/home 
+
+- Кравцов COMBINING ENSEMBLE MACHINE LEARNING MODELS WITH TEXT DATA ANALYSIS FOR MEDICAL CONDITIONS PREDICTION
 
 6. Буковинський мат. журнал
 https://bmj.chnu.edu.ua/podannia/
@@ -189,3 +191,10 @@ https://icacism.com/
 
 21. Věda a perspektivy (Чехія)
 https://perspectives.pp.ua/index.php/vp/index
+
+22. Eastern-European Journal of Enterprise Technologies (SCOPUS)
+https://jet.com.ua/uk/golovnaua
+
+23. ICTERI
+https://icteri.org/icteri-2026/
+
