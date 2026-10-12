@@ -146,7 +146,7 @@ https://norwegian-journal.com/terms/
 8. ScientificWorldJournal
 https://www.sworldjournal.com/index.php/swj
 
-- Melnyk, Kosovan CONTEXT-ORIENTED ARCHITECTURE FOR AI-ASSISTED DEVELOPMENT WITH MCP SERVERS AND AGENT SKILLS
+- Melnyk, Kosovan CONTEXT-ORIENTED ARCHITECTURE FOR AI-ASSISTED DEVELOPMENT WITH MCP SERVERS AND AGENT SKILLS (https://www.sworldjournal.com/index.php/swj/issue/view/swj38-01)
 
 9. Modern engineering and innovative technologies (sec.: Industrial engineering. Management engineering)
 https://www.moderntechno.de/index.php/meit
