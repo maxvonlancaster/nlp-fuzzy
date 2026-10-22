@@ -1,0 +1,183 @@
+{
+  "metadata": {
+    "date": "2026-10-22 18:27:07",
+    "dataset": "MTSamples Medical Transcriptions",
+    "n_documents": 1000,
+    "n_sentences": 3,
+    "random_seed": 42,
+    "bootstrap_samples": 1000,
+    "confidence_level": 0.95,
+    "clean_for_evaluation": true,
+    "evaluation_started_at": "2026-10-22 18:26:45",
+    "exported_at": "2026-10-22 18:27:07",
+    "evaluated_methods": [
+      "lead",
+      "random",
+      "textrank",
+      "lsa",
+      "lexrank"
+    ],
+    "method_parameters": {
+      "lead": {
+        "n": 3
+      },
+      "random": {
+        "n": 3,
+        "seed": 42
+      },
+      "textrank": {
+        "n": 3,
+        "similarity_metric": "tfidf",
+        "damping_factor": 0.85,
+        "max_iter": 100,
+        "tol": 0.0001
+      },
+      "lsa": {
+        "n": 3,
+        "n_components": 5
+      },
+      "lexrank": {
+        "n": 3,
+        "similarity_threshold": 0.1,
+        "damping_factor": 0.85
+      }
+    }
+  },
+  "methods": {
+    "lead": {
+      "mean_scores": {
+        "rouge1": 0.30884030370489995,
+        "rouge2": 0.2432751021312001,
+        "rougeL": 0.2875951105324675
+      },
+      "std_scores": {
+        "rouge1": 0.20074996273802861,
+        "rouge2": 0.2059281993375225,
+        "rougeL": 0.19977511298921496
+      },
+      "confidence_intervals": {
+        "rouge1": {
+          "lower": 0.29746327154310087,
+          "upper": 0.32178652120853146
+        },
+        "rouge2": {
+          "lower": 0.23104468268655323,
+          "upper": 0.2565300750550038
+        },
+        "rougeL": {
+          "lower": 0.2756727312459621,
+          "upper": 0.3008353411069546
+        }
+      },
+      "num_documents": 1000
+    },
+    "random": {
+      "mean_scores": {
+        "rouge1": 0.1561660244404192,
+        "rouge2": 0.06473015526481479,
+        "rougeL": 0.1254728654362239
+      },
+      "std_scores": {
+        "rouge1": 0.1273816133166423,
+        "rouge2": 0.10937566986000453,
+        "rougeL": 0.1116560213951791
+      },
+      "confidence_intervals": {
+        "rouge1": {
+          "lower": 0.14802196126312817,
+          "upper": 0.16446571605020166
+        },
+        "rouge2": {
+          "lower": 0.05784110567075063,
+          "upper": 0.0712815293503505
+        },
+        "rougeL": {
+          "lower": 0.11837015112104135,
+          "upper": 0.13256747068472494
+        }
+      },
+      "num_documents": 1000
+    },
+    "textrank": {
+      "mean_scores": {
+        "rouge1": 0.20715999401969867,
+        "rouge2": 0.1271847116100606,
+        "rougeL": 0.17961442772606825
+      },
+      "std_scores": {
+        "rouge1": 0.15655782259252268,
+        "rouge2": 0.1521057225459647,
+        "rougeL": 0.14750791357898008
+      },
+      "confidence_intervals": {
+        "rouge1": {
+          "lower": 0.19839976208837368,
+          "upper": 0.2171376099847792
+        },
+        "rouge2": {
+          "lower": 0.11860418089137754,
+          "upper": 0.13680484658703917
+        },
+        "rougeL": {
+          "lower": 0.17122357706478208,
+          "upper": 0.18879784348781342
+        }
+      },
+      "num_documents": 1000
+    },
+    "lsa": {
+      "mean_scores": {
+        "rouge1": 0.17013667696174115,
+        "rouge2": 0.08337560996439308,
+        "rougeL": 0.14523383938417583
+      },
+      "std_scores": {
+        "rouge1": 0.14705119143692646,
+        "rouge2": 0.12916280209917885,
+        "rougeL": 0.13453041287695877
+      },
+      "confidence_intervals": {
+        "rouge1": {
+          "lower": 0.1611768928078051,
+          "upper": 0.17933279374210326
+        },
+        "rouge2": {
+          "lower": 0.07595723133454156,
+          "upper": 0.09132445037332552
+        },
+        "rougeL": {
+          "lower": 0.13718225144670254,
+          "upper": 0.1537927588359318
+        }
+      },
+      "num_documents": 1000
+    },
+    "lexrank": {
+      "mean_scores": {
+        "rouge1": 0.2244128065220958,
+        "rouge2": 0.14275188162518465,
+        "rougeL": 0.19652718475306338
+      },
+      "std_scores": {
+        "rouge1": 0.17392753424601443,
+        "rouge2": 0.17091805278207417,
+        "rougeL": 0.16574344985404177
+      },
+      "confidence_intervals": {
+        "rouge1": {
+          "lower": 0.21372825709579932,
+          "upper": 0.2356404085495365
+        },
+        "rouge2": {
+          "lower": 0.13243225688153634,
+          "upper": 0.15385433462310086
+        },
+        "rougeL": {
+          "lower": 0.18620118373925415,
+          "upper": 0.20723845147207892
+        }
+      },
+      "num_documents": 1000
+    }
+  }
+}
