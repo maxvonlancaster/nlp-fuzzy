@@ -1,0 +1,285 @@
+
+===== cell 2 =====
+All modules imported successfully (LexRank via TF-IDF, no PyTorch required)
+Evaluation started: 2026-10-22 18:10:09
+
+===== cell 3 =====
+Configuration:
+  Random Seed: 42
+  Documents: 1000
+  Sentences per summary: 3
+  Bootstrap samples: 1000
+  Confidence level: 0.95
+  LSA components: 5
+  Clean for evaluation: True
+Output directories created: ..\results\citi2026_clean
+
+===== cell 5 =====
+Loading dataset...
+Loaded 1000 documents
+Dataset Information:
+  Name: MTSamples Medical Transcriptions
+  Total documents: 1000
+  Avg document length: 483.9 words
+  Avg reference length: 18.4 words
+  Compression ratio: 3.80%
+  Vocabulary size: 40,032 unique words
+
+===== cell 6 =====
+Sample document characteristics:
+
+Document 0:
+  Words: 295, Sentences: 19
+  Avg sentence length: 15.5 words
+  Lexical diversity: 0.576
+  Entity density: 3.1 per 100 words
+
+Document 1:
+  Words: 229, Sentences: 20
+  Avg sentence length: 11.4 words
+  Lexical diversity: 0.616
+  Entity density: 8.7 per 100 words
+
+Document 2:
+  Words: 190, Sentences: 18
+  Avg sentence length: 10.6 words
+  Lexical diversity: 0.563
+  Entity density: 6.3 per 100 words
+
+
+===== cell 8 =====
+Methods to evaluate:
+  - lead: First N sentences baseline
+  - random: Random sentence selection (lower bound)
+  - textrank: TextRank with TF-IDF similarity
+  - lsa: LSA with sklearn (no PyTorch required)
+  - lexrank: LexRank with TF-IDF similarity (no PyTorch required)
+5 methods defined
+
+===== cell 10 =====
+============================================================
+MAIN EVALUATION
+============================================================
+Evaluating 5 methods on 1000 documents...
+Estimated time: 42-125 minutes
+
+
+LEAD:
+  First N sentences baseline
+Evaluating lead on 1000 documents...
+  lead - ROUGE-1: 0.3088 ± 0.2007
+
+RANDOM:
+  Random sentence selection (lower bound)
+Evaluating random on 1000 documents...
+  random - ROUGE-1: 0.1923 ± 0.1542
+
+TEXTRANK:
+  TextRank with TF-IDF similarity
+Evaluating textrank on 1000 documents...
+  textrank - ROUGE-1: 0.2072 ± 0.1566
+
+LSA:
+  LSA with sklearn (no PyTorch required)
+Evaluating lsa on 1000 documents...
+  lsa - ROUGE-1: 0.1701 ± 0.1471
+
+LEXRANK:
+  LexRank with TF-IDF similarity (no PyTorch required)
+Evaluating lexrank on 1000 documents...
+  lexrank - ROUGE-1: 0.2244 ± 0.1739
+
+============================================================
+Evaluation completed in 0.3 minutes
+============================================================
+
+===== cell 12 =====
+ROUGE-1 Results (Mean ± Std) [95% CI]:
+
+lead        : 0.3088 ± 0.2007  [0.2975, 0.3218]
+random      : 0.1923 ± 0.1542  [0.1830, 0.2021]
+textrank    : 0.2072 ± 0.1566  [0.1984, 0.2171]
+lsa         : 0.1701 ± 0.1471  [0.1612, 0.1793]
+lexrank     : 0.2244 ± 0.1739  [0.2137, 0.2356]
+
+============================================================
+STATISTICAL SIGNIFICANCE TESTS
+============================================================
+
+Pairwise comparisons (paired t-test, α=0.05):
+
+lead vs random:
+  Difference: -0.1165
+  p-value: 0.0000 ***
+  Method difference IS statistically significant (p=0.0000 < 0.05)
+
+lead vs textrank:
+  Difference: -0.1017
+  p-value: 0.0000 ***
+  Method difference IS statistically significant (p=0.0000 < 0.05)
+
+lead vs lsa:
+  Difference: -0.1387
+  p-value: 0.0000 ***
+  Method difference IS statistically significant (p=0.0000 < 0.05)
+
+lead vs lexrank:
+  Difference: -0.0844
+  p-value: 0.0000 ***
+  Method difference IS statistically significant (p=0.0000 < 0.05)
+
+random vs textrank:
+  Difference: +0.0148
+  p-value: 0.0067 **
+  Method difference IS statistically significant (p=0.0067 < 0.05)
+
+random vs lsa:
+  Difference: -0.0222
+  p-value: 0.0001 ***
+  Method difference IS statistically significant (p=0.0001 < 0.05)
+
+random vs lexrank:
+  Difference: +0.0321
+  p-value: 0.0000 ***
+  Method difference IS statistically significant (p=0.0000 < 0.05)
+
+textrank vs lsa:
+  Difference: -0.0370
+  p-value: 0.0000 ***
+  Method difference IS statistically significant (p=0.0000 < 0.05)
+
+textrank vs lexrank:
+  Difference: +0.0173
+  p-value: 0.0001 ***
+  Method difference IS statistically significant (p=0.0001 < 0.05)
+
+lsa vs lexrank:
+  Difference: +0.0543
+  p-value: 0.0000 ***
+  Method difference IS statistically significant (p=0.0000 < 0.05)
+
+Performed 10 pairwise comparisons
+
+===== cell 14 =====
+Comprehensive Results Table:
+============================================================
+  Method    N  rouge1_mean  rouge1_std        rouge1_ci  rouge2_mean  rouge2_std        rouge2_ci  rougeL_mean  rougeL_std        rougeL_ci
+    lead 1000     0.308840    0.200750 [0.2975, 0.3218]     0.243275    0.205928 [0.2310, 0.2565]     0.287595    0.199775 [0.2757, 0.3008]
+  random 1000     0.192315    0.154152 [0.1830, 0.2021]     0.109786    0.151185 [0.1002, 0.1197]     0.165977    0.145783 [0.1567, 0.1756]
+textrank 1000     0.207160    0.156558 [0.1984, 0.2171]     0.127185    0.152106 [0.1186, 0.1368]     0.179614    0.147508 [0.1712, 0.1888]
+     lsa 1000     0.170137    0.147051 [0.1612, 0.1793]     0.083376    0.129163 [0.0760, 0.0913]     0.145234    0.134530 [0.1372, 0.1538]
+ lexrank 1000     0.224413    0.173928 [0.2137, 0.2356]     0.142752    0.170918 [0.1324, 0.1539]     0.196527    0.165743 [0.1862, 0.2072]
+
+
+Comparison Against Lead Baseline (ROUGE-1):
+============================================================
+  Method rouge1 (mean) Difference p-value Significant
+  random        0.1923    -0.1165  0.0000         Yes
+textrank        0.2072    -0.1017  0.0000         Yes
+     lsa        0.1701    -0.1387  0.0000         Yes
+ lexrank        0.2244    -0.0844  0.0000         Yes
+
+
+Summary Statistics:
+============================================================
+
+ROUGE1:
+  Best:  0.3088 (lead)
+  Worst: 0.1701 (lsa)
+  Range: 0.1387
+
+ROUGE2:
+  Best:  0.2433 (lead)
+  Worst: 0.0834 (lsa)
+  Range: 0.1599
+
+ROUGEL:
+  Best:  0.2876 (lead)
+  Worst: 0.1452 (lsa)
+  Range: 0.1424
+
+===== cell 16 =====
+Ablation studies deferred (see comment above).
+
+===== cell 18 =====
+============================================================
+ERROR ANALYSIS
+============================================================
+
+LEAD:
+  Score variance: 0.0403
+  Score range: [0.0000, 0.9608]
+  Strongest predictor: lexical_diversity (r=-0.098)
+  Low performers (251 docs):
+    num_words: -11.9% vs high performers
+    num_sentences: -9.3% vs high performers
+    entity_density: +5.8% vs high performers
+
+RANDOM:
+  Score variance: 0.0238
+  Score range: [0.0000, 0.8056]
+  Strongest predictor: num_sentences (r=-0.194)
+  Low performers (251 docs):
+    num_sentences: +37.2% vs high performers
+    num_entities: +30.8% vs high performers
+    num_words: +23.2% vs high performers
+
+TEXTRANK:
+  Score variance: 0.0245
+  Score range: [0.0000, 0.7397]
+  Strongest predictor: num_entities (r=-0.057)
+  Low performers (250 docs):
+    num_entities: +11.1% vs high performers
+    num_words: +7.8% vs high performers
+    avg_sentence_length: +6.0% vs high performers
+
+LSA:
+  Score variance: 0.0216
+  Score range: [0.0000, 0.7213]
+  Strongest predictor: num_sentences (r=-0.099)
+  Low performers (252 docs):
+    num_sentences: +18.2% vs high performers
+    num_entities: +18.1% vs high performers
+    num_words: +9.0% vs high performers
+
+LEXRANK:
+  Score variance: 0.0303
+  Score range: [0.0000, 0.9167]
+  Strongest predictor: num_words (r=-0.084)
+  Low performers (252 docs):
+    num_words: +14.9% vs high performers
+    num_sentences: +13.9% vs high performers
+    num_entities: +11.0% vs high performers
+
+Error analysis completed
+
+===== cell 20 =====
+============================================================
+CASE STUDY GENERATION
+============================================================
+
+Selected 3 representative cases:
+  Case 1: Document 832 (avg ROUGE-1: 0.653)
+  Case 2: Document 684 (avg ROUGE-1: 0.207)
+  Case 3: Document 559 (avg ROUGE-1: 0.000)
+Case studies exported to: ..\results\citi2026_clean\case_studies\detailed_case_studies.md
+
+Generated 3 case studies
+Exported to: ..\results\citi2026_clean\case_studies\detailed_case_studies.md
+
+===== cell 22 =====
+Visualizations saved to ..\results\citi2026_clean\figures
+
+===== cell 24 =====
+============================================================
+EXPORTING RESULTS
+============================================================
+Main results: ..\results\citi2026_clean\tables\main_results.csv
+Comparisons: ..\results\citi2026_clean\tables\pairwise_comparisons.csv
+LaTeX table exported to: ..\results\citi2026_clean\tables\results_table.tex
+LaTeX: ..\results\citi2026_clean\tables\results_table.tex
+JSON: ..\results\citi2026_clean\evaluation_results.json
+
+============================================================
+ALL RESULTS EXPORTED TO: ..\results\citi2026_clean
+============================================================
