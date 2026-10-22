@@ -322,12 +322,12 @@ def lexrank_tfidf_summarizer(
         return sentences
 
     try:
-        vectors = TfidfVectorizer().fit_transform(sentences)
+        # Shared TF-IDF settings with TextRank (rows are L2-normalised, so this is cosine)
+        similarity_matrix = sentence_similarity_matrix(sentences, method="tfidf")
     except ValueError:
         # Empty vocabulary (e.g. only stop words or punctuation)
         return sentences[:n]
 
-    similarity_matrix = cosine_similarity(vectors)
     adjacency = (similarity_matrix > similarity_threshold).astype(float)
     np.fill_diagonal(adjacency, 0.0)
 
