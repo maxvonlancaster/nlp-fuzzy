@@ -155,6 +155,13 @@ def textrank_summarizer(
     their similarity to other sentences. Sentences are nodes, edges
     are weighted by similarity.
 
+    Graph construction: the similarity matrix diagonal is set to zero before
+    building the graph, so there are no self-loops. Edge weights are the
+    off-diagonal similarities.
+
+    Tie-breaking: sentences with equal PageRank score are ordered by original
+    position (earlier sentences first), matching lexrank_tfidf_summarizer().
+
     Args:
         text: Input text
         n: Number of sentences to select
@@ -182,6 +189,7 @@ def textrank_summarizer(
         method=similarity_metric,
         embedding_model=kwargs.get('embedding_model', 'all-MiniLM-L6-v2')
     )
+    np.fill_diagonal(similarity_matrix, 0.0)  # no self-loops
 
     # Build graph from similarity matrix
     nx_graph = nx.from_numpy_array(similarity_matrix)
@@ -194,14 +202,11 @@ def textrank_summarizer(
         tol=tol
     )
 
-    # Sort sentences by score
-    ranked_sentences = sorted(
-        ((scores[i], i, s) for i, s in enumerate(sentences)),
-        reverse=True
-    )
+    # Highest score first; ties resolved by original position
+    ranked = sorted(range(len(sentences)), key=lambda i: (-scores[i], i))
 
     # Select top N and return in original order
-    selected_indices = sorted([idx for _, idx, _ in ranked_sentences[:n]])
+    selected_indices = sorted(ranked[:n])
     return [sentences[i] for i in selected_indices]
 
 
