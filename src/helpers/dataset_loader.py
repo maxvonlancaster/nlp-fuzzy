@@ -209,7 +209,8 @@ def load_mtsamples(
     limit: Optional[int] = None,
     base_path: str = 'resources',
     seed: int = RANDOM_SEED,
-    min_text_length: int = 100
+    min_text_length: int = 100,
+    clean_for_evaluation: bool = False
 ) -> Tuple[DatasetInfo, pd.DataFrame]:
     """
     Load MTSamples medical transcriptions dataset.
@@ -222,6 +223,10 @@ def load_mtsamples(
         base_path: Base directory path for dataset
         seed: Random seed for sampling
         min_text_length: Minimum transcription length in words
+        clean_for_evaluation: If True, also drop records with missing or
+            whitespace-only descriptions and keep only the first occurrence
+            of each exact transcription. Sampling happens after cleaning.
+            If False, behaviour is unchanged.
 
     Returns:
         Tuple of (DatasetInfo, DataFrame)
@@ -247,6 +252,14 @@ def load_mtsamples(
     # Filter out very short transcriptions
     df = df[df['transcription'].astype(str).str.split().str.len() >= min_text_length].copy()
     df = df.reset_index(drop=True)
+
+    if clean_for_evaluation:
+        # Drop missing or whitespace-only descriptions
+        has_description = df['description'].notna() & df['description'].astype(str).str.strip().ne('')
+        df = df[has_description]
+        # Remove exact duplicate transcriptions, keeping the first occurrence
+        df = df.drop_duplicates(subset='transcription', keep='first')
+        df = df.reset_index(drop=True)
 
     # Sample if limit specified
     if limit and limit < len(df):
