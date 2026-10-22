@@ -8,6 +8,7 @@ This module provides standard baseline methods including:
 - LexRank: Graph-based ranking with sentence embeddings
 """
 
+import hashlib
 import numpy as np
 import nltk
 import networkx as nx
@@ -64,16 +65,24 @@ def lead_n_baseline(text: str, n: int = 3, **kwargs) -> List[str]:
     return sentences[:n]
 
 
+def _document_seed(seed: int, text: str) -> int:
+    """Stable 64-bit seed from the base seed and document text (not Python hash())."""
+    digest = hashlib.blake2b(f"{seed}\x00{text}".encode("utf-8"), digest_size=8).digest()
+    return int.from_bytes(digest, "little")
+
+
 def random_baseline(text: str, n: int = 3, seed: int = RANDOM_SEED, **kwargs) -> List[str]:
     """
     Random baseline: Randomly select N sentences.
 
-    Provides a lower bound for performance evaluation.
+    Provides a lower bound for performance evaluation. Uses a local NumPy
+    Generator seeded from the base seed and the document text, so the global
+    NumPy random state is not modified and each document gets its own stream.
 
     Args:
         text: Input text
         n: Number of sentences to select
-        seed: Random seed for reproducibility
+        seed: Base random seed for reproducibility
         **kwargs: Additional arguments (ignored, for compatibility)
 
     Returns:
@@ -82,12 +91,12 @@ def random_baseline(text: str, n: int = 3, seed: int = RANDOM_SEED, **kwargs) ->
     sentences = split_sentences(text)
     n = min(n, len(sentences))
 
-    # Random selection with seed
-    np.random.seed(seed)
-    indices = np.random.choice(len(sentences), size=n, replace=False)
+    # Local generator: same document + seed gives the same selection
+    rng = np.random.default_rng(_document_seed(seed, text))
+    indices = rng.choice(len(sentences), size=n, replace=False)
 
     # Sort indices to maintain original order
-    indices = sorted(indices)
+    indices = sorted(int(i) for i in indices)
 
     return [sentences[i] for i in indices]
 
