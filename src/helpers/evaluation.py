@@ -171,7 +171,8 @@ def evaluate_method(
     evaluator: RougeEvaluator,
     method_kwargs: Optional[Dict[str, Any]] = None,
     verbose: bool = True,
-    summaries_out: Optional[List[str]] = None
+    summaries_out: Optional[List[str]] = None,
+    errors_out: Optional[List[Dict[str, Any]]] = None
 ) -> EvaluationResult:
     """
     Evaluate a summarization method on a set of documents.
@@ -185,6 +186,8 @@ def evaluate_method(
         method_kwargs: Keyword arguments to pass to method_func
         verbose: Print progress
         summaries_out: Optional list that receives the generated summaries
+        errors_out: Optional list that receives one dict per caught
+            summarization error (doc_index, error_type, message)
 
     Returns:
         EvaluationResult object
@@ -214,6 +217,12 @@ def evaluate_method(
         except Exception as e:
             if verbose:
                 print(f"  Warning: Error on document {i}: {e}")
+            if errors_out is not None:
+                errors_out.append({
+                    'doc_index': i,
+                    'error_type': type(e).__name__,
+                    'message': str(e)[:200]
+                })
             summaries.append("")  # Empty summary on error
 
     # Compute ROUGE scores
