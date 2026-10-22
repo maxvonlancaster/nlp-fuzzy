@@ -4,6 +4,8 @@ Mirrors load_mtsamples() filtering: transcription word count >= 100 (str.split()
 Writes the findings to docs/citi2026/dataset_audit.md.
 """
 import csv
+import re
+import statistics
 from collections import Counter, defaultdict
 from pathlib import Path
 
@@ -11,6 +13,12 @@ ROOT = Path(__file__).resolve().parents[1]
 DATA_PATH = ROOT / "resources" / "mtsamples.csv"
 OUT_PATH = ROOT / "docs" / "citi2026" / "dataset_audit.md"
 MIN_WORDS = 100  # same default as load_mtsamples(min_text_length=100)
+SEGMENT_WORDS = 100  # size of first/last segment for positional overlap
+TOKEN_RE = re.compile(r"[a-z0-9]+")
+
+
+def tokens(text):
+    return set(TOKEN_RE.findall(text.lower()))
 
 
 def is_blank(value):
@@ -65,6 +73,24 @@ def main():
     multi_desc_groups = sum(1 for t in dup_texts if len(diag_descs[t]) > 1)
     largest_group = max(diag_counts.values(), default=0)
 
+    # Positional lexical overlap: description-token recall of first/last 100 words
+    overlap_rows = []
+    for text in diag_counts:
+        words = text.split()
+        if len(words) < 2 * SEGMENT_WORDS:
+            continue
+        desc_tokens = tokens(min(diag_descs[text]))
+        if not desc_tokens:
+            continue
+        first = len(desc_tokens & tokens(" ".join(words[:SEGMENT_WORDS]))) / len(desc_tokens)
+        last = len(desc_tokens & tokens(" ".join(words[-SEGMENT_WORDS:]))) / len(desc_tokens)
+        overlap_rows.append((first, last))
+    n_overlap = len(overlap_rows)
+    first_scores = [f for f, _ in overlap_rows]
+    last_scores = [l for _, l in overlap_rows]
+    pct_first_higher = 100 * sum(f > l for f, l in overlap_rows) / n_overlap
+    pct_equal = 100 * sum(f == l for f, l in overlap_rows) / n_overlap
+
     lines = [
         "# MTSamples Data Integrity Audit",
         "",
@@ -118,6 +144,21 @@ def main():
         f"- Duplicate-transcription groups: {dup_group_count}",
         f"- Identical transcriptions with more than one distinct description: {multi_desc_groups}",
         f"- Largest duplicate group size: {largest_group}",
+        "",
+        "## Positional lexical overlap (preliminary diagnostic)",
+        "",
+        "Not ROUGE and not Lead-3 performance. A lexical diagnostic only.",
+        "",
+        f"Corpus: unique transcriptions from the diagnostic eligible corpus with >= {2 * SEGMENT_WORDS} words.",
+        f"Tokenisation: lowercase, ASCII alphanumeric runs (`[a-z0-9]+`), no stopword removal.",
+        f"Measure: recall = |unique description tokens found in segment| / |unique description tokens|.",
+        f"Segments: first and last {SEGMENT_WORDS} whitespace-separated words of the transcription.",
+        "",
+        f"- Unique documents analysed: {n_overlap}",
+        f"- First {SEGMENT_WORDS} words: mean {statistics.mean(first_scores):.4f}, median {statistics.median(first_scores):.4f}",
+        f"- Last {SEGMENT_WORDS} words: mean {statistics.mean(last_scores):.4f}, median {statistics.median(last_scores):.4f}",
+        f"- First segment higher overlap: {pct_first_higher:.1f}% of documents",
+        f"- Equal overlap: {pct_equal:.1f}% of documents",
         "",
     ]
 

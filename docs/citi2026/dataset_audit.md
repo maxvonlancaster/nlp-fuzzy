@@ -55,3 +55,18 @@ Corpus: records with >= 100 transcription words and a non-empty description.
 - Duplicate-transcription groups: 2060
 - Identical transcriptions with more than one distinct description: 0
 - Largest duplicate group size: 5
+
+## Positional lexical overlap (preliminary diagnostic)
+
+Not ROUGE and not Lead-3 performance. A lexical diagnostic only.
+
+Corpus: unique transcriptions from the diagnostic eligible corpus with >= 200 words.
+Tokenisation: lowercase, ASCII alphanumeric runs (`[a-z0-9]+`), no stopword removal.
+Measure: recall = |unique description tokens found in segment| / |unique description tokens|.
+Segments: first and last 100 whitespace-separated words of the transcription.
+
+- Unique documents analysed: 1911
+- First 100 words: mean 0.8539, median 1.0000
+- Last 100 words: mean 0.3619, median 0.3333
+- First segment higher overlap: 86.6% of documents
+- Equal overlap: 4.4% of documents
