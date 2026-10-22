@@ -184,11 +184,17 @@ def textrank_summarizer(
         return sentences
 
     # Compute similarity matrix
-    similarity_matrix = sentence_similarity_matrix(
-        sentences,
-        method=similarity_metric,
-        embedding_model=kwargs.get('embedding_model', 'all-MiniLM-L6-v2')
-    )
+    try:
+        similarity_matrix = sentence_similarity_matrix(
+            sentences,
+            method=similarity_metric,
+            embedding_model=kwargs.get('embedding_model', 'all-MiniLM-L6-v2')
+        )
+    except ValueError as e:
+        # Empty vocabulary (only stop words): fall back like lexrank_tfidf_summarizer()
+        if "empty vocabulary" in str(e):
+            return sentences[:n]
+        raise
     np.fill_diagonal(similarity_matrix, 0.0)  # no self-loops
 
     # Build graph from similarity matrix
