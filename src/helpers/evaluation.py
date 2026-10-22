@@ -170,7 +170,8 @@ def evaluate_method(
     method_name: str,
     evaluator: RougeEvaluator,
     method_kwargs: Optional[Dict[str, Any]] = None,
-    verbose: bool = True
+    verbose: bool = True,
+    summaries_out: Optional[List[str]] = None
 ) -> EvaluationResult:
     """
     Evaluate a summarization method on a set of documents.
@@ -183,6 +184,7 @@ def evaluate_method(
         evaluator: RougeEvaluator instance
         method_kwargs: Keyword arguments to pass to method_func
         verbose: Print progress
+        summaries_out: Optional list that receives the generated summaries
 
     Returns:
         EvaluationResult object
@@ -199,7 +201,7 @@ def evaluate_method(
         print(f"Evaluating {method_name} on {len(documents)} documents...")
 
     # Generate summaries
-    summaries = []
+    summaries = summaries_out if summaries_out is not None else []
     for i, doc in enumerate(documents):
         try:
             summary_sentences = method_func(doc, **method_kwargs)
