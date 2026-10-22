@@ -4,6 +4,7 @@ Notebook parameters are NOT overridden. Cell output goes to
 results/citi2026_clean/execution.log; only a short summary is printed.
 Refuses to start if results/citi2026_clean/evaluation_results.json already exists.
 """
+import argparse
 import contextlib
 import json
 import os
@@ -17,7 +18,9 @@ matplotlib.use("Agg")
 ROOT = Path(__file__).resolve().parents[1]
 SRC = ROOT / "src"
 RESULTS = ROOT / "results"
-OUT = RESULTS / "citi2026_clean"
+OUTPUT_NAMES = ["citi2026_clean", "citi2026_final"]
+OUT = RESULTS / "citi2026_clean"  # set from --output-name in main()
+OLD_OUTPUT_LINE = 'Path("../results/citi2026_clean")'  # cell 3 output_dir, patched in memory only
 NOTEBOOK = SRC / "summarization_evaluation.ipynb"
 EXPECTED_METHODS = {"lead", "random", "textrank", "lsa", "lexrank"}
 METRICS = ["rouge1", "rouge2", "rougeL"]
@@ -33,7 +36,30 @@ def legacy_snapshot():
 
 
 def main():
+    global OUT
+    parser = argparse.ArgumentParser(description="Run the CITI-2026 evaluation notebook.")
+    parser.add_argument("--output-name", choices=OUTPUT_NAMES, default="citi2026_clean")
+    parser.add_argument("--check-only", action="store_true",
+                        help="validate configuration and output routing; run nothing")
+    args = parser.parse_args()
+    OUT = RESULTS / args.output_name
     json_path = OUT / "evaluation_results.json"
+
+    nb = json.loads(NOTEBOOK.read_text(encoding="utf-8"))
+    cell3 = "".join(nb["cells"][3]["source"])
+    occurrences = cell3.count(OLD_OUTPUT_LINE)
+    if occurrences != 1:
+        print(f"ERROR: output-path line found {occurrences} times in cell 3 (expected 1)")
+        return 1
+    patched_cell3 = cell3.replace(OLD_OUTPUT_LINE, f'Path(r"{OUT}")')
+
+    if args.check_only:
+        guard = "present (a real run would be refused)" if json_path.exists() else "absent"
+        print(f"CHECK OK: output {OUT}")
+        print("output-path replacement: 1 occurrence in cell 3 (in memory only)")
+        print(f"overwrite guard: evaluation_results.json {guard}")
+        print("legacy protection: snapshot check active; no cells run, no files created")
+        return 0
     if json_path.exists():
         print(f"REFUSED: {json_path} already exists; move it aside to re-run.")
         return 2
@@ -57,7 +83,7 @@ def main():
             for idx, cell in enumerate(nb["cells"]):
                 if cell.get("cell_type") != "code":
                     continue
-                src = "".join(cell["source"])
+                src = patched_cell3 if idx == 3 else "".join(cell["source"])
                 log.write(f"\n===== cell {idx} =====\n")
                 log.flush()
                 try:
