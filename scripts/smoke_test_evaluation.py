@@ -20,7 +20,7 @@ from helpers.baselines import (  # noqa: E402
 from helpers.evaluation import RougeEvaluator, evaluate_method  # noqa: E402
 
 SEED = 42
-N_DOCS = 5
+N_DOCS = 10
 N_SENTENCES = 3
 LSA_N_COMPONENTS = 5
 METRICS = ['rouge1', 'rouge2', 'rougeL']
@@ -113,6 +113,16 @@ def main():
     print(f"TextRank vs LexRank identical selections: {agree}/{N_DOCS} documents")
     for f in failures:
         print(f"  - {f}")
+
+    # Edge-case probe (findings only, does not affect PASS/FAIL)
+    edge_doc = "The and of is. A the to in. It was a of. This is the of."
+    print(f"Edge probe: {len(split_sentences(edge_doc))} stopword-only sentences")
+    for name, func in [('textrank', textrank_summarizer), ('lexrank', lexrank_tfidf_summarizer)]:
+        try:
+            out = func(edge_doc, **make_methods()[name][1])
+            print(f"  {name}: no exception, returned {len(out)} sentences")
+        except Exception as e:
+            print(f"  {name}: exception {type(e).__name__}: {str(e)[:80]}")
     return 0 if not failures else 1
 
 
