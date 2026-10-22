@@ -283,6 +283,69 @@ def lexrank_summarizer(
     return [sentences[i] for i in selected_indices]
 
 
+def lexrank_tfidf_summarizer(
+    text: str,
+    n: int = 3,
+    similarity_threshold: float = 0.1,
+    damping_factor: float = 0.85,
+    max_iter: int = 100,
+    tol: float = 1e-4,
+    **kwargs
+) -> List[str]:
+    """
+    LexRank variant without PyTorch: TF-IDF sentence vectors, cosine similarity,
+    thresholded unweighted graph, PageRank centrality.
+
+    Edges connect sentence pairs with cosine similarity above
+    `similarity_threshold`; the diagonal is zeroed (no self-loops). Ties are
+    broken by original sentence position, so output is deterministic.
+
+    Args:
+        text: Input text
+        n: Number of sentences to select
+        similarity_threshold: Minimum cosine similarity for an edge (strictly greater)
+        damping_factor: PageRank damping factor
+        max_iter: Maximum PageRank iterations
+        tol: Convergence tolerance
+        **kwargs: Additional arguments (for compatibility)
+
+    Returns:
+        List of top N sentences in original order
+
+    Reference:
+        Erkan, G., & Radev, D. R. (2004). LexRank: Graph-based lexical
+        centrality as salience in text summarization. JAIR, 22, 457-479.
+    """
+    sentences = split_sentences(text)
+
+    if len(sentences) <= n:
+        return sentences
+
+    try:
+        vectors = TfidfVectorizer().fit_transform(sentences)
+    except ValueError:
+        # Empty vocabulary (e.g. only stop words or punctuation)
+        return sentences[:n]
+
+    similarity_matrix = cosine_similarity(vectors)
+    adjacency = (similarity_matrix > similarity_threshold).astype(float)
+    np.fill_diagonal(adjacency, 0.0)
+
+    nx_graph = nx.from_numpy_array(adjacency)
+
+    try:
+        scores = nx.pagerank(nx_graph, alpha=damping_factor, max_iter=max_iter,
+                             tol=tol, weight=None)
+    except nx.PowerIterationFailedConvergence:
+        # Fallback: degree centrality
+        scores = {i: float(adjacency[i].sum()) for i in range(len(sentences))}
+
+    # Highest score first; ties resolved by original position
+    ranked = sorted(range(len(sentences)), key=lambda i: (-scores[i], i))
+    selected_indices = sorted(ranked[:n])
+    return [sentences[i] for i in selected_indices]
+
+
 def lsa_summarizer(
     text: str,
     n: int = 3,
