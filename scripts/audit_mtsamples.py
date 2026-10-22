@@ -4,7 +4,7 @@ Mirrors load_mtsamples() filtering: transcription word count >= 100 (str.split()
 Writes the findings to docs/citi2026/dataset_audit.md.
 """
 import csv
-from collections import Counter
+from collections import Counter, defaultdict
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -27,6 +27,8 @@ def main():
     transcriptions = Counter()
     descriptions = Counter()
     specialties = Counter()
+    diag_counts = Counter()  # eligible corpus with non-empty description
+    diag_descs = defaultdict(set)
 
     with open(DATA_PATH, encoding="utf-8", newline="") as f:
         reader = csv.DictReader(f)
@@ -40,6 +42,9 @@ def main():
                 missing_description += 1
             if len(text.split()) >= MIN_WORDS:
                 eligible += 1
+                if not is_blank(desc):
+                    diag_counts[text] += 1
+                    diag_descs[text].add(desc.strip())
             transcriptions[text] += 1
             descriptions[desc.strip()] += 1
             specialties[(row.get("medical_specialty") or "").strip()] += 1
@@ -50,6 +55,15 @@ def main():
     repeated_desc = [(d, c) for d, c in descriptions.most_common() if c > 1]
     desc_repeat_rows = sum(c for _, c in repeated_desc)
     top_specialties = specialties.most_common(5)
+
+    diag_eligible = sum(diag_counts.values())
+    diag_unique = len(diag_counts)
+    dup_texts = {t: c for t, c in diag_counts.items() if c > 1}
+    dup_group_count = len(dup_texts)
+    dup_group_records = sum(dup_texts.values())
+    dup_excess = dup_group_records - dup_group_count
+    multi_desc_groups = sum(1 for t in dup_texts if len(diag_descs[t]) > 1)
+    largest_group = max(diag_counts.values(), default=0)
 
     lines = [
         "# MTSamples Data Integrity Audit",
@@ -92,6 +106,18 @@ def main():
         "notes and may shift results toward long-document behaviour.",
         "- Missing values: loader does not drop empty descriptions; rows with blank "
         "references would score as zero or be silently included.",
+        "",
+        "## Duplicate analysis on diagnostic eligible corpus",
+        "",
+        f"Corpus: records with >= {MIN_WORDS} transcription words and a non-empty description.",
+        "",
+        f"- Eligible records: {diag_eligible}",
+        f"- Unique transcriptions: {diag_unique}",
+        f"- Records in duplicate-transcription groups: {dup_group_records}",
+        f"- Excess duplicate records (beyond first occurrence): {dup_excess}",
+        f"- Duplicate-transcription groups: {dup_group_count}",
+        f"- Identical transcriptions with more than one distinct description: {multi_desc_groups}",
+        f"- Largest duplicate group size: {largest_group}",
         "",
     ]
 
