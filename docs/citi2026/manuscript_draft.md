@@ -28,7 +28,7 @@ Graph-based extractive methods treat sentences as nodes and their pairwise simil
 
 ### 2.2 Automatic evaluation and its limitations
 
-ROUGE measures n-gram overlap between a candidate summary and reference summaries, and is the standard automatic metric for extractive and abstractive summarisation (Lin, 2004). Its rankings depend on the references used, and several studies have questioned whether ROUGE-based comparisons remain stable across evaluation settings. Bhandari et al. (2020) re-examine evaluation practice in text summarisation, and Mao et al. (2020) propose reference-based facet-aware evaluation for extractive summarisation, which matches source support sentences to reference facets rather than relying on whole-summary overlap alone. These works motivate examining how reference characteristics shape the outcome of a comparison, rather than relying on aggregate scores alone.
+ROUGE measures n-gram overlap between a candidate summary and reference summaries, and is the standard automatic metric for extractive and abstractive summarisation (Lin, 2004). Its rankings depend on the references used, and several studies have questioned whether ROUGE-based comparisons remain stable across evaluation settings. Bhandari et al. (2020) re-examine evaluation practice in text summarisation, and Mao et al. (2020) propose reference-based facet-aware evaluation for extractive summarisation, which matches source support sentences to reference facets rather than relying on whole-summary overlap alone. Fabbri et al. (2021) re-evaluate automatic summarisation metrics, including ROUGE, against human judgements. Gigant et al. (2024) address reference quality by using reference-free metrics, and Casola et al. (2025) investigate how variation in the reference set affects summarisation evaluation. These studies examine metric and reference reliability in general; they do not analyse positional structure in clinical transcriptions, and our experiments do not test reference-free metrics or reference-set variation. These works motivate examining how reference characteristics shape the outcome of a comparison, rather than relying on aggregate scores alone.
 
 ### 2.3 Positional bias and the motivation for this study
 
@@ -41,6 +41,10 @@ Positional bias has been studied in news summarisation. Grenander et al. (2019) 
 We used the MTSamples file `resources/mtsamples.csv` (`transcription` and `description` fields). The loader (`load_mtsamples`) applies these steps in order. First, records whose transcription has fewer than 100 whitespace-separated words are removed (`min_text_length = 100`). Second, when cleaning is enabled, records with missing or whitespace-only descriptions are removed. Third, exact duplicates are removed by matching the transcription text, keeping the first occurrence. Only then are documents sampled: 1,000 records are drawn with pandas `sample(n=1000, random_state=42)`. Without a limit, the cleaned pool contains 2,248 unique transcriptions. Descriptions are repetitive: in the raw file (4,999 records), 2,139 descriptions occur more than once and cover 4,790 records, and template-like texts such as "An example/template for a routine normal male physical exam" recur up to 12 times. The cleaning steps do not remove repeated descriptions, and their share within the cleaned sample was not separately quantified.
 
 The `description` field is used as a proxy reference, not a verified gold-standard summary; ROUGE scores measure agreement with this proxy.
+
+The transcriptions come from the publicly available MTSamples collection (Boyle, n.d.), which is originally sourced from mtsamples.com. The repository does not record whether the local file is a Kaggle copy or a direct export, and we did not verify its licence; the Kaggle listing reports CC0.
+
+*Data availability.* The evaluation sample is derived from the public MTSamples collection cited above. The repository holds the code and the per-document scores (identified by SHA-256 hashes), but not the transcriptions, descriptions or generated summaries.
 
 ### 3.2 Extractive summarisation methods
 
@@ -147,7 +151,15 @@ These results separate three things: Lead-3's observed performance on this corpu
 
 Bhandari, M., Gour, P. N., Ashfaq, A., Liu, P., and Neubig, G. (2020). Re-evaluating evaluation in text summarization. In *Proceedings of EMNLP 2020*. https://aclanthology.org/2020.emnlp-main.751/
 
+Boyle, T. (n.d.). Medical Transcriptions [Dataset]. Kaggle. https://www.kaggle.com/datasets/tboyle10/medicaltranscriptions
+
+Casola, Liu, Peng, Kraus, Gatt and Plank (2025). References matter: Investigating the impact of reference set variation on summarization evaluation. In *Proceedings of INLG 2025*, pp. 274–291. https://aclanthology.org/2025.inlg-main.18/ [author initials to be verified]
+
 Erkan, G., and Radev, D. R. (2004). LexRank: Graph-based lexical centrality as salience in text summarization. *Journal of Artificial Intelligence Research*, 22, 457–479. https://doi.org/10.1613/JAIR.1523
+
+Fabbri et al. (2021). SummEval: Re-evaluating summarization evaluation. *Transactions of the Association for Computational Linguistics*, 9, 391–409. https://aclanthology.org/2021.tacl-1.24/ [full author list to be verified]
+
+Gigant, Guinaudeau, Decombas and Dufaux (2024). Mitigating the impact of reference quality on evaluation of summarization systems with reference-free metrics. In *Proceedings of EMNLP 2024*, pp. 19355–19368. https://aclanthology.org/2024.emnlp-main.1078/ [author initials to be verified]
 
 Grenander, M., Dong, Y., Cheung, J. C. K., and Louis, A. (2019). Countering the effects of lead bias in news summarization via multi-stage training and auxiliary losses. In *Proceedings of EMNLP-IJCNLP 2019*. https://aclanthology.org/D19-1620/
 
