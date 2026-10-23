@@ -1,0 +1,9 @@
+# Conclusions (Draft)
+
+This study compared five unsupervised extractive methods on 1,000 cleaned MTSamples transcriptions, using short descriptions as proxy references. The first research question asked how the methods compare and which differences survive correction. Lead-3 obtained the highest ROUGE scores, and all ten pairwise t-tests remained significant after Holm correction. Among the remaining methods, LexRank outperformed TextRank by a small margin (dz = 0.12), and the Wilcoxon test did not support the LSA-over-Random difference, which has negligible effect size.
+
+The second research question asked whether positional reference bias is associated with Lead's advantage. Description tokens overlapped the opening of transcriptions far more than their endings, and this positional bias was positively associated with Lead's advantage over LexRank. The third question asked whether the association persists after controlling for length. It did: the partial correlation remained positive, and the length-adjusted group difference retained the same direction with a confidence interval excluding zero.
+
+For evaluating unsupervised summarisation against proxy references, these results suggest that rankings can reflect the positional structure of the reference as well as the selection strategy. Benchmark comparisons should therefore be reported alongside diagnostics of reference structure, and conclusions should be framed as dataset-specific.
+
+The study has clear limitations. It uses a single corpus, proxy rather than verified gold references, a fixed three-sentence summary length, and an observational design that does not identify causal mechanisms. Future work could test whether the association holds on corpora with independently written reference summaries. A controlled study that manipulates reference position while holding content fixed would also help separate positional structure from lexical overlap.
