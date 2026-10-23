@@ -2,7 +2,7 @@
 
 ## 1. Dataset and preprocessing
 
-We used the MTSamples medical transcriptions file in `resources/mtsamples.csv`, which provides a `transcription` text and a `description` field for each record. The loader (`load_mtsamples`) applies the following steps in order. First, records whose transcription has fewer than 100 whitespace-separated words are removed (`min_text_length = 100`). Second, when cleaning is enabled, records with missing or whitespace-only descriptions are removed. Third, exact duplicates are removed by matching the transcription text, keeping the first occurrence. Only then are documents sampled: 1,000 records are drawn with pandas `sample(n=1000, random_state=42)`. Without a limit, the cleaned pool contains 2,248 unique transcriptions.
+We used the MTSamples file `resources/mtsamples.csv` (`transcription` and `description` fields). The loader (`load_mtsamples`) applies these steps in order. First, records whose transcription has fewer than 100 whitespace-separated words are removed (`min_text_length = 100`). Second, when cleaning is enabled, records with missing or whitespace-only descriptions are removed. Third, exact duplicates are removed by matching the transcription text, keeping the first occurrence. Only then are documents sampled: 1,000 records are drawn with pandas `sample(n=1000, random_state=42)`. Without a limit, the cleaned pool contains 2,248 unique transcriptions.
 
 The `description` field is used as a proxy reference, not a verified gold-standard summary; ROUGE scores measure agreement with this proxy.
 
@@ -12,22 +12,21 @@ All methods select three sentences (`N_SENTENCES = 3`) and return them in origin
 - **Lead-3** returns the first three sentences.
 - **Random** draws three sentence indices without replacement from a local NumPy `default_rng`. Its seed is derived per document from the base seed (42) and the document text via an 8-byte BLAKE2b digest, so the same document and seed give the same selection and the global NumPy random state is not used.
 - **TextRank** builds a sentence graph from the TF-IDF similarity matrix. The vectoriser uses n-grams of length 1 to 5, English stop-word removal, smoothed IDF and L2-normalised rows, so the entries are cosine similarities. The diagonal is set to zero, the graph is weighted by these similarities, and PageRank is run with damping factor 0.85, at most 100 iterations and tolerance 1e-4. Sentences are ranked by score, with ties broken by original position.
-- **LexRank (TF-IDF)** uses the same TF-IDF similarity matrix as TextRank. Edges are binary: two sentences are connected when their similarity is strictly greater than 0.1. The diagonal is zero, and PageRank is unweighted, with damping 0.85, at most 100 iterations and tolerance 1e-4. If PageRank fails to converge, a degree-based fallback is used. Ties are broken by original position. This method does not use sentence embeddings or PyTorch.
-- **LSA** vectorises sentences with TF-IDF using n-grams of length 1 to 2, English stop words and at most 1,000 features. TruncatedSVD with five components and `random_state = 42` is applied, and each sentence is scored by the L2 norm of its latent vector. The top three sentences are selected. Tie handling follows NumPy `argsort` ordering, which we did not verify to be index-stable.
+- **LexRank (TF-IDF)** uses the same TF-IDF similarity matrix as TextRank. Edges are binary: two sentences are connected when their similarity is strictly greater than 0.1. The diagonal is zero, and PageRank is unweighted, with damping 0.85, at most 100 iterations and tolerance 1e-4. If PageRank fails to converge, a degree-based fallback is used. Ties are broken by original position.- **LSA** vectorises sentences with TF-IDF using n-grams of length 1 to 2, English stop words and at most 1,000 features. TruncatedSVD with at most five components, computed as `min(5, min(tfidf_matrix.shape) - 1)`, and `random_state = 42` is applied; each sentence is scored by the L2 norm of its latent vector. The top three sentences are selected via NumPy `argsort` without explicit positional tie-breaking, so no index-stable ordering is guaranteed for tied scores.
 
 If the TF-IDF vocabulary is empty, TextRank and LexRank return the first three sentences.
 
 ## 3. Evaluation protocol
 
-ROUGE is computed with the `rouge_score` package (ROUGE-1, ROUGE-2, ROUGE-L; F-measure; Porter stemming). The reference is the `description`, and the candidate is the three selected sentences joined by spaces. Per-document scores are aligned across methods by the SHA-256 hash of the transcription. Summarisation exceptions are recorded with their document index, and the notebook stops if any method yields a missing summary or an error; the final run recorded none.
+ROUGE is computed with the `rouge_score` package (ROUGE-1, ROUGE-2, ROUGE-L; F-measure; Porter stemming). The reference is the `description`, and the candidate is the three selected sentences joined by spaces. Per-document scores are aligned across methods by the SHA-256 hash of the transcription. Exceptions are recorded per document, and the notebook stops on any missing summary or error; the final run recorded none.
 
-Confidence intervals for each method's mean ROUGE score use 1,000 bootstrap resamples at the 95% level, with random seed 42.
+Confidence intervals for each method's mean ROUGE score use 1,000 bootstrap resamples at the 95% level, with random seed 42. These bootstrap statistics reset the global NumPy RNG to seed 42; the Random baseline uses an independent document-seeded local generator and is unaffected.
 
 ## 4. Statistical analysis
 
 Pairwise comparisons cover all ten pairs of the five methods on ROUGE-1. Differences are defined as the second method minus the first. For each pair we computed a paired t-test (`scipy.stats.ttest_rel`) and a Wilcoxon signed-rank test (`scipy.stats.wilcoxon` with zero differences dropped). Holm step-down correction is applied separately across the ten t-test p-values and across the ten Wilcoxon p-values, at alpha = 0.05. We report the 95% CI of the mean difference from 2,000 paired bootstrap resamples of documents (seed 42), percentile-based, and Cohen's dz, computed as the mean difference divided by the sample standard deviation (ddof = 1) of the within-document differences.
 
-Distributional descriptors (sign counts, median, trimmed mean at 10%, sample skewness) were computed for the LSA-minus-Random differences to support interpretation of the test disagreement.
+Distributional descriptors (sign counts, median, 10% trimmed mean, skewness) were computed for LSA-minus-Random differences to interpret the test disagreement.
 
 ## 5. Positional-bias and robustness methodology
 
