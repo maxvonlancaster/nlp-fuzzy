@@ -73,6 +73,10 @@ The outcome is the per-document ROUGE-1 difference between Lead-3 and LexRank. A
 
 These analyses are associational: the token overlap defining positional bias is itself lexical overlap with the reference.
 
+### 3.6 Negative-control methodology
+
+Two negative controls were applied. The alternative-position control defines non-overlapping first, centred middle and last 100-word windows for the 672 documents with at least 300 words, computes description-token recall in each window, and correlates it with the Lead-minus-LexRank ROUGE-1 advantage. Differences between correlations are estimated by a paired document-level bootstrap (2,000 resamples, seed 42), with and without rank residualisation on document and reference length. The shuffled-reference control reassigns descriptions within strata of medical specialty and reference-length tercile over 100 permutations (n = 864, seed 42, local NumPy generator). Lead-3 and LexRank summaries were reconstructed once, matched to saved per-document scores within 1e-9, and reused across permutations. The first control tests whether the association is specific to the opening but cannot remove shared-reference coupling, because one description enters both measures. The second tests dependence on the true description-transcript pairing while preserving that coupling within each permutation. Neither control establishes causality.
+
 ## 4. Results and Discussion
 
 ### 4.1 Comparative ROUGE performance
@@ -113,7 +117,17 @@ Positional bias was associated with Lead's advantage over LexRank (Spearman rho 
 
 These findings describe associations, not causes. Positional bias is computed from lexical overlap between the reference and the transcript, so part of the association may reflect shared tokens rather than a genuine preference for leading content in the reference.
 
-### 4.4 Discussion and limitations
+### 4.4 Negative-control results
+
+Window correlations with the Lead-minus-LexRank advantage were +0.245 for the first window, -0.091 for the middle and -0.166 for the last (n = 672). The first-minus-middle difference was +0.335 (95% CI [+0.237, +0.428]) and the first-minus-last difference +0.412 (CI [+0.305, +0.523]), so the positive association is specific to the opening rather than shared across positions.
+
+Under the shuffled-reference control (n = 864, 100 permutations), the observed positional-bias correlation was +0.275. The shuffled median was +0.267, with a 2.5th-97.5th percentile interval of [+0.226, +0.317] and a one-sided exceedance of 0.33. The observed correlation is therefore compatible with the shuffled-reference distribution. These percentiles describe the control distribution, not a confidence interval for the observed correlation.
+
+The mean advantage behaves differently. On the same 864 documents, the original Lead-minus-LexRank mean ROUGE-1 difference was +0.092, against a shuffled median of +0.001. Lead's mean advantage therefore requires the true reference pairing, a separate finding from the positional correlation. Reassigned descriptions changed text in 99.94% of cases on average.
+
+The opening-window association is stronger than for other positions, but the evidence for a pairing-specific positional mechanism is weak. The controls neither isolate mathematical coupling nor establish causality.
+
+### 4.5 Discussion and limitations
 
 The results suggest that Lead-3 outperforms the unsupervised graph and latent methods on this dataset, and that the reference set favours opening content. This is a property of the evaluation setting, not evidence of a universally superior algorithm. Rankings could change on datasets with different structure, such as corpora whose references are not drawn from the opening text; we did not test such datasets.
 
