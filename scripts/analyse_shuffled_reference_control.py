@@ -127,10 +127,12 @@ def main():
     rng = np.random.default_rng(SEED)
     null_rho, changed_frac, zero_lead, zero_lex = [], [], [], []
     mean_lead, mean_lex, fallback_total, invalid = [], [], 0, 0
+    text_changed, mean_diff = [], []
     for _ in range(N_PERM):
         perm, fb = stratified_permutation(rng, keys)
         fallback_total += fb
         changed_frac.append(float(np.mean(perm != np.arange(m))))
+        text_changed.append(float(np.mean([sub_refs[perm[j]] != sub_refs[j] for j in range(m)])))
         Dk = [D[p] for p in perm]
         refs_k = [sub_refs[p] for p in perm]
         bias_k = bias_for(Dk)
@@ -148,8 +150,13 @@ def main():
         mean_lex.append(lex_k.mean())
         zero_lead.append(float(np.mean(lead_k == 0)))
         zero_lex.append(float(np.mean(lex_k == 0)))
+        mean_diff.append(float(adv_k.mean()))
 
     null_rho = np.array(null_rho)
+    mean_diff = np.array(mean_diff)
+    d2, d50, d97 = np.percentile(mean_diff, [2.5, 50, 97.5])
+    full_means = saved.groupby(level=0)["rouge1"].mean()
+    obs_mean_diff = float(obs_adv.mean())
     exceed = float(np.mean(null_rho >= obs_rho))
     p2, p50, p97 = np.percentile(null_rho, [2.5, 50, 97.5])
 
@@ -162,6 +169,12 @@ def main():
           f"strata fallbacks={fallback_total}; invalid iterations={invalid}")
     print(f"shuffled mean ROUGE-1: lead={np.mean(mean_lead):.4f} lexrank={np.mean(mean_lex):.4f}; "
           f"zero-score prevalence: lead={np.mean(zero_lead):.4f} lexrank={np.mean(zero_lex):.4f}")
+    print(f"description text changed: mean={np.mean(text_changed):.4f} min={np.min(text_changed):.4f} "
+          f"(index-changed mean={np.mean(changed_frac):.4f})")
+    print(f"full-sample ROUGE-1 (n=1000): lead={full_means['lead']:.4f} lexrank={full_means['lexrank']:.4f}; "
+          f"subset ROUGE-1 (n={m}): lead={lead_r1.mean():.4f} lexrank={lex_r1.mean():.4f}")
+    print(f"observed mean difference (lead-lexrank, subset)={obs_mean_diff:+.4f}; "
+          f"shuffled median={d50:+.4f} [2.5%={d2:+.4f}, 97.5%={d97:+.4f}]")
     for e in errors:
         print(f"  - {e}")
     return 0 if not errors else 1
