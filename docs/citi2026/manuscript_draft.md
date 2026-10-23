@@ -42,9 +42,9 @@ We used the MTSamples file `resources/mtsamples.csv` (`transcription` and `descr
 
 The `description` field is used as a proxy reference, not a verified gold-standard summary; ROUGE scores measure agreement with this proxy.
 
-The transcriptions come from the publicly available MTSamples collection (Boyle, n.d.), which is originally sourced from mtsamples.com. The repository does not record whether the local file is a Kaggle copy or a direct export, and we did not verify its licence; the Kaggle listing reports CC0.
+The transcriptions come from the publicly available MTSamples collection (Boyle, n.d.), which is originally sourced from mtsamples.com. The exact acquisition route and licence of the local CSV have not been independently established; the Kaggle listing reports CC0, which does not verify the local file's licence.
 
-*Data availability.* The evaluation sample is derived from the public MTSamples collection cited above. The repository holds the code and the per-document scores (identified by SHA-256 hashes), but not the transcriptions, descriptions or generated summaries.
+*Data availability.* The public GitHub repository for this study includes the source CSV (`resources/mtsamples.csv`), the scripts, and the per-document evaluation scores keyed by SHA-256 hash. The 1,000-document evaluation sample is reproducibly derived with the documented cleaning procedure and seed 42. The cleaned sample and generated summaries are not separately published.
 
 ### 3.2 Extractive summarisation methods
 
@@ -65,7 +65,7 @@ Confidence intervals for each method's mean ROUGE score use 1,000 bootstrap resa
 
 ### 3.4 Statistical analysis
 
-Pairwise comparisons cover all ten pairs of the five methods on ROUGE-1. Differences are defined as the second method minus the first. For each pair we computed a paired t-test (`scipy.stats.ttest_rel`) and a Wilcoxon signed-rank test (`scipy.stats.wilcoxon` called with `zero_method='wilcox'`; the script does not set the `method` argument, so the library default applies and is not specified here). Holm step-down correction is applied separately across the ten t-test p-values and across the ten Wilcoxon p-values, at alpha = 0.05. We report the 95% CI of the mean difference from 2,000 paired bootstrap resamples of documents (seed 42), percentile-based, and Cohen's dz, computed as the mean difference divided by the sample standard deviation (ddof = 1) of the within-document differences.
+Pairwise comparisons cover all ten pairs of the five methods on ROUGE-1. Differences are defined as the second method minus the first. For each pair we computed a paired t-test (`scipy.stats.ttest_rel`) and a Wilcoxon signed-rank test (`scipy.stats.wilcoxon` called with `zero_method='wilcox'`; the script does not set the `method` argument, so the library default applies and is not specified here). Holm step-down correction (Holm, 1979) is applied separately across the ten t-test p-values and across the ten Wilcoxon p-values, at alpha = 0.05. We report the 95% CI of the mean difference from 2,000 paired bootstrap resamples of documents (seed 42), percentile-based, and Cohen's dz, computed as the mean difference divided by the sample standard deviation (ddof = 1) of the within-document differences.
 
 Distributional descriptors (sign counts, median, 10% trimmed mean, skewness) were computed for LSA-minus-Random differences to interpret the test disagreement.
 
@@ -153,15 +153,17 @@ Bhandari, M., Gour, P. N., Ashfaq, A., Liu, P., and Neubig, G. (2020). Re-evalua
 
 Boyle, T. (n.d.). Medical Transcriptions [Dataset]. Kaggle. https://www.kaggle.com/datasets/tboyle10/medicaltranscriptions
 
-Casola, Liu, Peng, Kraus, Gatt and Plank (2025). References matter: Investigating the impact of reference set variation on summarization evaluation. In *Proceedings of INLG 2025*, pp. 274–291. https://aclanthology.org/2025.inlg-main.18/ [author initials to be verified]
+Casola, S., Liu, Y. J., Peng, S., Kraus, O., Gatt, A., and Plank, B. (2025). References matter: Investigating the impact of reference set variation on summarization evaluation. In *Proceedings of INLG 2025*, pp. 274–291. https://aclanthology.org/2025.inlg-main.18/
 
 Erkan, G., and Radev, D. R. (2004). LexRank: Graph-based lexical centrality as salience in text summarization. *Journal of Artificial Intelligence Research*, 22, 457–479. https://doi.org/10.1613/JAIR.1523
 
-Fabbri et al. (2021). SummEval: Re-evaluating summarization evaluation. *Transactions of the Association for Computational Linguistics*, 9, 391–409. https://aclanthology.org/2021.tacl-1.24/ [full author list to be verified]
+Fabbri, A. R., Kryściński, W., McCann, B., Xiong, C., Socher, R., and Radev, D. (2021). SummEval: Re-evaluating summarization evaluation. *Transactions of the Association for Computational Linguistics*, 9, 391–409. https://aclanthology.org/2021.tacl-1.24/
 
-Gigant, Guinaudeau, Decombas and Dufaux (2024). Mitigating the impact of reference quality on evaluation of summarization systems with reference-free metrics. In *Proceedings of EMNLP 2024*, pp. 19355–19368. https://aclanthology.org/2024.emnlp-main.1078/ [author initials to be verified]
+Gigant, T., Guinaudeau, C., Decombas, M., and Dufaux, F. (2024). Mitigating the impact of reference quality on evaluation of summarization systems with reference-free metrics. In *Proceedings of EMNLP 2024*, pp. 19355–19368. https://aclanthology.org/2024.emnlp-main.1078/
 
 Grenander, M., Dong, Y., Cheung, J. C. K., and Louis, A. (2019). Countering the effects of lead bias in news summarization via multi-stage training and auxiliary losses. In *Proceedings of EMNLP-IJCNLP 2019*. https://aclanthology.org/D19-1620/
+
+Holm, S. (1979). A simple sequentially rejective multiple test procedure. *Scandinavian Journal of Statistics*, 6(2), 65–70. https://www.jstor.org/stable/4615733
 
 Lin, C.-Y. (2004). ROUGE: A package for automatic evaluation of summaries. In *Text Summarization Branches Out*. https://aclanthology.org/W04-1013/
 
