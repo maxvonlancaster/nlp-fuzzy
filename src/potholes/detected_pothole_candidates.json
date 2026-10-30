@@ -1,64 +1,64 @@
 [
   {
-    "start_time": 0.1,
-    "end_time": 0.1,
-    "peak_time": 0.1,
-    "x": 70.68927181767648,
-    "y": 430.0,
-    "probability": 0.7794865652672475,
-    "samples": 1
+    "start_time": 8.2,
+    "end_time": 8.5,
+    "peak_time": 8.2,
+    "x": 303.71376411781057,
+    "y": 668.1339900027792,
+    "probability": 0.5988309091644548,
+    "samples": 3
   },
   {
-    "start_time": 22.2,
+    "start_time": 21.9,
     "end_time": 24.6,
-    "peak_time": 23.2,
-    "x": 180.0,
-    "y": 380.08893829905503,
+    "peak_time": 23.4,
+    "x": 301.32952199472766,
+    "y": 627.60187391037,
     "probability": 1.0,
-    "samples": 21
+    "samples": 27
   },
   {
     "start_time": 54.7,
     "end_time": 57.0,
-    "peak_time": 55.4,
-    "x": 330.0,
-    "y": 308.14341300722623,
+    "peak_time": 55.7,
+    "x": 312.18746828296986,
+    "y": 542.5392250497795,
     "probability": 1.0,
-    "samples": 24
+    "samples": 21
+  },
+  {
+    "start_time": 74.7,
+    "end_time": 74.9,
+    "peak_time": 74.7,
+    "x": 321.9071409619953,
+    "y": 492.72590256977406,
+    "probability": 0.6022834695859149,
+    "samples": 3
   },
   {
     "start_time": 87.2,
     "end_time": 89.3,
-    "peak_time": 88.0,
-    "x": 466.5591995553085,
-    "y": 220.0,
+    "peak_time": 88.1,
+    "x": 328.762068009308,
+    "y": 457.5944014522966,
     "probability": 1.0,
     "samples": 21
   },
   {
     "start_time": 128.4,
-    "end_time": 130.7,
-    "peak_time": 129.0,
-    "x": 619.1606448026681,
-    "y": 350.0,
+    "end_time": 130.5,
+    "peak_time": 129.3,
+    "x": 351.14431084022783,
+    "y": 349.8506012189748,
     "probability": 1.0,
-    "samples": 22
-  },
-  {
-    "start_time": 148.8,
-    "end_time": 149.1,
-    "peak_time": 148.9,
-    "x": 620.0,
-    "y": 213.67426347971104,
-    "probability": 0.782651125768616,
-    "samples": 4
+    "samples": 20
   },
   {
     "start_time": 157.1,
     "end_time": 159.5,
-    "peak_time": 158.1,
-    "x": 639.7387437465259,
-    "y": 170.0,
+    "peak_time": 158.3,
+    "x": 328.927666367817,
+    "y": 290.5797914798856,
     "probability": 1.0,
     "samples": 24
   }
